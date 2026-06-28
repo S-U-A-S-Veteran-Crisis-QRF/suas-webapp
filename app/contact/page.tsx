@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 
@@ -11,7 +12,11 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="hero">
+      <section className="hero-image">
+        <div className="hero-bg">
+          <Image src="/images/contact.jpg" alt="A support team member wearing a headset" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+        </div>
+        <div className="hero-overlay" />
         <div className="container">
           <div className="eyebrow">Contact</div>
           <h1>Get in touch</h1>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
@@ -11,7 +12,11 @@ export const metadata: Metadata = {
 export default function CountiesPage() {
   return (
     <>
-      <section className="hero">
+      <section className="hero-image">
+        <div className="hero-bg">
+          <Image src="/images/counties.jpg" alt="A diverse audience at a county community meeting" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+        </div>
+        <div className="hero-overlay" />
         <div className="container">
           <div className="eyebrow">For counties</div>
           <h1>County coordination for veteran support</h1>

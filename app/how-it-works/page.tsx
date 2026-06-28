@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
@@ -11,7 +12,11 @@ export const metadata: Metadata = {
 export default function HowItWorksPage() {
   return (
     <>
-      <section className="hero">
+      <section className="hero-image">
+        <div className="hero-bg">
+          <Image src="/images/how-it-works.jpg" alt="A person checking in on their phone at home" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+        </div>
+        <div className="hero-overlay" />
         <div className="container">
           <div className="eyebrow">SUAS Veteran Crisis Q.R.F.</div>
           <h1>How SUAS coordinates early support</h1>

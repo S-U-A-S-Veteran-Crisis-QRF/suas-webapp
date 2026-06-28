@@ -45,9 +45,12 @@ header.site{position:sticky;top:0;z-index:50;background:rgba(244,239,229,.94);ba
 .btn-primary:hover{background:var(--gold-2);color:#231a06}
 .btn-ghost{border-color:rgba(255,255,255,.35);color:#fff}
 .btn-ghost:hover{border-color:#fff}
-.hero .btn-ghost,.band .btn-ghost{border-color:rgba(255,255,255,.4);color:#fff}
-section:not(.hero):not(.band) .btn-ghost{border-color:var(--line);color:var(--ink)}
-section:not(.hero):not(.band) .btn-ghost:hover{border-color:var(--gold)}
+.hero .btn-ghost,.hero-image .btn-ghost,.band .btn-ghost{border-color:rgba(255,255,255,.4);color:#fff}
+/* hero-image ghost buttons: translucent backdrop so they stay legible over bright photo areas */
+.hero-image .btn-ghost{background:rgba(12,24,40,.38);border-color:rgba(255,255,255,.7);backdrop-filter:blur(2px)}
+.hero-image .btn-ghost:hover{background:rgba(12,24,40,.6);border-color:#fff}
+section:not(.hero):not(.hero-image):not(.band) .btn-ghost{border-color:var(--line);color:var(--ink)}
+section:not(.hero):not(.hero-image):not(.band) .btn-ghost:hover{border-color:var(--gold)}
 .btn-sm{padding:8px 15px;font-size:.85rem}
 header.site .btn-ghost{border-color:var(--line);color:var(--ink)}
 .btn[disabled]{opacity:.6;cursor:not-allowed;transform:none}
@@ -138,6 +141,8 @@ ul.todo li:before{content:"○";color:var(--muted)}
 .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
 .step h3{font-size:1.02rem;margin-bottom:4px}
 .step p{color:var(--muted);font-size:.92rem}
+/* home workflow steps: orange step text */
+.flow-steps .step h3,.flow-steps .step p{color:var(--orange)}
 
 /* workflow node diagram (dark) */
 .workflow{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-top:18px;flex-wrap:wrap}

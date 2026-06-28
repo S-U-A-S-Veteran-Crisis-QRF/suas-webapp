@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import PilotForm from "@/components/PilotForm";
@@ -12,7 +13,11 @@ export const metadata: Metadata = {
 export default function PilotPage() {
   return (
     <>
-      <section className="hero">
+      <section className="hero-image">
+        <div className="hero-bg">
+          <Image src="/images/pilot.jpg" alt="A diverse group joining hands together" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+        </div>
+        <div className="hero-overlay" />
         <div className="container">
           <div className="eyebrow">Pilot program</div>
           <h1>Join the SUAS pilot</h1>

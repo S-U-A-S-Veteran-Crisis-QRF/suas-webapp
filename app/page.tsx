@@ -1,10 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
 export default function HomePage() {
   return (
     <>
-      <section className="hero">
+      <section className="hero-image">
+        <div className="hero-bg">
+          <Image src="/images/home.jpg" alt="An American flag backlit by sunlight" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+        </div>
+        <div className="hero-overlay" />
         <div className="container">
           <div className="eyebrow">SUAS Veteran Crisis Q.R.F.</div>
           <h1>Veterans should not have to reach a breaking point before support shows up.</h1>
@@ -137,7 +142,7 @@ export default function HomePage() {
             <h2>From check-in to follow-up</h2>
             <p className="lead">Five steps designed for early support — not prediction.</p>
           </Reveal>
-          <div className="steps">
+          <div className="steps flow-steps">
             <div className="step"><div className="num">1</div><h3>Check in</h3><p className="muted">Mood · sleep · safety</p></div>
             <div className="step"><div className="num">2</div><h3>Support signal</h3><p className="muted">Stable → outreach</p></div>
             <div className="step"><div className="num">3</div><h3>Trusted circle</h3><p className="muted">Consent alerts</p></div>
