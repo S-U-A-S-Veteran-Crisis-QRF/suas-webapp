@@ -1,33 +1,19 @@
-// Old static site used .html URLs; forward them to the clean routes.
-const HTML_ROUTES = [
-  "app",
-  "families",
-  "veterans",
-  "nonprofits",
-  "counties",
-  "how-it-works",
-  "pilot",
-  "donate",
-  "safety",
-  "about",
-  "contact",
-];
+// Static export for free hosting on GitHub Pages.
+// The project site is served from a /<repo> sub-path, so we set basePath +
+// assetPrefix + a custom image loader from one env var (NEXT_PUBLIC_BASE_PATH).
+// Empty locally and on a root custom domain.
+const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: "export",
+  trailingSlash: true,
+  basePath: base || undefined,
+  assetPrefix: base || undefined,
   images: {
-    formats: ["image/avif", "image/webp"],
-  },
-  async redirects() {
-    return [
-      { source: "/index.html", destination: "/", permanent: true },
-      ...HTML_ROUTES.map((slug) => ({
-        source: `/${slug}.html`,
-        destination: `/${slug}`,
-        permanent: true,
-      })),
-    ];
+    loader: "custom",
+    loaderFile: "./image-loader.js",
   },
 };
 
