@@ -1,0 +1,9 @@
+# Netlify deploy config for the Next.js app.
+# The official Next.js runtime plugin handles SSR pages, the /api/family-intake
+# serverless function, next/image, and the .html redirects automatically.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
