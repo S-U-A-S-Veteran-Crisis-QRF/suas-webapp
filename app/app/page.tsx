@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import CrisisDemoApp from "@/components/CrisisDemoApp";
 
 export const metadata: Metadata = {
   title: "App Demo",
@@ -30,6 +31,23 @@ export default function AppPage() {
             <Link className="btn btn-ghost" href="/how-it-works">
               How it works
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <Reveal>
+            <div className="sec-label">Interactive prototype</div>
+            <h2>Emergency services, one tap away</h2>
+            <p className="lead">
+              A working preview of the veteran-facing app: tap a need — ride, food, or shelter — and
+              walk through the confirmation flow. This is a prototype with sample data; no real
+              services are dispatched.
+            </p>
+          </Reveal>
+          <div className="device-frame">
+            <CrisisDemoApp />
           </div>
         </div>
       </section>

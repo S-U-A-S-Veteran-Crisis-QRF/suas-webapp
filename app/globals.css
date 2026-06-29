@@ -189,6 +189,10 @@ footer.site .brand span{color:var(--muted-light)}
 .attrib{display:inline-block;margin-top:22px;border:1px solid #22374f;border-radius:10px;padding:10px 16px;color:var(--muted-light);font-size:.8rem}
 .foot-bottom{border-top:1px solid #22374f;margin-top:26px;padding-top:18px;text-align:center;font-size:.8rem;color:var(--muted-light)}
 
+/* phone-style frame for the interactive app prototype */
+.device-frame{max-width:430px;margin:28px auto 0;border:1px solid var(--line);border-radius:28px;
+  overflow:hidden;background:#f4f3ef;box-shadow:0 18px 50px rgba(16,31,51,.16)}
+
 /* scroll-reveal animation */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
