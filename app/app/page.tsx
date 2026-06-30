@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import CrisisDemoApp from "@/components/CrisisDemoApp";
+import EmbeddedDemo from "@/components/EmbeddedDemo";
 
 export const metadata: Metadata = {
   title: "App Demo",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function AppPage() {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
   return (
     <>
       <section className="hero-image">
@@ -49,6 +51,25 @@ export default function AppPage() {
           <div className="device-frame">
             <CrisisDemoApp />
           </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <Reveal>
+            <div className="sec-label">Full dispatch loop</div>
+            <h2>From a veteran&apos;s tap to the dispatcher&apos;s queue</h2>
+            <p className="lead">
+              The complete experience, end to end: tap a service on the veteran&apos;s phone and watch
+              the request land in the dispatcher console with its Medi-Cal billing detail, then advance
+              it through the live status flow. Sample data only — no real services are dispatched and
+              nothing is stored.
+            </p>
+          </Reveal>
+          <EmbeddedDemo
+            src={`${base}/app-demo-frs.html`}
+            title="Food, ride, and shelter dispatch demo"
+          />
         </div>
       </section>
 
