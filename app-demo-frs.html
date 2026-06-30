@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Food · Ride · Shelter — Interactive Demo | SUAS QRF</title>
+<meta name="description" content="Tap-through demo of the SUAS Veteran Crisis QRF Food/Ride/Shelter app and dispatcher console. Mock data, no backend.">
+<style>
+  :root{
+    --ground:#f4f3ef; --panel:#faf9f6; --card:#fff; --ink:#1a1a18; --body:#36342f; --dim:#7d7a72;
+    --line:#e3e0d7; --line2:#d3cfc3; --gold:#a87f2e;
+    --ride:#3a7bd5; --ride-dim:rgba(58,123,213,.10);
+    --food:#2e9e68; --food-dim:rgba(46,158,104,.10);
+    --shelter:#7a5fc0; --shelter-dim:rgba(122,95,192,.10);
+    --danger:#c0392f; --danger-bg:#fbeeec;
+    --sans:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    --mono:ui-monospace,"Cascadia Code","Consolas",Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--body);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  button{font-family:inherit;cursor:pointer}
+
+  .bar988{background:var(--danger);color:#fff;text-align:center;padding:10px 16px;font-size:.9rem;font-weight:600}
+  .bar988 b{font-family:var(--mono)}
+  .demo-note{background:#fbf6ea;border-bottom:1px solid #ecdfc2;color:#6e5a25;text-align:center;
+    padding:8px 16px;font-size:.8rem;font-family:var(--mono);letter-spacing:.01em}
+
+  .stage{max-width:1080px;margin:0 auto;padding:28px 20px 70px;
+    display:grid;grid-template-columns:minmax(320px,390px) 1fr;gap:34px;align-items:start}
+  @media(max-width:860px){.stage{grid-template-columns:1fr;gap:26px}}
+
+  .lane-label{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.16em;
+    color:var(--gold);font-weight:700;margin:0 0 12px}
+
+  /* ---- Phone ---- */
+  .phone{background:#1a1a18;border-radius:34px;padding:12px;box-shadow:0 24px 50px -18px rgba(0,0,0,.4)}
+  .screen{background:var(--ground);border-radius:24px;overflow:hidden;min-height:560px;display:flex;flex-direction:column}
+  .mini988{background:var(--danger);color:#fff;text-align:center;padding:9px;font-size:.78rem;font-weight:700}
+  .mini988 b{font-family:var(--mono)}
+  .scr-body{padding:22px 18px 26px;flex:1}
+  .ph-h1{text-align:center;font-size:1.05rem;font-weight:700;color:var(--ink);margin:4px 0 18px}
+  .prompt{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:13px;text-align:center;
+    font-size:.95rem;font-weight:500;color:var(--ink);margin-bottom:18px}
+  .bigbtn{width:100%;height:86px;border-radius:16px;display:flex;align-items:center;gap:15px;padding:0 20px;
+    text-align:left;margin-bottom:13px;transition:transform .1s, box-shadow .15s}
+  .bigbtn:active{transform:scale(.985)}
+  .bigbtn .em{font-size:34px;line-height:1}
+  .bigbtn .t{font-size:1.15rem;font-weight:700}
+  .bigbtn .s{font-size:.8rem;color:var(--dim);margin-top:1px}
+  .b-ride{background:var(--ride-dim);border:2px solid var(--ride)}   .b-ride .t{color:var(--ride)}
+  .b-food{background:var(--food-dim);border:2px solid var(--food)}   .b-food .t{color:var(--food)}
+  .b-shelter{background:var(--shelter-dim);border:2px solid var(--shelter)} .b-shelter .t{color:var(--shelter)}
+  .ph-foot{text-align:center;font-size:.74rem;color:var(--dim);margin-top:18px;line-height:1.6}
+  .ph-foot b{color:var(--gold)}
+  .back{background:none;border:none;color:var(--dim);font-size:.9rem;padding:0;margin-bottom:14px}
+  .meal{width:100%;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:15px 18px;
+    display:flex;align-items:center;gap:15px;text-align:left;margin-bottom:11px}
+  .meal:active{border-color:var(--food)}
+  .meal .em{font-size:30px}.meal .t{font-size:1.02rem;font-weight:700;color:var(--ink)}.meal .s{font-size:.78rem;color:var(--dim)}
+  .conf-card{border-radius:18px;padding:24px 20px;text-align:center;margin-bottom:14px}
+  .conf-em{font-size:46px;margin-bottom:8px}
+  .conf-title{font-size:1.2rem;font-weight:700;margin:0 0 8px}
+  .conf-msg{font-size:1rem;color:var(--body);margin:0 0 14px}
+  .eta{background:var(--card);border-radius:11px;padding:10px 18px;display:inline-block}
+  .eta .l{font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim)}
+  .eta .v{font-size:1.25rem;font-weight:700}
+  .conf-ref{margin-top:11px;font-size:.78rem;color:var(--dim)}
+  .conf-ref b{font-family:var(--mono);color:var(--ink)}
+  .live{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 15px;font-size:.84rem;text-align:left}
+  .live .lh{font-weight:700;margin-bottom:5px}
+  .ghost{width:100%;padding:13px;background:none;border:1px solid var(--line);border-radius:12px;color:var(--dim);font-size:.9rem;margin-top:6px}
+
+  /* ---- Dispatcher ---- */
+  .disp{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+  .disp-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .disp-head h2{font-size:1.1rem;margin:0;color:var(--ink)}
+  .disp-head .conn{font-family:var(--mono);font-size:.72rem;color:#1f9d57}
+  .tally{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:9px 13px;min-width:84px}
+  .stat .n{font-size:1.15rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+  .stat .l{font-size:.64rem;text-transform:uppercase;letter-spacing:.06em;color:var(--dim)}
+  .queue{display:flex;flex-direction:column;gap:11px}
+  .enc{background:var(--card);border:1px solid var(--line);border-left-width:5px;border-radius:12px;padding:13px 15px}
+  .enc.ride{border-left-color:var(--ride)}.enc.food{border-left-color:var(--food)}.enc.shelter{border-left-color:var(--shelter)}
+  .enc-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .enc-svc{font-weight:700;color:var(--ink);font-size:.97rem}
+  .enc-meta{font-family:var(--mono);font-size:.72rem;color:var(--dim);margin-top:3px}
+  .enc-bill{font-size:.78rem;color:var(--body);margin-top:4px}
+  .pill{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:20px;white-space:nowrap}
+  .p-requested{background:#fff4e0;color:#9a6b00}.p-confirmed,.p-dispatched{background:#e7f0ff;color:#2a5db0}
+  .p-delivered,.p-completed{background:#eafaf1;color:#1f7a4d}.p-escalated{background:var(--danger-bg);color:var(--danger)}
+  .enc-act{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+  .enc-act button{font-size:.76rem;font-weight:600;border-radius:8px;border:1px solid var(--line);background:var(--card);padding:6px 11px;color:var(--body)}
+  .enc-act .adv{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .enc-act .esc{color:var(--danger);border-color:var(--danger)}
+  .empty{text-align:center;color:var(--dim);padding:40px 16px;font-size:.9rem}
+  .reset{margin-top:16px;background:none;border:1px dashed var(--line2);border-radius:9px;color:var(--dim);font-size:.78rem;padding:7px 12px}
+</style>
+</head>
+<body>
+
+<div class="bar988">🆘 Immediate danger? Call <b>988</b> · Press 1 for Veterans · Text <b>838255</b></div>
+<div class="demo-note">Interactive demo · mock data, no real dispatch, nothing stored · the live system runs locally over HTTPS</div>
+
+<div class="stage">
+
+  <!-- VETERAN APP -->
+  <div>
+    <p class="lane-label">Veteran app</p>
+    <div class="phone"><div class="screen">
+      <div class="mini988">🆘 Immediate danger? Call <b>988</b> · Press 1</div>
+      <div class="scr-body" id="scr"></div>
+    </div></div>
+  </div>
+
+  <!-- DISPATCHER -->
+  <div>
+    <p class="lane-label">Dispatcher console</p>
+    <div class="disp">
+      <div class="disp-head"><h2>Live queue</h2><span class="conn">● live</span></div>
+      <div class="tally" id="tally"></div>
+      <div class="queue" id="queue"></div>
+      <button class="reset" onclick="resetDemo()">↺ Reset demo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SVC = {
+  ride:    { label:"Free Ride", emoji:"🚗", color:"var(--ride)", sub:"Waymo · Amazon AV · Dispatched now",
+             name:"Non-Medical Transportation", low:25, high:75, eta:"5 – 7 minutes", etaLabel:"Estimated arrival",
+             title:"Your ride is on the way", msg:"A vehicle is heading to you now. Stay where you are." },
+  food:    { label:"Free Food", emoji:"🍲", color:"var(--food)", sub:"Hot meal · Delivered to you",
+             name:"Medically Tailored Meals", low:8, high:15, eta:"20 – 30 minutes", etaLabel:"Estimated delivery",
+             title:"Your meal is being prepared", msg:"Hot food is on its way to you. No payment needed." },
+  shelter: { label:"Emergency Shelter", emoji:"🏨", color:"var(--shelter)", sub:"Hotel voucher · No payment needed",
+             name:"Housing Navigation", low:null, high:null, eta:"Ready now", etaLabel:"Check-in",
+             title:"Your room is confirmed", msg:"Show this screen at the front desk. No payment required." },
+};
+const MEALS = [
+  {id:"burger", emoji:"🍔", label:"Cheeseburger", sub:"With fries"},
+  {id:"chicken",emoji:"🍗", label:"Chicken Sandwich", sub:"Grilled or crispy"},
+  {id:"veggie", emoji:"🥗", label:"Vegetarian Plate", sub:"Fresh & hot"},
+];
+const FLOW = ["requested","confirmed","dispatched","delivered","completed"];
+
+let screen = "home", svc = null, meal = null, myRef = null;
+let encounters = [];
+let seq = 0;
+const newRef = () => "QRF-" + (1000 + Math.floor(Math.random()*8999)).toString(16).toUpperCase();
+
+function createEncounter(service, detail){
+  const s = SVC[service];
+  const e = { ref:newRef(), service, detail, status:"requested", escalated:false, name:s.name, low:s.low, high:s.high, ts:Date.now() };
+  encounters.unshift(e);
+  myRef = e.ref;
+  renderDispatcher();
+  return e;
+}
+function advance(ref){
+  const e = encounters.find(x=>x.ref===ref); if(!e) return;
+  const i = FLOW.indexOf(e.status);
+  if(i>=0 && i<FLOW.length-1) e.status = FLOW[i+1];
+  renderDispatcher(); if(screen==="confirm") renderPhone();
+}
+function escalate(ref){
+  const e = encounters.find(x=>x.ref===ref); if(!e) return;
+  e.escalated = true; renderDispatcher();
+}
+function resetDemo(){ encounters=[]; myRef=null; screen="home"; renderDispatcher(); renderPhone(); }
+
+/* ---------- PHONE ---------- */
+function go(s){ svc=s; if(s==="food"){screen="foodOptions";} else {screen="confirm"; createEncounter(s,null);} renderPhone(); }
+function pickMeal(m){ meal=m; screen="confirm"; const mi=MEALS.find(x=>x.id===m); createEncounter("food", mi?mi.label:m); renderPhone(); }
+function home(){ screen="home"; svc=null; meal=null; myRef=null; renderPhone(); }
+
+function renderPhone(){
+  const el = document.getElementById("scr");
+  if(screen==="home"){
+    el.innerHTML = `
+      <div class="ph-h1">S.U.A.S. Veteran Crisis Q.R.F.</div>
+      <div class="prompt">Tap what you need. Help is free.</div>
+      ${btn("ride")}${btn("food")}${btn("shelter")}
+      <div class="ph-foot">All services free · Paid by corporate sponsors<br><b>suasqrf.org</b></div>`;
+    return;
+  }
+  if(screen==="foodOptions"){
+    el.innerHTML = `<button class="back" onclick="home()">← Back</button>
+      <div class="ph-h1" style="text-align:left;font-size:1.15rem">What would you like?</div>
+      ${MEALS.map(m=>`<button class="meal" onclick="pickMeal('${m.id}')"><span class="em">${m.emoji}</span>
+        <span><span class="t">${m.label}</span><br><span class="s">${m.sub}</span></span></button>`).join("")}`;
+    return;
+  }
+  if(screen==="confirm"){
+    const s = SVC[svc];
+    const e = encounters.find(x=>x.ref===myRef);
+    const mealInfo = meal ? MEALS.find(m=>m.id===meal) : null;
+    const dim = svc==="ride"?"var(--ride-dim)":svc==="food"?"var(--food-dim)":"var(--shelter-dim)";
+    el.innerHTML = `
+      <div class="conf-card" style="background:${dim};border:2px solid ${s.color}">
+        <div class="conf-em">${s.emoji}</div>
+        <div class="conf-title" style="color:${s.color}">${s.title}</div>
+        ${mealInfo?`<div style="font-size:.85rem;color:var(--body);margin-bottom:8px">${mealInfo.emoji} ${mealInfo.label}</div>`:""}
+        <p class="conf-msg">${s.msg}</p>
+        <div class="eta"><div class="l">${s.etaLabel}</div><div class="v" style="color:${s.color}">${s.eta}</div></div>
+        ${myRef?`<div class="conf-ref">Reference <b>${myRef}</b></div>`:""}
+      </div>
+      <div class="live">
+        <div class="lh" style="color:${s.color}">📡 Live status</div>
+        <div>${statusLine(e)}</div>
+      </div>
+      <button class="ghost" onclick="home()">← Back to home</button>`;
+    return;
+  }
+}
+function btn(k){ const s=SVC[k]; return `<button class="bigbtn b-${k}" onclick="go('${k}')">
+  <span class="em">${s.emoji}</span><span><span class="t">${s.label}</span><br><span class="s">${s.sub}</span></span></button>`; }
+function statusLine(e){
+  if(!e) return "Request received";
+  if(e.escalated) return "⚠ Connected to 988 — a counselor is with you";
+  const map={requested:"✅ Request received — finding a provider",
+    confirmed:"✅ Provider confirmed",dispatched:"🔄 On the way to you",
+    delivered:"📍 Arriving now",completed:"✅ Complete — take care"};
+  return map[e.status]||"Working on it";
+}
+
+/* ---------- DISPATCHER ---------- */
+function renderDispatcher(){
+  const q = document.getElementById("queue");
+  const t = document.getElementById("tally");
+  const by = {ride:0,food:0,shelter:0}; let low=0, high=0;
+  encounters.forEach(e=>{ by[e.service]++; if(typeof e.low==="number")low+=e.low; if(typeof e.high==="number")high+=e.high; });
+  t.innerHTML = `
+    <div class="stat"><div class="n">${encounters.length}</div><div class="l">Encounters</div></div>
+    <div class="stat"><div class="n">🚗${by.ride} 🍲${by.food} 🏨${by.shelter}</div><div class="l">By service</div></div>
+    <div class="stat"><div class="n">$${low}–$${high}</div><div class="l">Est. Medi-Cal value</div></div>`;
+  if(!encounters.length){ q.innerHTML = `<div class="empty">No encounters yet.<br>Tap a service on the phone →</div>`; return; }
+  q.innerHTML = encounters.map(e=>{
+    const st = e.escalated ? "escalated" : e.status;
+    const canAdv = !e.escalated && FLOW.indexOf(e.status) < FLOW.length-1;
+    return `<div class="enc ${e.service}">
+      <div class="enc-top">
+        <div><div class="enc-svc">${SVC[e.service].emoji} ${e.name}${e.detail?` · ${e.detail}`:""}</div>
+          <div class="enc-meta">${e.ref} · ${secsAgo(e.ts)}</div></div>
+        <span class="pill p-${st}">${e.escalated?"988":e.status}</span>
+      </div>
+      <div class="enc-bill">${typeof e.low==="number"?`Billable · $${e.low}–$${e.high} CalAIM`:"Housing navigation · negotiated"}</div>
+      <div class="enc-act">
+        ${canAdv?`<button class="adv" onclick="advance('${e.ref}')">→ ${FLOW[FLOW.indexOf(e.status)+1]}</button>`:""}
+        <button class="esc" onclick="escalate('${e.ref}')">988</button>
+      </div></div>`;
+  }).join("");
+}
+function secsAgo(ts){ const s=Math.floor((Date.now()-ts)/1000); return s<60?s+"s ago":Math.floor(s/60)+"m ago"; }
+
+renderPhone(); renderDispatcher();
+setInterval(()=>{ if(encounters.length) renderDispatcher(); }, 5000); // refresh "Xs ago"
+</script>
+</body>
+</html>
