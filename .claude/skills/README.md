@@ -1,9 +1,18 @@
-# Vendored Claude Code skills
+# Claude Code skills
 
-This directory contains Claude Code skills vendored into this repository so they
-are available in Claude Code sessions on this project.
+This directory contains Claude Code skills available in Claude Code sessions on
+this project — some written here, some vendored from upstream.
 
-## launch-your-agent / wrap-up
+## setup-agent-toolkit (local)
+
+`setup-agent-toolkit/` — a repo-local skill that bootstraps a repository's Claude
+Code tooling in one pass: vendors the launch-your-agent skill, installs a curated
+set of Opus-tier subagents from GitHub, and adds a SessionStart hook so it all
+loads on every device. It encodes exactly how this repo was set up so another
+repo can be configured the same way. Invoke with `/setup-agent-toolkit`. It opens
+a draft PR but always asks before merging or deploying.
+
+## launch-your-agent / wrap-up (vendored)
 
 Vendored from [`anthropics/launch-your-agent`](https://github.com/anthropics/launch-your-agent)
 (`main`), an Anthropic reference implementation.
