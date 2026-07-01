@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import PartnerForm from "@/components/PartnerForm";
 
 export const metadata: Metadata = {
   title: "For Nonprofits",
@@ -31,6 +32,9 @@ export default function NonprofitsPage() {
             <Link className="btn btn-ghost" href="/pilot">
               Join the pilot
             </Link>
+            <a className="btn btn-ghost" href="#partner">
+              Partner with us
+            </a>
           </div>
         </div>
       </section>
@@ -92,6 +96,22 @@ export default function NonprofitsPage() {
             <p className="muted" style={{ marginTop: 10, fontSize: ".85rem" }}>
               Sample veterans · not real cases.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div id="partner" className="panel">
+            <div className="sec-label">Partner with us</div>
+            <h2>Help us serve veterans — services &amp; corporate sponsors</h2>
+            <p className="lead">
+              We&apos;re inviting rideshare and autonomous-vehicle providers, food and shelter
+              partners, health plans, and corporate sponsors to support veterans through in-kind
+              donations — like free rides to medical appointments — and through funding or
+              reimbursement. Tell us how your organization would like to participate.
+            </p>
+            <PartnerForm />
           </div>
         </div>
       </section>

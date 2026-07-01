@@ -1,49 +1,84 @@
 "use client";
 
 import { useState } from "react";
+import { submitForm } from "@/lib/submitForm";
+
+type Status = "idle" | "submitting" | "ok" | "error";
 
 export default function PilotForm() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [serverMsg, setServerMsg] = useState("");
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    // Honeypot — real users leave this empty.
+    if (fd.get("company")) {
+      setStatus("ok");
+      form.reset();
+      return;
+    }
+
+    setStatus("submitting");
+    setServerMsg("");
+
+    const res = await submitForm("Pilot interest", {
+      name: fd.get("name"),
+      email: fd.get("email"),
+      phone: fd.get("phone"),
+      organization: fd.get("organization"),
+      county: fd.get("county"),
+      interested_as: fd.get("interestedAs"),
+      message: fd.get("message"),
+    });
+
+    if (res.ok) {
+      setStatus("ok");
+      form.reset();
+    } else {
+      setStatus("error");
+      setServerMsg(res.message || "");
+    }
   }
 
-  if (sent) {
+  if (status === "ok") {
     return (
-      <div className="form-status ok">
-        Thanks — your pilot interest has been captured. We&apos;ll follow up. Or email
-        jacobsilver@suasqrf.org · (925) 727-6109.
+      <div className="form-status ok" role="status">
+        <strong>Thanks — your pilot interest has been captured.</strong>
+        <p style={{ marginTop: 6 }}>
+          We&apos;ll follow up. Or reach us at jacobsilver@suasqrf.org · (925) 727-6109.
+        </p>
       </div>
     );
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit}>
+    <form className="demo" onSubmit={onSubmit} noValidate>
       <div>
-        <label>Name</label>
-        <input required />
+        <label htmlFor="name">Name</label>
+        <input id="name" name="name" required autoComplete="name" />
       </div>
       <div>
-        <label>Email</label>
-        <input type="email" required />
+        <label htmlFor="email">Email</label>
+        <input id="email" name="email" type="email" required autoComplete="email" />
       </div>
       <div>
-        <label>Phone</label>
-        <input />
+        <label htmlFor="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" autoComplete="tel" />
       </div>
       <div>
-        <label>Organization</label>
-        <input />
+        <label htmlFor="organization">Organization</label>
+        <input id="organization" name="organization" />
       </div>
       <div>
-        <label>County</label>
-        <input />
+        <label htmlFor="county">County</label>
+        <input id="county" name="county" placeholder="e.g. Santa Clara" />
       </div>
       <div>
-        <label>Interested as</label>
-        <select>
+        <label htmlFor="interestedAs">Interested as</label>
+        <select id="interestedAs" name="interestedAs" defaultValue="Veteran">
           <option>Veteran</option>
           <option>Family Member</option>
           <option>Nonprofit</option>
@@ -53,14 +88,28 @@ export default function PilotForm() {
         </select>
       </div>
       <div>
-        <label>Message</label>
-        <textarea />
+        <label htmlFor="message">Message</label>
+        <textarea id="message" name="message" />
       </div>
-      <button className="btn btn-primary" type="submit">
-        Submit pilot interest
+
+      {/* Honeypot — visually hidden, ignored by humans */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
+        <label htmlFor="company">Company</label>
+        <input id="company" name="company" tabIndex={-1} autoComplete="off" />
+      </div>
+
+      {status === "error" && serverMsg && (
+        <div className="form-status err" role="alert">
+          {serverMsg}
+        </div>
+      )}
+
+      <button className="btn btn-primary" type="submit" disabled={status === "submitting"}>
+        {status === "submitting" ? "Sending…" : "Submit pilot interest"}
       </button>
       <p className="muted" style={{ fontSize: ".82rem" }}>
-        Demo form — connect to email/CRM before launch.
+        Prefer to reach out directly? Email{" "}
+        <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a> · (925) 727-6109.
       </p>
     </form>
   );

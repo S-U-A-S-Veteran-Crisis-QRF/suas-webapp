@@ -1,62 +1,93 @@
 "use client";
 
 import { useState } from "react";
+import { submitForm } from "@/lib/submitForm";
+
+type Status = "idle" | "submitting" | "ok" | "error";
 
 export default function ContactForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
-  const [message, setMessage] = useState("");
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [serverMsg, setServerMsg] = useState("");
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    // Honeypot — real users leave this empty.
+    if (fd.get("company")) {
+      setStatus("ok");
+      form.reset();
+      return;
+    }
+
+    setStatus("submitting");
+    setServerMsg("");
+
+    const res = await submitForm("Contact", {
+      name: fd.get("name"),
+      email: fd.get("email"),
+      role: fd.get("role"),
+      message: fd.get("message"),
+    });
+
+    if (res.ok) {
+      setStatus("ok");
+      form.reset();
+    } else {
+      setStatus("error");
+      setServerMsg(res.message || "");
+    }
   }
 
-  if (sent) {
+  if (status === "ok") {
     return (
-      <div className="form-status ok">
-        Thanks — your message has been captured. We&apos;ll follow up. Or email
-        jacobsilver@suasqrf.org · (925) 727-6109.
+      <div className="form-status ok" role="status">
+        <strong>Thanks — your message reached us.</strong>
+        <p style={{ marginTop: 6 }}>
+          We&apos;ll follow up soon. If this is an urgent safety concern, call the Veterans Crisis
+          Line now: 988, press 1 (text 838255).
+        </p>
       </div>
     );
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit}>
+    <form className="demo" onSubmit={onSubmit} noValidate>
       <div>
         <label htmlFor="name">Name</label>
-        <input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+        <input id="name" name="name" required autoComplete="name" />
       </div>
       <div>
         <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <input id="email" name="email" type="email" required autoComplete="email" />
       </div>
       <div>
         <label htmlFor="role">Role</label>
-        <input id="role" value={role} onChange={(e) => setRole(e.target.value)} />
+        <input id="role" name="role" placeholder="e.g. veteran, family, nonprofit, county, donor" />
       </div>
       <div>
         <label htmlFor="message">Message</label>
-        <textarea
-          id="message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          required
-        />
+        <textarea id="message" name="message" required />
       </div>
-      <button className="btn btn-primary" type="submit">
-        Send message
+
+      {/* Honeypot — visually hidden, ignored by humans */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
+        <label htmlFor="company">Company</label>
+        <input id="company" name="company" tabIndex={-1} autoComplete="off" />
+      </div>
+
+      {status === "error" && serverMsg && (
+        <div className="form-status err" role="alert">
+          {serverMsg}
+        </div>
+      )}
+
+      <button className="btn btn-primary" type="submit" disabled={status === "submitting"}>
+        {status === "submitting" ? "Sending…" : "Send message"}
       </button>
       <p className="muted" style={{ fontSize: ".82rem" }}>
-        Demo form — connect to email/CRM before launch. Or email{" "}
+        Prefer to reach out directly? Email{" "}
         <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a> · (925) 727-6109.
       </p>
     </form>

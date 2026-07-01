@@ -1,13 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-// Free, no-backend form delivery via Web3Forms (https://web3forms.com).
-// Get a free access key (enter your email, no account needed) and paste it here,
-// or set NEXT_PUBLIC_WEB3FORMS_KEY at build time. The key is safe to expose in
-// client code — that's how Web3Forms is designed to work.
-const WEB3FORMS_ACCESS_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY";
+import { submitForm } from "@/lib/submitForm";
 
 type Status = "idle" | "submitting" | "ok" | "error";
 
@@ -36,18 +30,7 @@ export default function FamilyIntakeForm() {
       return;
     }
 
-    if (WEB3FORMS_ACCESS_KEY.startsWith("REPLACE_")) {
-      setStatus("error");
-      setServerMsg(
-        "This form isn't connected yet. In the meantime, email jacobsilver@suasqrf.org or call (925) 727-6109."
-      );
-      return;
-    }
-
-    const payload = {
-      access_key: WEB3FORMS_ACCESS_KEY,
-      subject: `New family intake — ${fd.get("name") || "unknown"}`,
-      from_name: "SUAS QRF website",
+    const res = await submitForm("Family intake", {
       name: fd.get("name"),
       email: fd.get("email"),
       phone: fd.get("phone"),
@@ -55,27 +38,14 @@ export default function FamilyIntakeForm() {
       county: fd.get("county"),
       contact_preference: fd.get("contactPref"),
       message: fd.get("message"),
-    };
+    });
 
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const json = await res.json().catch(() => ({}));
-      if (res.ok && json.success) {
-        setStatus("ok");
-        form.reset();
-      } else {
-        setStatus("error");
-        setServerMsg(
-          json.message || "Something went wrong. Please email jacobsilver@suasqrf.org or call (925) 727-6109."
-        );
-      }
-    } catch {
+    if (res.ok) {
+      setStatus("ok");
+      form.reset();
+    } else {
       setStatus("error");
-      setServerMsg("Network error. Please try again, or email jacobsilver@suasqrf.org.");
+      setServerMsg(res.message || "");
     }
   }
 
