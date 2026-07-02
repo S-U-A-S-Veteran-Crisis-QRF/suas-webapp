@@ -153,34 +153,34 @@ export default function AppPage() {
             </p>
           </Reveal>
           <div className="grid cols-3">
-            <a className="card lift" href="#">
+            <div className="card">
               <h3>Dashboard</h3>
               <p>Support signal and next actions.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Check-In</h3>
               <p>Six-question private check-in.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Trusted Circle</h3>
               <p>Consent-based trusted contacts.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Resources</h3>
               <p>County resource routing.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Timeline</h3>
               <p>Care coordination history.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Responder</h3>
               <p>Nonprofit support queue.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Admin</h3>
               <p>Pilot readiness overview.</p>
-            </a>
+            </div>
           </div>
           <p className="note">
             Note: the seven interactive app screens above are described here. Say the word and these
