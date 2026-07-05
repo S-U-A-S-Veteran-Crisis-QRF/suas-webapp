@@ -18,6 +18,23 @@ export const metadata: Metadata = {
       "Crisis-prevention infrastructure for veterans — private check-ins, trusted-circle alerts, and resource routing.",
     type: "website",
     siteName: "SUAS Veteran Crisis Q.R.F.",
+    url: "/",
+    locale: "en_US",
+    images: [
+      {
+        url: "/images/home.jpg",
+        width: 3200,
+        height: 4800,
+        alt: "An American flag backlit by sunlight",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SUAS Veteran Crisis Q.R.F.",
+    description:
+      "Crisis-prevention infrastructure for veterans — private check-ins, trusted-circle alerts, and resource routing.",
+    images: ["/images/home.jpg"],
   },
 };
 

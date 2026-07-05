@@ -3,10 +3,36 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
+const donateTitle = "Support veterans before crisis — SUAS Veteran Crisis Q.R.F.";
+const donateDescription =
+  "Help veterans get support before everyday struggles become crises. SUAS is a 501(c)(3) nonprofit (EIN 88-3249428) — your tax-deductible gift funds peer support, care coordination, and connection. No one is left behind.";
+
 export const metadata: Metadata = {
   title: "Support the Mission",
   description:
     "Support pilot-ready tools, responder workflows, and privacy review for veteran crisis-prevention.",
+  openGraph: {
+    title: donateTitle,
+    description: donateDescription,
+    type: "website",
+    siteName: "SUAS Veteran Crisis Q.R.F.",
+    url: "/donate",
+    locale: "en_US",
+    images: [
+      {
+        url: "/images/donate.jpg",
+        width: 2684,
+        height: 3648,
+        alt: "Two people's hands resting together in support",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: donateTitle,
+    description: donateDescription,
+    images: ["/images/donate.jpg"],
+  },
 };
 
 export default function DonatePage() {
@@ -70,6 +96,24 @@ export default function DonatePage() {
             Illustrative allocation for planning — not audited financials. 100% of donations support
             the mission.
           </p>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <Reveal className="card lift" style={{ maxWidth: 760, margin: "0 auto" }}>
+            <h2>Your gift is tax-deductible</h2>
+            <p>
+              S.U.A.S. Veteran Crisis Q.R.F. is a 501(c)(3) public charity (EIN 88-3249428).
+              Contributions are tax-deductible to the extent allowed by law under Section 170 of the
+              Internal Revenue Code. No goods or services are provided in exchange for a gift.
+            </p>
+            <p className="note" style={{ marginTop: 12 }}>
+              <a href="/docs/IRS-Determination-Letter.pdf" target="_blank" rel="noopener noreferrer">
+                View our IRS determination letter (PDF) →
+              </a>
+            </p>
+          </Reveal>
         </div>
       </section>
 
