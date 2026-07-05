@@ -29,3 +29,21 @@ stores it locally and never commits it). See the comments at the top of each
 Licensed under Apache-2.0 (see [`LICENSE`](./LICENSE)); the original headers and
 copyright notices are retained in each file. This is a vendored copy of an
 upstream reference implementation that is not actively maintained.
+
+## frontend-design / webapp-testing / skill-creator (vendored)
+
+Vendored from [`anthropics/skills`](https://github.com/anthropics/skills) (`main`),
+Anthropic's official skills collection.
+
+- **`frontend-design/`** — produces distinctive, production-grade frontend
+  interfaces instead of generic AI-styled pages. Loads automatically during
+  design-heavy site work.
+- **`webapp-testing/`** — drives the running site with Playwright to verify
+  changes end-to-end (screenshots, click-throughs, form flows).
+- **`skill-creator/`** — scaffolds new custom skills for this repo the right
+  way. Invoke when you want to teach Claude a new repeatable workflow.
+
+Each skill is Apache-2.0 and retains its upstream `LICENSE.txt` in its folder.
+Note: the `docx`/`pdf`/`pptx`/`xlsx` document skills from the same upstream repo
+were deliberately **not** vendored — they are proprietary/source-available and
+their license forbids redistribution (this repo is public).
