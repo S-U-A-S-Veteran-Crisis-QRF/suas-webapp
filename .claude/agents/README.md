@@ -22,6 +22,24 @@ most capable tier), overriding the upstream tiered defaults. This maximizes
 capability at the cost of higher token usage per agent run. To dial an
 individual agent back, change its `model:` to `sonnet`, `haiku`, or `inherit`.
 
+## SUAS first-principles pass (2026-07-05)
+
+These were vendored generic; a hardening pass aligned them to SUAS standards:
+
+- **Safety kernel on every agent** — each now carries the non-negotiables
+  (publish gate, no veteran PII, crisis line on public pages, plain-language
+  handoff), because they operate in a **public** repo serving a live site.
+- **Least privilege** — `code-reviewer` and `architect-reviewer` are now
+  **read-only** (`Read, Grep, Glob, Bash`); a reviewer reviews, it does not
+  rewrite code. `security-auditor` was already read-only.
+- **Authoring standard** — see [`AGENTS-GUIDE.md`](./AGENTS-GUIDE.md) for the
+  first-principles rules and template all new agents follow.
+
+_Judgment calls left for Jacob (not auto-changed):_ several roles overlap for a
+Next.js/TS site (`frontend-developer` / `react-specialist` / `nextjs-developer`
+/ `ui-designer`), and all 24 are pinned to `opus`. Pruning overlap or dialing
+simple agents down to `sonnet`/`haiku` would cut cost — say the word.
+
 ## Installed agents (24)
 
 **Core development**
