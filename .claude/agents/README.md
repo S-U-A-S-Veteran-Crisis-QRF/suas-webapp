@@ -15,12 +15,39 @@ Vendored from [`VoltAgent/awesome-claude-code-subagents`](https://github.com/Vol
 / React 19 / TypeScript project plus general engineering was installed, not the
 full ~154-agent catalog.
 
-## "As smart as possible"
+## Model tiers (capability matched to task cost)
 
-Every installed agent's frontmatter `model:` field is set to **`opus`** (the
-most capable tier), overriding the upstream tiered defaults. This maximizes
-capability at the cost of higher token usage per agent run. To dial an
-individual agent back, change its `model:` to `sonnet`, `haiku`, or `inherit`.
+Agents are tiered so we pay for `opus` only where a mistake is costly, and run
+routine work cheaply:
+
+- **`opus`** (6) — hard reasoning / high stakes: `code-reviewer`,
+  `architect-reviewer`, `security-auditor`, `debugger`, `error-detective`,
+  `performance-engineer`.
+- **`sonnet`** (14) — standard build/test/implementation work (the bulk):
+  the frontend/language/framework/test/git agents.
+- **`haiku`** (4) — routine/mechanical: `documentation-engineer`,
+  `dx-optimizer`, `dependency-manager`, `build-engineer`.
+
+To retune any agent, change its `model:` to `opus`, `sonnet`, `haiku`, or
+`inherit`.
+
+## SUAS first-principles pass (2026-07-05)
+
+These were vendored generic; a hardening pass aligned them to SUAS standards:
+
+- **Safety kernel on every agent** — each now carries the non-negotiables
+  (publish gate, no veteran PII, crisis line on public pages, plain-language
+  handoff), because they operate in a **public** repo serving a live site.
+- **Least privilege** — `code-reviewer` and `architect-reviewer` are now
+  **read-only** (`Read, Grep, Glob, Bash`); a reviewer reviews, it does not
+  rewrite code. `security-auditor` was already read-only.
+- **Authoring standard** — see [`AGENTS-GUIDE.md`](./AGENTS-GUIDE.md) for the
+  first-principles rules and template all new agents follow.
+
+_Judgment calls left for Jacob (not auto-changed):_ several roles overlap for a
+Next.js/TS site (`frontend-developer` / `react-specialist` / `nextjs-developer`
+/ `ui-designer`), and all 24 are pinned to `opus`. Pruning overlap or dialing
+simple agents down to `sonnet`/`haiku` would cut cost — say the word.
 
 ## Installed agents (24)
 
