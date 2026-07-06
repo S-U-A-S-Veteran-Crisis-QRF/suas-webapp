@@ -15,12 +15,21 @@ Vendored from [`VoltAgent/awesome-claude-code-subagents`](https://github.com/Vol
 / React 19 / TypeScript project plus general engineering was installed, not the
 full ~154-agent catalog.
 
-## "As smart as possible"
+## Model tiers (capability matched to task cost)
 
-Every installed agent's frontmatter `model:` field is set to **`opus`** (the
-most capable tier), overriding the upstream tiered defaults. This maximizes
-capability at the cost of higher token usage per agent run. To dial an
-individual agent back, change its `model:` to `sonnet`, `haiku`, or `inherit`.
+Agents are tiered so we pay for `opus` only where a mistake is costly, and run
+routine work cheaply:
+
+- **`opus`** (6) — hard reasoning / high stakes: `code-reviewer`,
+  `architect-reviewer`, `security-auditor`, `debugger`, `error-detective`,
+  `performance-engineer`.
+- **`sonnet`** (14) — standard build/test/implementation work (the bulk):
+  the frontend/language/framework/test/git agents.
+- **`haiku`** (4) — routine/mechanical: `documentation-engineer`,
+  `dx-optimizer`, `dependency-manager`, `build-engineer`.
+
+To retune any agent, change its `model:` to `opus`, `sonnet`, `haiku`, or
+`inherit`.
 
 ## SUAS first-principles pass (2026-07-05)
 
