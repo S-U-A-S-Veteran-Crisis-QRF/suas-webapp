@@ -16,6 +16,8 @@
 // The key is safe to expose in client code — that's how Web3Forms works.
 // ─────────────────────────────────────────────────────────────────
 
+import { z } from "zod";
+
 export const WEB3FORMS_ACCESS_KEY =
   process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "1efb2f90-1e2d-413d-bf81-7f864d5430d6";
 
@@ -25,6 +27,18 @@ export type SubmitResult = { ok: boolean; message?: string };
 
 const FALLBACK =
   "This form isn't connected yet. In the meantime, email jacobsilver@suasqrf.org or call (925) 727-6109.";
+
+// Backstop validation: every SUAS form requires a name and a reachable
+// email. The browser's native validation (required / type="email") runs
+// first; this guards the programmatic path so a submission without a way
+// to reach the person back can never be sent.
+const contactableSchema = z.object({
+  name: z.string().trim().min(1, "Please enter your name."),
+  email: z
+    .string()
+    .trim()
+    .email("Please enter a valid email address so we can follow up with you."),
+});
 
 /**
  * Submit any form to the shared Web3Forms inbox.
@@ -40,15 +54,31 @@ export async function submitForm(
     return { ok: false, message: FALLBACK };
   }
 
-  const label =
-    (fields.name as string) || (fields.organization as string) || "New submission";
+  const check = contactableSchema.safeParse({
+    name: String(fields.name ?? ""),
+    email: String(fields.email ?? ""),
+  });
+  if (!check.success) {
+    return { ok: false, message: check.error.issues[0].message };
+  }
 
+  const label = (
+    (fields.name as string) ||
+    (fields.organization as string) ||
+    "New submission"
+  )
+    .replace(/[\r\n]+/g, " ")
+    .trim()
+    .slice(0, 80);
+
+  // Reserved keys are set after the field spread so a form field can
+  // never clobber them.
   const payload: Record<string, unknown> = {
+    ...fields,
     access_key: WEB3FORMS_ACCESS_KEY,
     from_name: "SUAS QRF website",
     subject: `[${source}] ${label}`,
     form_source: source,
-    ...fields,
   };
 
   try {
@@ -56,6 +86,7 @@ export async function submitForm(
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(15000),
     });
     const json = await res.json().catch(() => ({}));
     if (res.ok && json.success) return { ok: true };

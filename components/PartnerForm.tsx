@@ -23,8 +23,8 @@ export default function PartnerForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
 
-    // Honeypot — real users leave this empty.
-    if (fd.get("company_website")) {
+    // Honeypot — real users never tick this.
+    if (fd.get("botcheck")) {
       setStatus("ok");
       form.reset();
       return;
@@ -68,7 +68,7 @@ export default function PartnerForm() {
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit} noValidate>
+    <form className="demo" onSubmit={onSubmit}>
       <div className="field-row">
         <div>
           <label htmlFor="organization">
@@ -137,11 +137,15 @@ export default function PartnerForm() {
         />
       </div>
 
-      {/* Honeypot — visually hidden, ignored by humans */}
-      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
-        <label htmlFor="company_website">Company website</label>
-        <input id="company_website" name="company_website" tabIndex={-1} autoComplete="off" />
-      </div>
+      {/* Honeypot — a hidden checkbox autofill never ticks; bots that do are ignored */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{ display: "none" }}
+      />
 
       {status === "error" && serverMsg && (
         <div className="form-status err" role="alert">

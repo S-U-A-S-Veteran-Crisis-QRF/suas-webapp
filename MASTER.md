@@ -41,6 +41,8 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-06-30** — Agent toolkit merged (PR #1); all forms wired to one Web3Forms inbox
 - **2026-07-02** — Site sweep fixes (PR #3); grant-finder agent kit (PR #2)
 - **2026-07-05** — Device handoff doc, this dashboard, root CLAUDE.md, 3 new official Anthropic skills, daily check-up routine (PR #4)
+- **2026-07-10** — `everything-claude-code` plugin enabled for all devices via `.claude/settings.json`
+- **2026-07-10** — Form validation hole fixed: native validation restored (`noValidate` removed), zod email/name backstop in `lib/submitForm.ts`, autofill-safe `botcheck` honeypot, fetch timeout — verified with Playwright across all 4 forms
 
 ## Claude capability stack
 
@@ -48,6 +50,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **Skills** (`.claude/skills/`): `/launch-your-agent`, `/wrap-up`, `/setup-agent-toolkit`, plus vendored from Anthropic's official [`anthropics/skills`](https://github.com/anthropics/skills): **frontend-design**, **webapp-testing** (Playwright), **skill-creator**.
 - **Root `CLAUDE.md`** — project brain: stack, commands, design-system idiom, crisis-banner guardrail.
 - **SessionStart hook** — every session on every device auto-loads all of the above; the repo is the sync channel (see [`docs/claude-device-handoff.md`](docs/claude-device-handoff.md)).
+- **`everything-claude-code` plugin** ([WorldFlowAI/everything-claude-code](https://github.com/WorldFlowAI/everything-claude-code)) — auto-installed on every device via `.claude/settings.json` (`extraKnownMarketplaces` + `enabledPlugins`): 9 agents (planner, architect, tdd-guide, e2e-runner, …), 11 skills, 15 slash commands (`/tdd`, `/plan`, `/e2e`, …), and workflow hooks (auto-prettier + tsc after edits, console.log warnings, tmux nudges).
 - **suas-grant-finder** managed agent — designed, not yet launched (PR #2; needs `ANTHROPIC_API_KEY` in `my-agent/.env`).
 
 ## Connected apps snapshot

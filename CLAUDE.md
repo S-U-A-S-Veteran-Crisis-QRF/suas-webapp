@@ -63,4 +63,11 @@ Deploys go out via GitHub Pages from the static export; see README.md.
   and `skill-creator`. See `.claude/skills/README.md`.
 - `.claude/hooks/session-start.sh` — installs npm deps on web sessions and
   announces the toolkit.
+- **`everything-claude-code` plugin** — auto-enabled on every device via
+  `extraKnownMarketplaces` + `enabledPlugins` in `.claude/settings.json`
+  (source: [WorldFlowAI/everything-claude-code](https://github.com/WorldFlowAI/everything-claude-code)).
+  Adds 9 agents (planner, architect, tdd-guide, e2e-runner, …), 11 skills,
+  15 slash commands (`/tdd`, `/plan`, `/e2e`, …), and workflow hooks
+  (auto-prettier + tsc after edits, console.log warnings, tmux nudges for
+  dev servers).
 - `my-agent/` (PR #2 branch) — the `suas-grant-finder` managed-agent build kit.
