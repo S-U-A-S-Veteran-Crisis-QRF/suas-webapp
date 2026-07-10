@@ -20,7 +20,7 @@ npm run dev      # http://localhost:3000
 
 ## Enable the intake form
 Get a free **Web3Forms** access key (web3forms.com — enter your email, no account),
-then paste it into `components/FamilyIntakeForm.tsx` (`WEB3FORMS_ACCESS_KEY`) or set
+then paste it into `lib/submitForm.ts` (`WEB3FORMS_ACCESS_KEY`) or set
 `NEXT_PUBLIC_WEB3FORMS_KEY`. Until set, the form shows a "email/call us" fallback.
 
 ## Deploy (GitHub Pages, free)

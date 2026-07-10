@@ -12,17 +12,17 @@ export default function FamilyIntakeForm() {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    setStatus("submitting");
-    setServerMsg("");
-
     const fd = new FormData(form);
 
-    // Honeypot — real users leave this empty.
-    if (fd.get("company")) {
+    // Honeypot — real users never tick this.
+    if (fd.get("botcheck")) {
       setStatus("ok");
       form.reset();
       return;
     }
+
+    setStatus("submitting");
+    setServerMsg("");
 
     if (!fd.get("consent")) {
       setStatus("error");
@@ -38,6 +38,7 @@ export default function FamilyIntakeForm() {
       county: fd.get("county"),
       contact_preference: fd.get("contactPref"),
       message: fd.get("message"),
+      consent_acknowledged: fd.get("consent") ? "yes" : "no",
     });
 
     if (res.ok) {
@@ -62,7 +63,7 @@ export default function FamilyIntakeForm() {
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit} noValidate>
+    <form className="demo" onSubmit={onSubmit}>
       <div className="field-row">
         <div>
           <label htmlFor="name">
@@ -115,11 +116,15 @@ export default function FamilyIntakeForm() {
         />
       </div>
 
-      {/* Honeypot — visually hidden, ignored by humans */}
-      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
-        <label htmlFor="company">Company</label>
-        <input id="company" name="company" tabIndex={-1} autoComplete="off" />
-      </div>
+      {/* Honeypot — a hidden checkbox autofill never ticks; bots that do are ignored */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{ display: "none" }}
+      />
 
       <label style={{ display: "flex", gap: 10, alignItems: "flex-start", fontWeight: 400 }}>
         <input type="checkbox" name="consent" required style={{ width: "auto", marginTop: 4 }} />

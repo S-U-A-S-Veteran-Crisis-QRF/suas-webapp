@@ -42,6 +42,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-02** — Site sweep fixes (PR #3); grant-finder agent kit (PR #2)
 - **2026-07-05** — Device handoff doc, this dashboard, root CLAUDE.md, 3 new official Anthropic skills, daily check-up routine (PR #4)
 - **2026-07-10** — `everything-claude-code` plugin enabled for all devices via `.claude/settings.json`
+- **2026-07-10** — Form validation hole fixed: native validation restored (`noValidate` removed), zod email/name backstop in `lib/submitForm.ts`, autofill-safe `botcheck` honeypot, fetch timeout — verified with Playwright across all 4 forms
 
 ## Claude capability stack
 

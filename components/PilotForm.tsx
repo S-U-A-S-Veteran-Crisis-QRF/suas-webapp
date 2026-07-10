@@ -14,8 +14,8 @@ export default function PilotForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
 
-    // Honeypot — real users leave this empty.
-    if (fd.get("company")) {
+    // Honeypot — real users never tick this.
+    if (fd.get("botcheck")) {
       setStatus("ok");
       form.reset();
       return;
@@ -55,7 +55,7 @@ export default function PilotForm() {
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit} noValidate>
+    <form className="demo" onSubmit={onSubmit}>
       <div>
         <label htmlFor="name">Name</label>
         <input id="name" name="name" required autoComplete="name" />
@@ -92,11 +92,15 @@ export default function PilotForm() {
         <textarea id="message" name="message" />
       </div>
 
-      {/* Honeypot — visually hidden, ignored by humans */}
-      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
-        <label htmlFor="company">Company</label>
-        <input id="company" name="company" tabIndex={-1} autoComplete="off" />
-      </div>
+      {/* Honeypot — a hidden checkbox autofill never ticks; bots that do are ignored */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{ display: "none" }}
+      />
 
       {status === "error" && serverMsg && (
         <div className="form-status err" role="alert">
