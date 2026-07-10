@@ -23,7 +23,7 @@ cat <<'JSON'
 {
   "hookSpecificOutput": {
     "hookEventName": "SessionStart",
-    "additionalContext": "This repo vendors the `launch-your-agent` Claude Code skill at `.claude/skills/launch-your-agent/` (companion: `wrap-up`). It guides a technical founder from concept to a deployed Claude Managed Agent (CMA): interview -> stage & launch -> grade & iterate -> optional scheduled deployment. Invoke it with /launch-your-agent when the user wants to build, launch, or iterate on a managed agent, and /wrap-up to close out a build. Setup and cross-device details are in docs/launch-your-agent.md. Running the skill needs the user's own ANTHROPIC_API_KEY, stored locally and never committed."
+    "additionalContext": "This repo vendors the `launch-your-agent` Claude Code skill at `.claude/skills/launch-your-agent/` (companion: `wrap-up`). It guides a technical founder from concept to a deployed Claude Managed Agent (CMA): interview -> stage & launch -> grade & iterate -> optional scheduled deployment. Invoke it with /launch-your-agent when the user wants to build, launch, or iterate on a managed agent, and /wrap-up to close out a build. Setup and cross-device details are in docs/launch-your-agent.md. Running the skill needs the user's own ANTHROPIC_API_KEY, stored locally and never committed. This repo also auto-enables the `everything-claude-code` plugin (github.com/WorldFlowAI/everything-claude-code) via .claude/settings.json — extra agents (planner, architect, tdd-guide, e2e-runner, ...), skills, slash commands (/tdd, /plan, /e2e, ...), and workflow hooks install on every device that trusts this repo."
   }
 }
 JSON
