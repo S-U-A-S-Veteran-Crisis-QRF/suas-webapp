@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import SafetyNote from "@/components/SafetyNote";
 
 export default function HomePage() {
   return (
@@ -197,10 +198,7 @@ export default function HomePage() {
             <div className="sec-label">Trust and safety</div>
             <h2>Built for early support — with clear limits</h2>
           </Reveal>
-          <div className="note warn">
-            If someone is in immediate danger, they should contact emergency services or a crisis
-            line right away. SUAS is a support coordination tool and does not replace emergency care.
-          </div>
+          <SafetyNote />
           <ul className="clean" style={{ marginTop: 18 }}>
             <li>SUAS is a support coordination tool</li>
             <li>Consent-based and privacy-first</li>

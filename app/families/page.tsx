@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import SafetyNote from "@/components/SafetyNote";
 import FamilyIntakeForm from "@/components/FamilyIntakeForm";
 
 export const metadata: Metadata = {
@@ -176,11 +177,7 @@ export default function FamiliesPage() {
               </Reveal>
             ))}
           </div>
-          <div className="note warn">
-            If someone is in immediate danger, contact emergency services or a crisis line right
-            away. SUAS is a support-coordination tool and does not replace emergency care. Veterans
-            Crisis Line: 988, press 1 (text 838255).
-          </div>
+          <SafetyNote />
         </div>
       </section>
 

@@ -18,12 +18,17 @@ img{max-width:100%;display:block}
 .muted{color:var(--muted)}
 .center{text-align:center}
 
+/* top chrome — crisis bar + header pinned together; the crisis bar must stay visible at every scroll position */
+.top-chrome{position:sticky;top:0;z-index:60}
+/* anchor targets scroll clear of the pinned crisis bar + header (tallest case: wrapped mobile bar) */
+[id]{scroll-margin-top:135px}
+
 /* crisis bar */
 .crisis-bar{background:var(--crisis);color:#fff;text-align:center;padding:9px 16px;font-size:.9rem;font-weight:600}
 .crisis-bar a{color:#fff;text-decoration:underline}
 
 /* header */
-header.site{position:sticky;top:0;z-index:50;background:rgba(244,239,229,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.site{background:rgba(244,239,229,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;gap:18px;height:62px}
 .brand{font-weight:800;letter-spacing:.02em;color:var(--ink);white-space:nowrap;font-size:.98rem}
 .brand span{display:block;font-weight:600;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}

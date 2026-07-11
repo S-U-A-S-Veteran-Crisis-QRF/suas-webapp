@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import SafetyNote from "@/components/SafetyNote";
 
 export const metadata: Metadata = {
   title: "How It Works",
@@ -231,12 +232,7 @@ export default function HowItWorksPage() {
                   dispatch.
                 </p>
               </Reveal>
-              <div className="note warn">
-                <strong>If someone is in immediate danger</strong>, contact emergency services or a
-                crisis line right away. If you may be in immediate danger or might hurt yourself or
-                someone else, contact emergency services or a crisis line right now. SUAS is a support
-                coordination tool and does not replace emergency care.
-              </div>
+              <SafetyNote />
             </div>
           </div>
         </div>

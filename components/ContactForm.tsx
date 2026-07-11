@@ -46,7 +46,7 @@ export default function ContactForm() {
         <strong>Thanks — your message reached us.</strong>
         <p style={{ marginTop: 6 }}>
           We&apos;ll follow up soon. If this is an urgent safety concern, call the Veterans Crisis
-          Line now: 988, press 1 (text 838255).
+          Line now: <a href="tel:988">988, press 1</a> (text <a href="sms:838255">838255</a>).
         </p>
       </div>
     );

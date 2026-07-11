@@ -9,7 +9,7 @@ const WAYS = [
   "In-kind free rides (rideshare / AV)",
   "Funding, sponsorship, or reimbursement",
   "Medically tailored meals / food",
-  "Emergency shelter / hotel nights",
+  "Same-night shelter / hotel nights",
   "Volunteers / staff time",
   "Other in-kind support",
 ];
