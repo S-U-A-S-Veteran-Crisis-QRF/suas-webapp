@@ -47,6 +47,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-11** — Audience & value-prop strategy shipped ([`docs/audience-personas.md`](docs/audience-personas.md)): master value proposition (owns the QRF metaphor, surfaces "No one is left behind"), pilot-stage audience tiering, and 8 detailed personas (3 beneficiary, 2 volunteer, 3 donor) with motivations, objections, messages, and first asks
 - **2026-07-11** — Core messaging options shipped ([`docs/mission-vision-options.md`](docs/mission-vision-options.md)): 5 mission + 5 vision statement options with rationale and trade-offs; recommended pair M2 ("connects the scattered warning signs…") + V2 ("No one left behind — every veteran connected…"); founder decision test + placement guidance
 - **2026-07-11** — Brand voice guide shipped ([`docs/brand-voice.md`](docs/brand-voice.md)): 5 brand pillars (Before not after · Connection is prevention · On your terms · Say only what's true · Show up with something real), tone definition ("a trusted squadmate at the kitchen table") with per-audience dial + lexicon, and donor elevator pitch (30s + 10s versions)
+- **2026-07-11** — 30-day brand rollout plan shipped ([`docs/brand-rollout-checklist.md`](docs/brand-rollout-checklist.md)): week-by-week checklist (decide+safety fixes → identity+trust pages → voice rewrite → social/internal/launch) with every website task mapped to files and Founder/Claude ownership split — completes the 5-doc brand kit on PR #8
 
 ## Claude capability stack
 
