@@ -33,8 +33,9 @@ export default function Footer() {
           <div>
             <h4>Safety</h4>
             <p style={{ fontSize: ".88rem" }}>
-              If someone is in immediate danger, contact emergency services or a crisis line right
-              away. SUAS is support coordination, not emergency care or a diagnosis tool.
+              If you or someone you love is in immediate danger, call 911 or the Veterans Crisis
+              Line: call <a href="tel:988">988, press 1</a> · text <a href="sms:838255">838255</a>.
+              SUAS is support coordination, not emergency care or a diagnosis tool.
             </p>
             <Link href="/safety">Read safety page →</Link>
           </div>

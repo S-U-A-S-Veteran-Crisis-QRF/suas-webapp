@@ -56,7 +56,8 @@ export default function FamilyIntakeForm() {
         <strong>Thank you — your message reached us.</strong>
         <p style={{ marginTop: 6 }}>
           A SUAS team member will follow up using your preferred contact method. If this is an
-          urgent safety concern, call the Veterans Crisis Line now: 988, press 1 (text 838255).
+          urgent safety concern, call the Veterans Crisis Line now: <a href="tel:988">988, press 1</a>{" "}
+          (text <a href="sms:838255">838255</a>).
         </p>
       </div>
     );

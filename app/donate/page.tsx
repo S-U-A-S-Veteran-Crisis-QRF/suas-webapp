@@ -109,8 +109,9 @@ export default function DonatePage() {
               Internal Revenue Code. No goods or services are provided in exchange for a gift.
             </p>
             <p className="note" style={{ marginTop: 12 }}>
-              <a href="/docs/IRS-Determination-Letter.pdf" target="_blank" rel="noopener noreferrer">
-                View our IRS determination letter (PDF) →
+              <a href="https://apps.irs.gov/app/eos/" target="_blank" rel="noopener noreferrer">
+                Verify our 501(c)(3) status in the IRS Tax-Exempt Organization Search (EIN
+                88-3249428) →
               </a>
             </p>
           </Reveal>

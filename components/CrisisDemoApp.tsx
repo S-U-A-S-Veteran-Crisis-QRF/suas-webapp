@@ -48,13 +48,13 @@ const MEALS = [
 const SERVICE_INFO = {
   ride: {
     emoji: "🚗",
-    label: "Emergency Ride",
+    label: "Rapid Ride",
     color: "#3a7bd5",
     dimColor: "rgba(58,123,213,0.10)",
     confirmTitle: "Your ride is on the way",
     eta: "5 – 7 minutes",
     etaLabel: "Estimated arrival",
-    simpleMsg: "A vehicle is heading to you now. Stay where you are.",
+    simpleMsg: "In the real app, a ride would be arranged now. (Demo — nothing is dispatched.)",
     details: [
       { icon: "📍", label: "Pickup", val: "Your current location" },
       { icon: "🚙", label: "Vehicle", val: "Waymo / Amazon AV" },
@@ -69,7 +69,7 @@ const SERVICE_INFO = {
     confirmTitle: "Your meal is being prepared",
     eta: "20 – 30 minutes",
     etaLabel: "Estimated delivery",
-    simpleMsg: "Hot food is on its way to you. No payment needed.",
+    simpleMsg: "In the real app, a hot meal would be on its way to you, free. (Demo — nothing is ordered.)",
     details: [
       { icon: "🏪", label: "Partner", val: "Uber Eats" },
       { icon: "📦", label: "Order", val: "Paid by S.U.A.S. QRF" },
@@ -84,7 +84,7 @@ const SERVICE_INFO = {
     confirmTitle: "Your room is confirmed",
     eta: "Ready now",
     etaLabel: "Check-in",
-    simpleMsg: "Show this screen at the front desk. No payment required.",
+    simpleMsg: "In the real app, this screen would be your voucher at the front desk. (Demo — no room is booked.)",
     details: [
       { icon: "🏨", label: "Hotel", val: "Nearest partner property" },
       { icon: "🎫", label: "Voucher", val: "Pre-authorized" },
@@ -124,8 +124,8 @@ export default function CrisisDemoApp() {
   };
 
   // ── SHARED WRAPPER ──────────────────────────────────────────
-  // The site already shows the global 988 crisis bar above this component,
-  // so the app's own banner is omitted here to avoid two stacked bars.
+  // Every screen carries a persistent in-frame DEMO banner so no one can
+  // mistake a prototype confirmation for a real dispatch.
   const Wrap = ({ children }: { children: ReactNode }) => (
     <div
       style={{
@@ -136,6 +136,23 @@ export default function CrisisDemoApp() {
         flexDirection: "column",
       }}
     >
+      <div
+        style={{
+          background: C.dangerBg,
+          borderBottom: `1px solid ${C.danger}`,
+          color: C.danger,
+          textAlign: "center",
+          padding: "7px 14px",
+          fontSize: "13px",
+          fontWeight: 600,
+          lineHeight: 1.45,
+        }}
+      >
+        DEMO — nothing is dispatched. In crisis: call{" "}
+        <a href="tel:988" style={{ color: C.danger, fontWeight: 700, textDecoration: "underline" }}>
+          988, press 1
+        </a>
+      </div>
       {children}
     </div>
   );
@@ -152,7 +169,7 @@ export default function CrisisDemoApp() {
               S.U.A.S. QRF
             </h1>
             <p style={{ fontSize: "15px", color: C.textDim, margin: "6px 0 0" }}>
-              Veteran Emergency Services · Santa Clara County
+              Veteran Support Services · Santa Clara County
             </p>
           </div>
 
@@ -180,7 +197,7 @@ export default function CrisisDemoApp() {
               <div>
                 <div style={{ fontSize: "20px", fontWeight: 700, color: C.rideColor }}>Free Ride</div>
                 <div style={{ fontSize: "14px", color: C.textDim, marginTop: "2px" }}>
-                  Waymo · Amazon AV · Dispatched now
+                  Waymo · Amazon AV · Arranged fast
                 </div>
               </div>
             </button>
@@ -198,7 +215,7 @@ export default function CrisisDemoApp() {
             <button onClick={() => tapService("hotel")} style={BIG_BTN(C.hotelColor, C.hotelDim)}>
               <div style={{ fontSize: "38px", lineHeight: 1 }}>🏨</div>
               <div>
-                <div style={{ fontSize: "20px", fontWeight: 700, color: C.hotelColor }}>Emergency Shelter</div>
+                <div style={{ fontSize: "20px", fontWeight: 700, color: C.hotelColor }}>Same-Night Shelter</div>
                 <div style={{ fontSize: "14px", color: C.textDim, marginTop: "2px" }}>
                   Hotel voucher · No payment needed
                 </div>

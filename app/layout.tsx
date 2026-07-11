@@ -42,8 +42,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <CrisisBar />
-        <Header />
+        <div className="top-chrome">
+          <CrisisBar />
+          <Header />
+        </div>
         <main>{children}</main>
         <Footer />
       </body>

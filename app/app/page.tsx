@@ -47,7 +47,7 @@ export default function AppPage() {
               being <strong>Hungry</strong>, <strong>Angry</strong>, <strong>Lonely</strong>, or{" "}
               <strong>Tired</strong>. Together they spell <strong>HALT</strong> — and the word is the
               instruction: when you notice them, halt. For an isolated veteran these are the quiet
-              conditions that turn a hard night into an emergency. The app is built to interrupt them —
+              conditions that turn a hard night into a crisis. The app is built to interrupt them —
               every tap meets the basic human need behind a trigger before it can escalate.
             </p>
           </Reveal>
@@ -87,7 +87,7 @@ export default function AppPage() {
         <div className="container">
           <Reveal>
             <div className="sec-label">Interactive prototype</div>
-            <h2>Emergency services, one tap away</h2>
+            <h2>A meal, a ride, a bed — one tap away</h2>
             <p className="lead">
               A working preview of the veteran-facing app: tap a need — ride, food, or shelter — and
               walk through the confirmation flow. This is a prototype with sample data; no real
@@ -146,45 +146,45 @@ export default function AppPage() {
       <section>
         <div className="container">
           <Reveal>
-            <h2>Demo screens</h2>
+            <h2>Planned screens</h2>
             <p className="lead">
-              These map to the planned MVP. In this rebuilt site they are described concepts — the
-              interactive screens can be built next.
+              These screens are on the pilot roadmap. The interactive prototype above shows the
+              veteran-facing flow working today; the rest of the MVP is summarized here.
             </p>
           </Reveal>
           <div className="grid cols-3">
-            <a className="card lift" href="#">
+            <div className="card">
               <h3>Dashboard</h3>
               <p>Support signal and next actions.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Check-In</h3>
               <p>Six-question private check-in.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Trusted Circle</h3>
               <p>Consent-based trusted contacts.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Resources</h3>
               <p>County resource routing.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Timeline</h3>
               <p>Care coordination history.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Responder</h3>
               <p>Nonprofit support queue.</p>
-            </a>
-            <a className="card lift" href="#">
+            </div>
+            <div className="card">
               <h3>Admin</h3>
               <p>Pilot readiness overview.</p>
-            </a>
+            </div>
           </div>
           <p className="note">
-            Note: the seven interactive app screens above are described here. Say the word and these
-            can be built as working demo pages next.
+            All seven screens use labeled demo data during pilot planning — no live services and no
+            real veteran records.
           </p>
         </div>
       </section>
