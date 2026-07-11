@@ -43,6 +43,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-05** — Device handoff doc, this dashboard, root CLAUDE.md, 3 new official Anthropic skills, daily check-up routine (PR #4)
 - **2026-07-10** — `everything-claude-code` plugin enabled for all devices via `.claude/settings.json`
 - **2026-07-10** — Form validation hole fixed: native validation restored (`noValidate` removed), zod email/name backstop in `lib/submitForm.ts`, autofill-safe `botcheck` honeypot, fetch timeout — verified with Playwright across all 4 forms
+- **2026-07-11** — Nonprofit branding review shipped ([`docs/branding-review.md`](docs/branding-review.md)): 8-dimension brand audit with verified strengths/weaknesses and top-5 fixes — headline gaps: acronyms never expanded, anonymous org (no founder/board), demo "Emergency" copy contradicts the "not emergency care" guardrail, dead IRS-letter link, no privacy policy behind the "privacy-first" claim, donor journey below modern standard
 
 ## Claude capability stack
 
