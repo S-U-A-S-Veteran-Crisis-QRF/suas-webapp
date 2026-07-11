@@ -79,6 +79,12 @@ Deploys go out via GitHub Pages from the static export; see README.md.
 ## Lessons
 
 <!-- Newest at top. Format: - YYYY-MM-DD: <one-line rule> -->
+- 2026-07-11: A scheduling/write MCP call that errors client-side ("permission
+  stream closed before response received") may still have committed
+  server-side. Never retry blind — verify first (`list_triggers` for
+  `send_later`/`create_trigger`, the equivalent read call elsewhere), create
+  only if missing, and delete any duplicates you find. Blind retries here
+  produced two identical PR check-in wakeups armed one minute apart.
 - 2026-07-10: Edit-gate hooks must exempt prose (`.md`/`.txt`/logs/notes/memory
   files) — "list the importers" is meaningless for non-code files and burns a
   blocked attempt + retry on every session note. Fixed script:
