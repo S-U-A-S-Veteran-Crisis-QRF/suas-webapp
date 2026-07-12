@@ -43,6 +43,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-05** — Device handoff doc, this dashboard, root CLAUDE.md, 3 new official Anthropic skills, daily check-up routine (PR #4)
 - **2026-07-10** — `everything-claude-code` plugin enabled for all devices via `.claude/settings.json`
 - **2026-07-10** — Form validation hole fixed: native validation restored (`noValidate` removed), zod email/name backstop in `lib/submitForm.ts`, autofill-safe `botcheck` honeypot, fetch timeout — verified with Playwright across all 4 forms
+- **2026-07-12** — Claude-toolkit upgrades pulled down from PR #7 so they can land independently: v2 Fact-Forcing Gate hook (`.claude/hooks/fact-forcing-gate.py`), desktop apply steps ([`docs/fixes/2026-07-10-fact-forcing-gate.md`](docs/fixes/2026-07-10-fact-forcing-gate.md)), and the new `CLAUDE.md` `## Lessons` section
 
 ## Claude capability stack
 
