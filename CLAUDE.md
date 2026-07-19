@@ -45,6 +45,27 @@ npm run lint
 
 Deploys go out via GitHub Pages from the static export; see README.md.
 
+## Second brain (org memory)
+
+SUAS's persistent memory is an **Obsidian vault** — the "second brain" — that
+lives in the private Google Drive folder `SUAS-QRF` (on the main computers:
+`~/Documents/SUAS-QRF`) and auto-backs-up to a private GitHub repo via the
+Obsidian Git plugin. **Cloud/phone sessions can't clone that repo, but they can
+read and write the vault through the Google Drive connector** (search Drive for
+the `SUAS-QRF` folder).
+
+Rules when touching the vault from a cloud session:
+
+- **Read the vault's own `CLAUDE.md` (the agent contract) first** — it defines
+  the read order (`🔥 Recent Context.md` → `00_START_HERE.md` → the folder's
+  `_index.md`), note conventions (YAML frontmatter, wikilinks, no orphans),
+  and the end-of-session memory protocol. Its rules win inside the vault.
+- Respect the numbered folder structure; never restructure it. Never touch
+  `06_Files/` (bulk import dump) or anything under `SECURE/`.
+- No veteran PII, credentials, or invented facts — same safety rules as here.
+- The vault is the place to check for already-documented fixes, org facts, and
+  approved boilerplate before re-deriving them.
+
 ## Repo conventions
 
 - Work on `claude/*` feature branches; open draft PRs; never push to `main`.
