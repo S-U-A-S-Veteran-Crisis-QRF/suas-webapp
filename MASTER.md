@@ -45,13 +45,16 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-10** — Form validation hole fixed: native validation restored (`noValidate` removed), zod email/name backstop in `lib/submitForm.ts`, autofill-safe `botcheck` honeypot, fetch timeout — verified with Playwright across all 4 forms
 - **2026-07-19** — Second brain bridged to cloud sessions: `CLAUDE.md` now documents the Obsidian vault (private Google Drive folder + private GitHub backup, built on the MacBook Pro 2026-07-18) and how cloud/phone sessions reach it via the Google Drive connector
 - **2026-07-19** — Dependabot alert #1 fixed: postcss forced to ^8.5.10 via npm `overrides` (was 8.4.31 pinned by Next — XSS advisory GHSA-qx2v-qp2m-jg93); `npm audit` clean, static export build verified
+- **2026-07-19** — Cross-device session sync shipped: `/sync` skill (catchup/handoff/note) + SessionStart auto-catch-up, with the message bus on a **private** repo's `claude-sync` branch so session state never touches this public repo (`docs/cross-device-sync.md`); `LESSONS.md` self-learning corrections log added
 
 ## Claude capability stack
 
 - **24 Opus subagents** (`.claude/agents/`) — frontend, React/Next, TypeScript, code review, debugging, QA, accessibility, security, performance, refactoring, docs, and more.
 - **Skills** (`.claude/skills/`): `/launch-your-agent`, `/wrap-up`, `/setup-agent-toolkit`, plus vendored from Anthropic's official [`anthropics/skills`](https://github.com/anthropics/skills): **frontend-design**, **webapp-testing** (Playwright), **skill-creator**.
 - **Root `CLAUDE.md`** — project brain: stack, commands, design-system idiom, crisis-banner guardrail.
-- **SessionStart hook** — every session on every device auto-loads all of the above; the repo is the sync channel (see [`docs/claude-device-handoff.md`](docs/claude-device-handoff.md)).
+- **SessionStart hook** — every session on every device auto-loads all of the above **and auto-catches-up on cross-device state** from the private sync channel (see [`docs/cross-device-sync.md`](docs/cross-device-sync.md)).
+- **Cross-device session sync** — `/sync` skill + a `claude-sync` message-bus branch **on a private org repo** (session state never touches this public repo): sessions publish handoffs (`/sync handoff`) and notes that every other device receives automatically at session start. Entries are summaries — no PII/credentials/transcripts even privately.
+- **`LESSONS.md`** — self-learning corrections log: every user correction or self-caught mistake becomes a rule future sessions read before acting.
 - **`everything-claude-code` plugin** ([WorldFlowAI/everything-claude-code](https://github.com/WorldFlowAI/everything-claude-code)) — auto-installed on every device via `.claude/settings.json` (`extraKnownMarketplaces` + `enabledPlugins`): 9 agents (planner, architect, tdd-guide, e2e-runner, …), 11 skills, 15 slash commands (`/tdd`, `/plan`, `/e2e`, …), and workflow hooks (auto-prettier + tsc after edits, console.log warnings, tmux nudges).
 - **suas-grant-finder** managed agent — designed, not yet launched (PR #2; needs `ANTHROPIC_API_KEY` in `my-agent/.env`).
 - **Second brain** — private Obsidian vault (Google Drive folder `SUAS-QRF`) with 5-minute auto-backup to a private GitHub repo; carries its own agent contract (`CLAUDE.md` at the vault root). Cloud sessions reach it via the Google Drive connector (see this repo's `CLAUDE.md`, "Second brain" section).
@@ -87,6 +90,9 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - [ ] Re-authorize QuickBooks; re-consent Zoho CRM/Desk with broader scopes (claude.ai connector settings)
 - [ ] Point `suasqrf.org` custom domain at GitHub Pages
 - [ ] Pull this branch (or `main` after merge) on the MacBook Pro and Beelink PC to sync the toolkit
+- [ ] Add `suas-claude-program` to the Claude Code cloud environment sources so phone/cloud sessions auto-receive the private sync channel
+- [ ] Decide on the `help` repo's visibility: it is currently **public** — if it isn't a site that must be public to operate, flip it to private (repo Settings → General → Danger Zone → Change visibility)
+- [ ] End each working session with `/sync handoff` so the next device picks up seamlessly
 
 ---
 
