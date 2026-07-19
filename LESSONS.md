@@ -26,6 +26,20 @@ Template:
 
 ---
 
+## 2026-07-19 — Inspect a repo before proposing visibility or destructive changes [self-correction]
+
+**What happened:** Claude flagged the public `help` repo as a candidate to
+flip private based on its name and visibility alone. When asked to actually do
+it, inspection revealed it is the **live Jekyll site serving `suasqrf.org`**
+via GitHub Pages (`CNAME` + deploy workflows) — making it private would have
+taken the org's domain down.
+
+**Rule going forward:** Never recommend or execute a visibility change,
+deletion, or archive without inspecting the target first (clone/read it; look
+for `CNAME`, Pages/deploy workflows, live-site configs). A public repo may
+*be* a live website — the org's public-repo exception exists precisely for
+those.
+
 ## 2026-07-19 — Check existing infrastructure before creating new [self-correction]
 
 **What happened:** While fixing the privacy issue below, Claude tried to create
