@@ -91,7 +91,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - [ ] Point `suasqrf.org` custom domain at GitHub Pages
 - [ ] Pull this branch (or `main` after merge) on the MacBook Pro and Beelink PC to sync the toolkit
 - [ ] Add `suas-claude-program` to the Claude Code cloud environment sources so phone/cloud sessions auto-receive the private sync channel
-- [ ] `help` repo visibility — resolved 2026-07-19: it **must stay public** for now, it is the live Jekyll site serving `suasqrf.org` via GitHub Pages (`CNAME` + Pages workflows). Revisit only after the custom domain is repointed at this repo's Pages site; then archive `help` and make it private
+- [ ] `help` repo visibility — corrected 2026-07-19: the vault records suasqrf.org repointed to **this repo's site on 2026-07-15**, so the `CNAME` file still sitting in `help` is likely a stale leftover, not proof it serves the domain. Verify with one look at suasqrf.org (new Next.js site vs old Jekyll Cayman theme); if the new site serves, archive `help` and flip it private
 - [ ] End each working session with `/sync handoff` so the next device picks up seamlessly
 
 ---

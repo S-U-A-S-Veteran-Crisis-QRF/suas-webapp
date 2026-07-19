@@ -26,6 +26,19 @@ Template:
 
 ---
 
+## 2026-07-19 — Check the second brain before re-deriving org facts [self-correction]
+
+**What happened:** Claude concluded the public `help` repo "serves
+suasqrf.org" from the `CNAME` file inside it and told Jacob it must stay
+public. The vault's `🔥 Recent Context` already recorded that the domain was
+repointed to the new webapp on 2026-07-15 (verified by an hourly watchdog).
+A config file left in a repo proves history, not present state.
+
+**Rule going forward:** Before asserting an org fact, check the vault (Recent
+Context, then the relevant notes) — it is the org's source of truth and the
+fact may already be documented. Where live state matters, verify it live;
+when two sources conflict, say so instead of picking one silently.
+
 ## 2026-07-19 — Inspect a repo before proposing visibility or destructive changes [self-correction]
 
 **What happened:** Claude flagged the public `help` repo as a candidate to
