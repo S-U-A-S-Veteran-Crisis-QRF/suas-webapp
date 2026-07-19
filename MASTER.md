@@ -44,6 +44,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-10** — `everything-claude-code` plugin enabled for all devices via `.claude/settings.json`
 - **2026-07-10** — Form validation hole fixed: native validation restored (`noValidate` removed), zod email/name backstop in `lib/submitForm.ts`, autofill-safe `botcheck` honeypot, fetch timeout — verified with Playwright across all 4 forms
 - **2026-07-19** — Second brain bridged to cloud sessions: `CLAUDE.md` now documents the Obsidian vault (private Google Drive folder + private GitHub backup, built on the MacBook Pro 2026-07-18) and how cloud/phone sessions reach it via the Google Drive connector
+- **2026-07-19** — Second brain setup guide published to GitHub: [`docs/obsidian-second-brain-setup.md`](docs/obsidian-second-brain-setup.md) consolidates the vault's own setup docs — sync architecture, per-device setup (MacBook Pro / Beelink / new machine / phone), verification steps, and the never-do-this gotchas — so recovery instructions survive outside the vault itself
 
 ## Claude capability stack
 
@@ -53,7 +54,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **SessionStart hook** — every session on every device auto-loads all of the above; the repo is the sync channel (see [`docs/claude-device-handoff.md`](docs/claude-device-handoff.md)).
 - **`everything-claude-code` plugin** ([WorldFlowAI/everything-claude-code](https://github.com/WorldFlowAI/everything-claude-code)) — auto-installed on every device via `.claude/settings.json` (`extraKnownMarketplaces` + `enabledPlugins`): 9 agents (planner, architect, tdd-guide, e2e-runner, …), 11 skills, 15 slash commands (`/tdd`, `/plan`, `/e2e`, …), and workflow hooks (auto-prettier + tsc after edits, console.log warnings, tmux nudges).
 - **suas-grant-finder** managed agent — designed, not yet launched (PR #2; needs `ANTHROPIC_API_KEY` in `my-agent/.env`).
-- **Second brain** — private Obsidian vault (Google Drive folder `SUAS-QRF`) with 5-minute auto-backup to a private GitHub repo; carries its own agent contract (`CLAUDE.md` at the vault root). Cloud sessions reach it via the Google Drive connector (see this repo's `CLAUDE.md`, "Second brain" section).
+- **Second brain** — private Obsidian vault (Google Drive folder `SUAS-QRF`) with 5-minute auto-backup to a private GitHub repo; carries its own agent contract (`CLAUDE.md` at the vault root). Cloud sessions reach it via the Google Drive connector (see this repo's `CLAUDE.md`, "Second brain" section). Setup/recovery guide for humans: [`docs/obsidian-second-brain-setup.md`](docs/obsidian-second-brain-setup.md).
 
 ## Connected apps snapshot
 
