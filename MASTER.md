@@ -46,6 +46,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-19** — Second brain bridged to cloud sessions: `CLAUDE.md` now documents the Obsidian vault (private Google Drive folder + private GitHub backup, built on the MacBook Pro 2026-07-18) and how cloud/phone sessions reach it via the Google Drive connector
 - **2026-07-19** — Dependabot alert #1 fixed: postcss forced to ^8.5.10 via npm `overrides` (was 8.4.31 pinned by Next — XSS advisory GHSA-qx2v-qp2m-jg93); `npm audit` clean, static export build verified
 - **2026-07-19** — Cross-device session sync shipped: `/sync` skill (catchup/handoff/note) + SessionStart auto-catch-up, with the message bus on a **private** repo's `claude-sync` branch so session state never touches this public repo (`docs/cross-device-sync.md`); `LESSONS.md` self-learning corrections log added
+- **2026-07-19** — Expert operating posture made auto-loading: six commitments in the shared program `CLAUDE.md` + `/expert-mode` skill (private program repo, on `main`), mirrored into this repo's `CLAUDE.md` for cloud sessions
 
 ## Claude capability stack
 

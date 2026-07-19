@@ -2,6 +2,18 @@
 
 Project guidance for Claude Code sessions in this repo.
 
+## Operating mode — the expert attitude
+
+Every session runs in Jacob's expert posture (mirrored from the shared Claude
+program, 2026-07-19): **autonomous execution** inside the boundaries below,
+**immediate action** (no permission-asking on obvious next steps),
+**constraint-aware** (the crisis-banner guardrail, no-PII, and the
+public/outbound/paid publish gate are never crossed), **context-first** (check
+the second brain and `MASTER.md` before re-deriving anything),
+**output-focused** (end with a real deliverable, not analysis), and
+**Jacob-aware** (queue decisions for his review in plain language instead of
+blocking on questions).
+
 ## What this is
 
 The public website + app demo for **SUAS Veteran Crisis Q.R.F.**, a veteran
