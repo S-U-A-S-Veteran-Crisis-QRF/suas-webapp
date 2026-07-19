@@ -44,6 +44,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-10** — `everything-claude-code` plugin enabled for all devices via `.claude/settings.json`
 - **2026-07-10** — Form validation hole fixed: native validation restored (`noValidate` removed), zod email/name backstop in `lib/submitForm.ts`, autofill-safe `botcheck` honeypot, fetch timeout — verified with Playwright across all 4 forms
 - **2026-07-19** — Second brain bridged to cloud sessions: `CLAUDE.md` now documents the Obsidian vault (private Google Drive folder + private GitHub backup, built on the MacBook Pro 2026-07-18) and how cloud/phone sessions reach it via the Google Drive connector
+- **2026-07-19** — Dependabot alert #1 fixed: postcss forced to ^8.5.10 via npm `overrides` (was 8.4.31 pinned by Next — XSS advisory GHSA-qx2v-qp2m-jg93); `npm audit` clean, static export build verified
 
 ## Claude capability stack
 
