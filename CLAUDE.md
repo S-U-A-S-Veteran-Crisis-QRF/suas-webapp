@@ -71,8 +71,13 @@ Rules when touching the vault from a cloud session:
 - Work on `claude/*` feature branches; open draft PRs; never push to `main`.
 - `MASTER.md` is the living status dashboard (auto-refreshed by a daily
   Claude routine) — update its relevant section when you ship something.
-- `docs/claude-device-handoff.md` documents cross-device sync; the repo itself
-  is the sync channel for all Claude config.
+- Cross-device sync: the repo itself is the sync channel. Config/tooling sync
+  via `.claude/` on `main`; **live session state syncs via the dedicated
+  `claude-sync` branch** — every session auto-catches-up at start (SessionStart
+  hook) and should publish `/sync handoff` before ending so other
+  devices/sessions can pick up seamlessly. Sync entries are public: no PII,
+  credentials, or message contents. Full map: `docs/cross-device-sync.md`
+  (historical snapshot: `docs/claude-device-handoff.md`).
 - Secrets: only the local `.env` (see `.env.example`); `ANTHROPIC_API_KEY`
   is required for `/launch-your-agent` and must never be committed.
 

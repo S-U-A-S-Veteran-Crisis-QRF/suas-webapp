@@ -12,6 +12,18 @@ loads on every device. It encodes exactly how this repo was set up so another
 repo can be configured the same way. Invoke with `/setup-agent-toolkit`. It opens
 a draft PR but always asks before merging or deploying.
 
+## sync (local)
+
+`sync/` — cross-device session sync. Treats the dedicated `claude-sync` orphan
+branch as a message bus between every Claude session on every device:
+`/sync` catches up (latest `HANDOFF.md` + journal), `/sync handoff` publishes
+this session's state, `/sync note` leaves a quick message. Receiving is
+automatic — the SessionStart hook fetches the branch and injects the latest
+handoff into every session's starting context. The git mechanics live in
+`sync/scripts/sync.sh` (bootstraps the branch, throwaway worktree, push retry
+with rebase). Entries are public — no PII/credentials/message contents. See
+`docs/cross-device-sync.md`.
+
 ## launch-your-agent / wrap-up (vendored)
 
 Vendored from [`anthropics/launch-your-agent`](https://github.com/anthropics/launch-your-agent)

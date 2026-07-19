@@ -15,7 +15,11 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git pull:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git fetch:*)",
+      "Bash(git show:*)",
+      "Bash(bash .claude/skills/sync/scripts/sync.sh:*)",
+      "Bash(.claude/skills/sync/scripts/sync.sh:*)"
     ]
   },
   "hooks": {
