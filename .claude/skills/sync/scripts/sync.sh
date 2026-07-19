@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Cross-device session sync for suas-webapp.
+# Cross-device session sync for SUAS.
 #
-# The dedicated `claude-sync` branch in this repo is the message bus between
-# every Claude session on every device (cloud/phone, MacBook Pro, Beelink PC).
-# It carries only three small files:
+# The `claude-sync` branch of the PRIVATE `suas-claude-program` repo is the
+# message bus between every Claude session on every device (cloud/phone,
+# MacBook Pro, Beelink PC). The channel is deliberately NOT in this public
+# website repo — session state stays private. It carries three small files:
 #   HANDOFF.md  — the latest session's handoff (rewritten every handoff; latest wins)
 #   JOURNAL.md  — append-only history, newest entry first
 #   README.md   — what the branch is (seeded on bootstrap)
@@ -14,19 +15,38 @@
 #                              (entry body is read from stdin), commit, push
 #   sync.sh note "<title>"     Journal-only entry (body from stdin); HANDOFF.md untouched
 #
-# PRIVACY: this repo is PUBLIC. Entries must never contain veteran PII,
-# credentials, message contents, or financial figures (same rule as MASTER.md).
+# PRIVACY (defense in depth, even though the channel is private): entries are
+# summaries — never veteran PII, credentials, chat transcripts, or financial
+# figures (same rules as MASTER.md and the program repo's README).
+#
+# The private remote is derived from origin's URL by swapping the repo name,
+# so it works both on local clones (github.com URLs) and cloud sessions (the
+# session git proxy) — cloud sessions can reach it once suas-claude-program
+# is added to the session/environment sources.
 #
 # Works offline-degraded: catchup falls back to the last-fetched copy; handoff
 # bootstraps the branch as an orphan if it doesn't exist on the remote yet.
-# Env overrides (mainly for testing): CLAUDE_SYNC_REMOTE, CLAUDE_SYNC_BRANCH.
+# Env overrides (mainly for testing): CLAUDE_SYNC_REMOTE (existing remote name),
+# CLAUDE_SYNC_URL (full URL), CLAUDE_SYNC_REPO (repo name), CLAUDE_SYNC_BRANCH.
 set -euo pipefail
 
 REPO_DIR="${CLAUDE_PROJECT_DIR:-$(git rev-parse --show-toplevel)}"
 cd "$REPO_DIR"
 
-REMOTE="${CLAUDE_SYNC_REMOTE:-origin}"
+REMOTE="${CLAUDE_SYNC_REMOTE:-claude-sync}"
 SYNC_BRANCH="${CLAUDE_SYNC_BRANCH:-claude-sync}"
+SYNC_REPO="${CLAUDE_SYNC_REPO:-suas-claude-program}"
+
+# Make sure the private sync remote exists, deriving its URL from origin.
+ensure_remote() {
+  git remote get-url "$REMOTE" >/dev/null 2>&1 && return 0
+  local origin_url
+  origin_url="$(git remote get-url origin 2>/dev/null)" || {
+    echo "sync: no 'origin' remote to derive the private sync URL from" >&2
+    return 1
+  }
+  git remote add "$REMOTE" "${CLAUDE_SYNC_URL:-${origin_url/suas-webapp/$SYNC_REPO}}"
+}
 
 device_label() {
   if [ "${CLAUDE_CODE_REMOTE:-}" = "true" ]; then
@@ -38,6 +58,7 @@ device_label() {
 
 # Bounded fetch so a dead network can't hang a session.
 fetch_sync() {
+  ensure_remote || return 1
   git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=15 \
     fetch --quiet "$REMOTE" "$SYNC_BRANCH" 2>/dev/null
 }
@@ -53,9 +74,10 @@ cmd_catchup() {
   if ! fetch_sync; then
     fresh="no"
     if ! have_remote_ref; then
-      echo "No '$SYNC_BRANCH' branch on '$REMOTE' yet (or offline with nothing cached)."
-      echo "Nothing to catch up on. Start the channel by handing off at the end of a session:"
-      echo "  $0 handoff \"<one-line summary>\"  <<'EOF' ... entry body ... EOF"
+      echo "Private sync channel unreachable: no '$SYNC_BRANCH' branch fetched from '$REMOTE' ($SYNC_REPO)."
+      echo "Either the channel hasn't been seeded yet, this machine is offline, or — on a cloud"
+      echo "session — the private repo isn't in the session sources (add $SYNC_REPO to reach it)."
+      echo "Publish with: $0 handoff \"<one-line summary>\"  <<'EOF' ... entry body ... EOF"
       return 0
     fi
     echo "(offline — showing last-fetched copy of $REMOTE/$SYNC_BRANCH)"
@@ -138,19 +160,22 @@ write_entry() {
     git -C "$wt" checkout --quiet --orphan "$SYNC_BRANCH"
     git -C "$wt" rm -rf --quiet . >/dev/null 2>&1 || true
     cat > "$wt/README.md" <<'EOF'
-# claude-sync — cross-device session bus
+# claude-sync — private cross-device session bus
 
-This orphan branch is the live sync channel between Claude sessions on all
-devices working on suas-webapp. It is never merged to `main`.
+This orphan branch is the live session-state channel between Claude sessions
+on all SUAS devices. It is never merged to `main` and never interferes with
+the program-sync flow on `main` (`sync.sh` / nightly autopilot).
 
 - `HANDOFF.md` — the most recent session handoff (each handoff rewrites it)
 - `JOURNAL.md` — append-only history of handoffs and notes, newest first
 
-Read it with `/sync` in any Claude session (the SessionStart hook also loads
-the latest handoff automatically). Write with `/sync handoff` or `/sync note`.
+Read it with `/sync` in any Claude session on the suas-webapp repo (its
+SessionStart hook also loads the latest handoff automatically). Write with
+`/sync handoff` or `/sync note`.
 
-**Privacy:** the repo is public — no veteran PII, credentials, message
-contents, or financial figures, ever. See `docs/cross-device-sync.md` on main.
+**Privacy (defense in depth):** entries are summaries — no veteran PII,
+credentials, chat transcripts, or financial figures, ever. See
+suas-webapp's `docs/cross-device-sync.md`.
 EOF
   fi
 

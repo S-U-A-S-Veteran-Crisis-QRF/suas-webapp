@@ -7,9 +7,12 @@ version: 1.0.0
 # Sync — cross-device session communication
 
 Claude sessions are islands: cloud containers are ephemeral and local
-transcripts never leave their machine. This repo bridges them with a dedicated
-**`claude-sync` branch** — a tiny orphan branch (never merged to `main`) that
-acts as the message bus between every session on every device.
+transcripts never leave their machine. SUAS bridges them with the
+**`claude-sync` orphan branch of the PRIVATE `suas-claude-program` repo** —
+the message bus between every session on every device. It is deliberately NOT
+in this public website repo: session state stays private. The remote is
+derived automatically from origin's URL (repo-name swap), so it works on local
+clones and on cloud sessions that have `suas-claude-program` in their sources.
 
 - `HANDOFF.md` on that branch = the latest session's state (rewritten each handoff)
 - `JOURNAL.md` = append-only history, newest first
@@ -20,9 +23,10 @@ how you read the full history and, most importantly, how you **send**.
 
 ## The one rule
 
-This repo is **public**. Entries must never contain veteran PII, credentials,
-API keys, message contents, or financial figures — the same privacy rule as
-`MASTER.md`. Summarize; don't paste sensitive material.
+Even though the channel is private, entries are summaries — never veteran PII,
+credentials, API keys, chat transcripts, or financial figures (same rules as
+`MASTER.md` and the program repo's README). And never move the channel to a
+public repo: branches of public repos are public (see `LESSONS.md`).
 
 ## Commands
 
@@ -73,8 +77,9 @@ Keep it under ~30 lines. It becomes every future session's starting context.
 
 | Layer | Channel | Cadence |
 |-------|---------|---------|
-| Tooling & config (`.claude/`, CLAUDE.md) | this repo, merged to `main` | on merge + pull |
-| **Session state / device messages** | **`claude-sync` branch (this skill)** | every session |
+| Repo tooling (`.claude/`, CLAUDE.md) | this repo, merged to `main` | on merge + pull |
+| Global program (`~/.claude` skills/agents) | `suas-claude-program` `main` + its `sync.sh` | nightly autopilot |
+| **Session state / device messages** | **`claude-sync` branch of `suas-claude-program` (this skill)** | every session |
 | Org memory (second brain) | Obsidian vault via Google Drive | per vault contract |
 | Public status dashboard | `MASTER.md` on `main` | daily routine |
 

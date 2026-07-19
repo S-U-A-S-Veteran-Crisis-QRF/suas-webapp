@@ -71,13 +71,22 @@ Rules when touching the vault from a cloud session:
 - Work on `claude/*` feature branches; open draft PRs; never push to `main`.
 - `MASTER.md` is the living status dashboard (auto-refreshed by a daily
   Claude routine) — update its relevant section when you ship something.
-- Cross-device sync: the repo itself is the sync channel. Config/tooling sync
-  via `.claude/` on `main`; **live session state syncs via the dedicated
-  `claude-sync` branch** — every session auto-catches-up at start (SessionStart
-  hook) and should publish `/sync handoff` before ending so other
-  devices/sessions can pick up seamlessly. Sync entries are public: no PII,
-  credentials, or message contents. Full map: `docs/cross-device-sync.md`
+- Cross-device sync: repo-carried config (`.claude/` on `main`) syncs tooling;
+  **live session state syncs via the `claude-sync` branch of the PRIVATE
+  `suas-claude-program` repo** — never via this public repo. Every session
+  auto-catches-up at start (SessionStart hook) and should publish
+  `/sync handoff` before ending so other devices/sessions pick up seamlessly.
+  Even on the private channel, entries are summaries: no veteran PII,
+  credentials, or chat transcripts. Full map: `docs/cross-device-sync.md`
   (historical snapshot: `docs/claude-device-handoff.md`).
+- **Privacy-first GitHub rule:** everything SUAS is private **except** the
+  website repos that must be public to operate (this repo — GitHub Pages).
+  Never put org/session/work data in a public repo; branches of a public repo
+  are public too.
+- **Self-learning:** `LESSONS.md` at the repo root logs every correction (from
+  Jacob or self-caught). Consult it before acting; append an entry whenever
+  you're corrected. Think before acting — check existing infrastructure and
+  repo visibility first.
 - Secrets: only the local `.env` (see `.env.example`); `ANTHROPIC_API_KEY`
   is required for `/launch-your-agent` and must never be committed.
 
