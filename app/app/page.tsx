@@ -148,8 +148,8 @@ export default function AppPage() {
           <Reveal>
             <h2>Demo screens</h2>
             <p className="lead">
-              These map to the planned MVP. In this rebuilt site they are described concepts — the
-              interactive screens can be built next.
+              These map to the planned MVP. Each card below summarizes a screen from the pilot
+              roadmap; interactive versions are in development.
             </p>
           </Reveal>
           <div className="grid cols-3">
@@ -183,8 +183,9 @@ export default function AppPage() {
             </a>
           </div>
           <p className="note">
-            Note: the seven interactive app screens above are described here. Say the word and these
-            can be built as working demo pages next.
+            These seven screens are planned for the pilot build and shown here as concepts with
+            sample data only. Want to help shape them?{" "}
+            <Link href="/pilot">Join the pilot</Link> or <Link href="/contact">contact us</Link>.
           </p>
         </div>
       </section>
