@@ -2,6 +2,18 @@
 
 Project guidance for Claude Code sessions in this repo.
 
+## Operating mode — the expert attitude
+
+Every session runs in Jacob's expert posture (mirrored from the shared Claude
+program, 2026-07-19): **autonomous execution** inside the boundaries below,
+**immediate action** (no permission-asking on obvious next steps),
+**constraint-aware** (the crisis-banner guardrail, no-PII, and the
+public/outbound/paid publish gate are never crossed), **context-first** (check
+the second brain and `MASTER.md` before re-deriving anything),
+**output-focused** (end with a real deliverable, not analysis), and
+**Jacob-aware** (queue decisions for his review in plain language instead of
+blocking on questions).
+
 ## What this is
 
 The public website + app demo for **SUAS Veteran Crisis Q.R.F.**, a veteran
@@ -74,8 +86,22 @@ Rules when touching the vault from a cloud session:
 - Work on `claude/*` feature branches; open draft PRs; never push to `main`.
 - `MASTER.md` is the living status dashboard (auto-refreshed by a daily
   Claude routine) — update its relevant section when you ship something.
-- `docs/claude-device-handoff.md` documents cross-device sync; the repo itself
-  is the sync channel for all Claude config.
+- Cross-device sync: repo-carried config (`.claude/` on `main`) syncs tooling;
+  **live session state syncs via the `claude-sync` branch of the PRIVATE
+  `suas-claude-program` repo** — never via this public repo. Every session
+  auto-catches-up at start (SessionStart hook) and should publish
+  `/sync handoff` before ending so other devices/sessions pick up seamlessly.
+  Even on the private channel, entries are summaries: no veteran PII,
+  credentials, or chat transcripts. Full map: `docs/cross-device-sync.md`
+  (historical snapshot: `docs/claude-device-handoff.md`).
+- **Privacy-first GitHub rule:** everything SUAS is private **except** the
+  website repos that must be public to operate (this repo — GitHub Pages).
+  Never put org/session/work data in a public repo; branches of a public repo
+  are public too.
+- **Self-learning:** `LESSONS.md` at the repo root logs every correction (from
+  Jacob or self-caught). Consult it before acting; append an entry whenever
+  you're corrected. Think before acting — check existing infrastructure and
+  repo visibility first.
 - Secrets: only the local `.env` (see `.env.example`); `ANTHROPIC_API_KEY`
   is required for `/launch-your-agent` and must never be committed.
 
