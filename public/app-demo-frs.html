@@ -100,7 +100,7 @@
 <body>
 
 <div class="bar988">🆘 Immediate danger? Call <b>988</b> · Press 1 for Veterans · Text <b>838255</b></div>
-<div class="demo-note">Interactive demo · mock data, no real dispatch, nothing stored · the live system runs locally over HTTPS</div>
+<div class="demo-note">Interactive concept demo · mock data, no real dispatch, nothing stored · partners and CalAIM billing are illustrative, not yet established</div>
 
 <div class="stage">
 
@@ -127,7 +127,7 @@
 
 <script>
 const SVC = {
-  ride:    { label:"Free Ride", emoji:"🚗", color:"var(--ride)", sub:"Waymo · Amazon AV · Dispatched now",
+  ride:    { label:"Free Ride", emoji:"🚗", color:"var(--ride)", sub:"Rideshare partner · Dispatched now",
              name:"Non-Medical Transportation", low:25, high:75, eta:"5 – 7 minutes", etaLabel:"Estimated arrival",
              title:"Your ride is on the way", msg:"A vehicle is heading to you now. Stay where you are." },
   food:    { label:"Free Food", emoji:"🍲", color:"var(--food)", sub:"Hot meal · Delivered to you",
@@ -181,7 +181,7 @@ function renderPhone(){
       <div class="ph-h1">S.U.A.S. Veteran Crisis Q.R.F.</div>
       <div class="prompt">Tap what you need. Help is free.</div>
       ${btn("ride")}${btn("food")}${btn("shelter")}
-      <div class="ph-foot">All services free · Paid by corporate sponsors<br><b>suasqrf.org</b></div>`;
+      <div class="ph-foot">Free to the veteran · Concept demo, not yet live<br><b>suasqrf.org</b></div>`;
     return;
   }
   if(screen==="foodOptions"){
@@ -233,7 +233,7 @@ function renderDispatcher(){
   t.innerHTML = `
     <div class="stat"><div class="n">${encounters.length}</div><div class="l">Encounters</div></div>
     <div class="stat"><div class="n">🚗${by.ride} 🍲${by.food} 🏨${by.shelter}</div><div class="l">By service</div></div>
-    <div class="stat"><div class="n">$${low}–$${high}</div><div class="l">Est. Medi-Cal value</div></div>`;
+    <div class="stat"><div class="n">$${low}–$${high}</div><div class="l">Illustrative CalAIM value</div></div>`;
   if(!encounters.length){ q.innerHTML = `<div class="empty">No encounters yet.<br>Tap a service on the phone →</div>`; return; }
   q.innerHTML = encounters.map(e=>{
     const st = e.escalated ? "escalated" : e.status;
@@ -244,7 +244,7 @@ function renderDispatcher(){
           <div class="enc-meta">${e.ref} · ${secsAgo(e.ts)}</div></div>
         <span class="pill p-${st}">${e.escalated?"988":e.status}</span>
       </div>
-      <div class="enc-bill">${typeof e.low==="number"?`Billable · $${e.low}–$${e.high} CalAIM`:"Housing navigation · negotiated"}</div>
+      <div class="enc-bill">${typeof e.low==="number"?`Illustrative CalAIM value · $${e.low}–$${e.high}`:"Housing navigation · illustrative"}</div>
       <div class="enc-act">
         ${canAdv?`<button class="adv" onclick="advance('${e.ref}')">→ ${FLOW[FLOW.indexOf(e.status)+1]}</button>`:""}
         <button class="esc" onclick="escalate('${e.ref}')">988</button>

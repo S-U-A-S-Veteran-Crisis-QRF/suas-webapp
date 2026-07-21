@@ -108,9 +108,9 @@ export default function AppPage() {
             <h2>From a veteran&apos;s tap to the dispatcher&apos;s queue</h2>
             <p className="lead">
               The complete experience, end to end: tap a service on the veteran&apos;s phone and watch
-              the request land in the dispatcher console with its Medi-Cal billing detail, then advance
-              it through the live status flow. Sample data only — no real services are dispatched and
-              nothing is stored.
+              the request land in the dispatcher console with an illustrative CalAIM care detail, then
+              advance it through the live status flow. Sample data only — no real services are
+              dispatched, partners and billing are illustrative, and nothing is stored.
             </p>
           </Reveal>
           <EmbeddedDemo
