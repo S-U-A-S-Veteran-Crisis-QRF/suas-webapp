@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import CrisisDemoApp from "@/components/CrisisDemoApp";
+import SupportSignalDemo from "@/components/SupportSignalDemo";
 import EmbeddedDemo from "@/components/EmbeddedDemo";
 
 export const metadata: Metadata = {
@@ -121,24 +122,19 @@ export default function AppPage() {
 
       <section>
         <div className="container">
-          <div className="panel">
-            <span className="demo-tag">Demo · sample data</span>
-            <div className="mock-row">
-              <span className="k">Support signal</span>
-              <span className="sig y">Yellow — light support needed</span>
-            </div>
-            <div className="mock-row">
-              <span className="k">Last check-in</span>
-              <span>Today</span>
-            </div>
-            <div className="mock-row">
-              <span className="k">Trusted circle</span>
-              <span>3 contacts</span>
-            </div>
-            <div className="mock-row">
-              <span className="k">Next action</span>
-              <span>Light peer outreach recommended</span>
-            </div>
+          <Reveal>
+            <div className="sec-label">The other half of the loop</div>
+            <h2>A private check-in that informs a person — never decides alone</h2>
+            <p className="lead">
+              Separate from dispatch: six plain questions produce one calm support signal — green,
+              yellow, or red — on the veteran&apos;s dashboard, and nothing more. A yellow or red
+              suggests a single next action (a peer reaching out) and always routes to a real person.
+              It never diagnoses, never auto-dispatches, and 988 stays one tap away the whole time.
+              Sample data only; nothing is stored.
+            </p>
+          </Reveal>
+          <div className="device-frame">
+            <SupportSignalDemo />
           </div>
         </div>
       </section>
@@ -154,12 +150,16 @@ export default function AppPage() {
           </Reveal>
           <div className="grid cols-3">
             <div className="card">
-              <h3>Dashboard</h3>
-              <p>Support signal and next actions.</p>
+              <h3>Dashboard <span className="sig g">Live above</span></h3>
+              <p>Support signal and one next action.</p>
             </div>
             <div className="card">
-              <h3>Check-In</h3>
+              <h3>Check-In <span className="sig g">Live above</span></h3>
               <p>Six-question private check-in.</p>
+            </div>
+            <div className="card">
+              <h3>Responder <span className="sig g">Live above</span></h3>
+              <p>Dispatcher queue and status flow.</p>
             </div>
             <div className="card">
               <h3>Trusted Circle</h3>
@@ -174,18 +174,15 @@ export default function AppPage() {
               <p>Care coordination history.</p>
             </div>
             <div className="card">
-              <h3>Responder</h3>
-              <p>Nonprofit support queue.</p>
-            </div>
-            <div className="card">
               <h3>Admin</h3>
               <p>Pilot readiness overview.</p>
             </div>
           </div>
           <p className="note">
-            These seven screens are planned for the pilot build and shown here as concepts with
-            sample data only. Want to help shape them?{" "}
-            <Link href="/pilot">Join the pilot</Link> or <Link href="/contact">contact us</Link>.
+            Three of these seven screens are interactive above — the veteran app, the dispatcher
+            queue, and the private check-in dashboard, the full golden path end to end. The rest are
+            planned for the pilot build, shown as concepts with sample data only. Want to help shape
+            them? <Link href="/pilot">Join the pilot</Link> or <Link href="/contact">contact us</Link>.
           </p>
         </div>
       </section>
