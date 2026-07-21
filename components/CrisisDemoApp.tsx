@@ -57,7 +57,7 @@ const SERVICE_INFO = {
     simpleMsg: "A vehicle is heading to you now. Stay where you are.",
     details: [
       { icon: "📍", label: "Pickup", val: "Your current location" },
-      { icon: "🚙", label: "Vehicle", val: "Waymo / Amazon AV" },
+      { icon: "🚙", label: "Vehicle", val: "Rideshare partner" },
       { icon: "📞", label: "Support", val: "988 (Press 1)" },
     ],
   },
@@ -71,8 +71,8 @@ const SERVICE_INFO = {
     etaLabel: "Estimated delivery",
     simpleMsg: "Hot food is on its way to you. No payment needed.",
     details: [
-      { icon: "🏪", label: "Partner", val: "Uber Eats" },
-      { icon: "📦", label: "Order", val: "Paid by S.U.A.S. QRF" },
+      { icon: "🏪", label: "Partner", val: "Meal-delivery partner" },
+      { icon: "📦", label: "Order", val: "No cost to you" },
       { icon: "📞", label: "Support", val: "988 (Press 1)" },
     ],
   },
@@ -87,7 +87,7 @@ const SERVICE_INFO = {
     simpleMsg: "Show this screen at the front desk. No payment required.",
     details: [
       { icon: "🏨", label: "Hotel", val: "Nearest partner property" },
-      { icon: "🎫", label: "Voucher", val: "Pre-authorized" },
+      { icon: "🎫", label: "Voucher", val: "No cost to you" },
       { icon: "📞", label: "Support", val: "988 (Press 1)" },
     ],
   },
@@ -180,7 +180,7 @@ export default function CrisisDemoApp() {
               <div>
                 <div style={{ fontSize: "20px", fontWeight: 700, color: C.rideColor }}>Free Ride</div>
                 <div style={{ fontSize: "14px", color: C.textDim, marginTop: "2px" }}>
-                  Waymo · Amazon AV · Dispatched now
+                  Rideshare partner · Dispatched now
                 </div>
               </div>
             </button>
@@ -208,7 +208,7 @@ export default function CrisisDemoApp() {
 
           {/* Footer */}
           <div style={{ textAlign: "center", marginTop: "32px", fontSize: "13px", color: C.textDim, lineHeight: 1.6 }}>
-            All services free · Paid by corporate sponsors
+            Free to the veteran · Concept demo, not yet live
             <br />
             <span style={{ color: C.gold, fontWeight: 600 }}>suasqrf.org</span>
           </div>
