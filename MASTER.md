@@ -48,6 +48,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-19** — Cross-device session sync shipped: `/sync` skill (catchup/handoff/note) + SessionStart auto-catch-up, with the message bus on a **private** repo's `claude-sync` branch so session state never touches this public repo (`docs/cross-device-sync.md`); `LESSONS.md` self-learning corrections log added
 - **2026-07-19** — Expert operating posture made auto-loading: six commitments in the shared program `CLAUDE.md` + `/expert-mode` skill (private program repo, on `main`), mirrored into this repo's `CLAUDE.md` for cloud sessions
 - **2026-07-20** — Demo-site feedback fixes (Hacker Dojo): IRS determination letter PDF added to `public/docs/` (donate-page link was 404 on the live site); `/app` "Demo screens" copy rewritten for visitors (was product-manager-facing "Say the word…" text); Lyft Concierge + Expedia Rapid integration leads captured in `docs/integration-leads.md`
+- **2026-07-21** — Headless Claude Code orchestration reference added (`docs/claude-code-headless-orchestration.md`): SUAS-trimmed distillation of the MIT-licensed Hermes Agent guide — print-mode recipes, the allowedTools/max-turns/budget safety trio, structured JSON output, session resumption, cost controls; tmux/PTY driving and permission-bypass patterns deliberately excluded
 
 ## Claude capability stack
 
