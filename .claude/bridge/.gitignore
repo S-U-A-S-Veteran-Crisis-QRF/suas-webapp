@@ -1,0 +1,2 @@
+# local-only identity hint; each device/session sets its own
+.agent-id
