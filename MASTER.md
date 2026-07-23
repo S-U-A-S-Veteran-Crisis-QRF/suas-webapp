@@ -48,6 +48,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-19** — Cross-device session sync shipped: `/sync` skill (catchup/handoff/note) + SessionStart auto-catch-up, with the message bus on a **private** repo's `claude-sync` branch so session state never touches this public repo (`docs/cross-device-sync.md`); `LESSONS.md` self-learning corrections log added
 - **2026-07-19** — Expert operating posture made auto-loading: six commitments in the shared program `CLAUDE.md` + `/expert-mode` skill (private program repo, on `main`), mirrored into this repo's `CLAUDE.md` for cloud sessions
 - **2026-07-20** — Demo-site feedback fixes (Hacker Dojo): IRS determination letter PDF added to `public/docs/` (donate-page link was 404 on the live site); `/app` "Demo screens" copy rewritten for visitors (was product-manager-facing "Say the word…" text); Lyft Concierge + Expedia Rapid integration leads captured in `docs/integration-leads.md`
+- **2026-07-20** — Second brain setup guide published to GitHub: [`docs/obsidian-second-brain-setup.md`](docs/obsidian-second-brain-setup.md) consolidates the vault's own setup docs — sync architecture, per-device setup (MacBook Pro / Beelink / new machine / phone), verification steps, and the never-do-this gotchas — so recovery instructions survive outside the vault itself
 
 ## Claude capability stack
 
@@ -59,7 +60,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **`LESSONS.md`** — self-learning corrections log: every user correction or self-caught mistake becomes a rule future sessions read before acting.
 - **`everything-claude-code` plugin** ([WorldFlowAI/everything-claude-code](https://github.com/WorldFlowAI/everything-claude-code)) — auto-installed on every device via `.claude/settings.json` (`extraKnownMarketplaces` + `enabledPlugins`): 9 agents (planner, architect, tdd-guide, e2e-runner, …), 11 skills, 15 slash commands (`/tdd`, `/plan`, `/e2e`, …), and workflow hooks (auto-prettier + tsc after edits, console.log warnings, tmux nudges).
 - **suas-grant-finder** managed agent — designed, not yet launched (PR #2; needs `ANTHROPIC_API_KEY` in `my-agent/.env`).
-- **Second brain** — private Obsidian vault (Google Drive folder `SUAS-QRF`) with 5-minute auto-backup to a private GitHub repo; carries its own agent contract (`CLAUDE.md` at the vault root). Cloud sessions reach it via the Google Drive connector (see this repo's `CLAUDE.md`, "Second brain" section).
+- **Second brain** — private Obsidian vault (Google Drive folder `SUAS-QRF`) with 5-minute auto-backup to a private GitHub repo; carries its own agent contract (`CLAUDE.md` at the vault root). Cloud sessions reach it via the Google Drive connector (see this repo's `CLAUDE.md`, "Second brain" section). Setup/recovery guide for humans: [`docs/obsidian-second-brain-setup.md`](docs/obsidian-second-brain-setup.md).
 
 ## Connected apps snapshot
 

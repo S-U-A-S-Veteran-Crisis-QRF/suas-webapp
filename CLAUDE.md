@@ -77,6 +77,9 @@ Rules when touching the vault from a cloud session:
 - No veteran PII, credentials, or invented facts — same safety rules as here.
 - The vault is the place to check for already-documented fixes, org facts, and
   approved boilerplate before re-deriving them.
+- Human-facing setup/recovery instructions (per device, sync architecture,
+  gotchas) live in `docs/obsidian-second-brain-setup.md` — point Jacob there
+  rather than re-explaining the sync.
 
 ## Repo conventions
 
