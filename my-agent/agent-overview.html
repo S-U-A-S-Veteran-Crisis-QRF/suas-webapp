@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SUAS grant-finder — agent overview</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2230; --line:#30363d;
+    --ink:#e6edf3; --dim:#8b949e; --accent:#58a6ff; --good:#3fb950; --warn:#d29922; --ghost:#484f58;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 20px 64px}
+  .topbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+  .pulse{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--warn);box-shadow:0 0 0 4px rgba(210,153,34,.18)}
+  h1{font-size:19px;margin:0}
+  .slug{color:var(--dim);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+  .ids{margin-left:auto;color:var(--dim);font-family:ui-monospace,monospace;font-size:12px;text-align:right}
+  .ids span{display:inline-block;margin-left:14px}
+  .lead{color:var(--dim);margin:14px 2px 22px}
+  .pipe{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  @media(max-width:820px){.pipe{grid-template-columns:1fr}}
+  .node{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .node h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:0 0 12px}
+  .worker{border-color:#2d4a7c;box-shadow:inset 0 0 0 1px rgba(88,166,255,.12)}
+  .chip{display:block;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin:8px 0}
+  .chip b{font-weight:600}
+  .chip .f{display:block;color:var(--dim);font-family:ui-monospace,monospace;font-size:11px;margin-top:2px}
+  .ghost{opacity:.5;border-style:dashed}
+  .ghost .tag{color:var(--ghost)}
+  ul.rubric{margin:6px 0 0;padding-left:18px}
+  ul.rubric li{margin:5px 0;color:var(--ink)}
+  .rail{display:flex;gap:10px;overflow-x:auto;padding:6px 2px 10px;margin-top:10px}
+  .ver{min-width:210px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .ver h3{margin:0 0 6px;font-size:13px;color:var(--accent)}
+  .ver.v0 h3{color:var(--good)}
+  .ver p{margin:0;color:var(--dim);font-size:13px}
+  .section{margin-top:26px}
+  .runlog{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;color:var(--dim);font-family:ui-monospace,monospace;font-size:13px}
+  .arrow{color:var(--ghost);text-align:center;font-size:20px;align-self:center}
+  @media(max-width:820px){.arrow{transform:rotate(90deg)}}
+  code{font-family:ui-monospace,monospace;font-size:12px;color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <span class="pulse"><span class="dot"></span>○ Planned</span>
+    <div>
+      <h1>🤖 suas-grant-finder</h1>
+      <span class="slug">model: claude-opus-4-8 · fundraising / grants expert · SUAS Veteran Crisis QRF</span>
+    </div>
+    <div class="ids">
+      <span>agent: —</span><span>env: —</span><span>session: —</span>
+      <div style="margin-top:4px">IDs appear here after launch (and become Console links)</div>
+    </div>
+  </div>
+
+  <p class="lead">Specialist #1 of the eventual coordinator team. v0 finds real, currently-open funding SUAS can apply for, verifies each by fetching the source, ranks them, and drafts the top outreach — drafts only, sends nothing.</p>
+
+  <div class="pipe">
+    <!-- TRIGGER -->
+    <div class="node">
+      <h2>① Trigger</h2>
+      <div class="chip"><b>▶️ On-demand run</b><span class="f">session + user.define_outcome</span></div>
+      <div class="chip ghost"><b>🗓️ Scheduled deployment</b> <span class="tag">(v1)</span><span class="f">schedule.expression · timezone</span></div>
+      <p style="color:var(--dim);font-size:13px;margin:10px 2px 0">Run it whenever from <code>launch.sh</code>. Monthly auto-run is v1.</p>
+    </div>
+    <div class="arrow">→</div>
+
+    <!-- WORKER (spans middle visually via order) -->
+    <div class="node worker">
+      <h2>② Worker</h2>
+      <div class="chip"><b>📦 environment</b> cloud · unrestricted net<span class="f">config.networking.type</span></div>
+      <div class="chip"><b>🛠️ tools</b> bash · read/write/edit · glob/grep · web_search · web_fetch<span class="f">tools[0] = agent_toolset_20260401</span></div>
+      <div class="chip"><b>📋 instructions</b> verify every funder; never invent; never send<span class="f">system (job + never-dos)</span></div>
+      <div class="chip ghost"><b>🔌 connector / 🔐 vault</b> <span class="tag">(v2 — send LOIs)</span><span class="f">mcp_servers[] · vault_ids[]</span></div>
+      <div class="chip ghost"><b>🧠 memory store</b> <span class="tag">(v1 — only new grants)</span><span class="f">resources[].memory_store</span></div>
+    </div>
+    <div class="arrow">→</div>
+
+    <!-- OUTPUT & GRADING -->
+    <div class="node">
+      <h2>③ Output &amp; grading</h2>
+      <div class="chip"><b>📤 deliverable</b> grant-report.md<span class="f">/mnt/session/outputs/</span></div>
+      <div class="chip"><b>🎯 outcome</b> graded, max_iterations 3<span class="f">user.define_outcome · rubric.content</span>
+        <ul class="rubric">
+          <li>≥ 8 open, relevant opportunities</li>
+          <li>each: funder · amount · deadline · eligibility · fit · live link</li>
+          <li>top 3 drafted LOIs (≤250 words)</li>
+          <li>nothing fabricated; unverifiable → omitted/marked</li>
+          <li>ranked by fit + size + deadline</li>
+        </ul>
+      </div>
+      <div class="chip"><b>🧪 evals</b> case-01 = first verified run<span class="f">evals/case-01/expected.md</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)">Run log</h2>
+    <div class="runlog">○ planned — not yet launched. After <code>launch.sh</code>: environment → agent (v1) → session → outcome kickoff, then status flips to ● Launched and the run appears here.</div>
+  </div>
+
+  <div class="section">
+    <h2 style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)">Version rail</h2>
+    <div class="rail">
+      <div class="ver v0"><h3>v0 · now</h3><p>Find &amp; verify open funding; rank; draft top-3 LOIs. On-demand, drafts only.</p></div>
+      <div class="ver"><h3>v1</h3><p>Monthly scheduled deployment + memory store → only NEW grants each run.</p></div>
+      <div class="ver"><h3>v2</h3><p>Send the LOIs itself, gated <code>always_ask</code> — email connector + vault.</p></div>
+      <div class="ver"><h3>v3</h3><p>Coordinator + marketing / brand / donor-appeal experts. The full team.</p></div>
+      <div class="ver"><h3>v4</h3><p>Sonnet/fast-Opus if cost bites; re-run evals before promoting.</p></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
