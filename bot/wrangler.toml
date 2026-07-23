@@ -1,0 +1,9 @@
+# Cloudflare Worker config for the SUAS Veteran Crisis Q.R.F. Telegram bot.
+# No secrets live here — BOT_TOKEN and WEBHOOK_SECRET are set with
+# `wrangler secret put ...` and stored encrypted by Cloudflare.
+name = "suas-qrf-bot"
+main = "src/index.ts"
+compatibility_date = "2026-07-01"
+
+# Keep the Worker private-by-default; it only needs the Telegram webhook to
+# reach it. No KV, no D1, no other bindings required — it is fully stateless.
