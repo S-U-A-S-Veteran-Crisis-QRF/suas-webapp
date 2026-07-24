@@ -30,7 +30,9 @@ crisis-services app demo.
 
 ## Issues
 
-None open. (CI: none configured — verification is `npm run build` locally/per-session.)
+- [#24](https://github.com/S-U-A-S-Veteran-Crisis-QRF/suas-webapp/issues/24) — Hackathon: decide the "secure site" target + finish outstanding security items (Web3Forms captcha is the one only Jacob can do; privacy page decision; favicon; OG domain)
+
+(CI: none configured — verification is `npm run build` and `npm run security-check` locally/per-session.)
 
 ## Work log
 
