@@ -50,12 +50,18 @@ touches it as high-risk and verify it visually.
 ## Commands
 
 ```bash
-npm run dev     # local dev server
-npm run build   # static export — must pass before pushing (all 15 pages)
+npm run dev             # local dev server
+npm run build           # static export — must pass before pushing (all 15 pages)
 npm run lint
+npm run security-check  # builds as deployed + drives a real browser; exits non-zero on regression
 ```
 
 Deploys go out via GitHub Pages from the static export; see README.md.
+
+Run `npm run security-check` before any deploy that touches a form, a link, the
+crisis bar, or `app/layout.tsx`. It re-tests the findings in
+`docs/security-assessment.md` — including the intake-PII-in-URL leak and the
+`basePath` link class of bug, both of which a plain local build hides.
 
 ## Second brain (org memory)
 
