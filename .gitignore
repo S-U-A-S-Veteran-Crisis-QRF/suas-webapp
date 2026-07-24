@@ -2,8 +2,8 @@
 /.next
 /out
 /build
-.env*.local
-.env
+.env*
+!.env.example
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store

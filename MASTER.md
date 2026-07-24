@@ -30,7 +30,9 @@ crisis-services app demo.
 
 ## Issues
 
-None open. (CI: none configured — verification is `npm run build` locally/per-session.)
+- [#24](https://github.com/S-U-A-S-Veteran-Crisis-QRF/suas-webapp/issues/24) — Hackathon: decide the "secure site" target + finish outstanding security items (Web3Forms captcha is the one only Jacob can do; privacy page decision; favicon; OG domain)
+
+(CI: none configured — verification is `npm run build` and `npm run security-check` locally/per-session.)
 
 ## Work log
 
@@ -47,6 +49,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-19** — Dependabot alert #1 fixed: postcss forced to ^8.5.10 via npm `overrides` (was 8.4.31 pinned by Next — XSS advisory GHSA-qx2v-qp2m-jg93); `npm audit` clean, static export build verified
 - **2026-07-19** — Cross-device session sync shipped: `/sync` skill (catchup/handoff/note) + SessionStart auto-catch-up, with the message bus on a **private** repo's `claude-sync` branch so session state never touches this public repo (`docs/cross-device-sync.md`); `LESSONS.md` self-learning corrections log added
 - **2026-07-19** — Expert operating posture made auto-loading: six commitments in the shared program `CLAUDE.md` + `/expert-mode` skill (private program repo, on `main`), mirrored into this repo's `CLAUDE.md` for cloud sessions
+- **2026-07-24** — Website security assessment + hardening: family/veteran intake data could land in the URL query string on a pre-hydration or no-JS submit (all four forms now `method="post"` — proven leak-then-clean with Playwright); notification-email HTML/phishing injection and oversized-payload abuse closed in `lib/submitForm.ts` (angle-bracket encoding, per-field caps, 8 KB payload ceiling) with matching `maxLength` on every field; donate-page IRS determination-letter link fixed to respect `basePath` (was still 404 on the live sub-path deploy); meta CSP + `strict-origin-when-cross-origin` referrer policy added in `app/layout.tsx`; `.gitignore` widened to `.env*`; data-handling disclosure line added under all four forms. Confirmed clean: no XSS sinks, no storage/cookies/analytics/geolocation, no third-party scripts, crisis bar intact on all 12 pages, Next.js server-side CVEs not applicable to this static export
 - **2026-07-20** — Demo-site feedback fixes (Hacker Dojo): IRS determination letter PDF added to `public/docs/` (donate-page link was 404 on the live site); `/app` "Demo screens" copy rewritten for visitors (was product-manager-facing "Say the word…" text); Lyft Concierge + Expedia Rapid integration leads captured in `docs/integration-leads.md`
 
 ## Claude capability stack
@@ -87,6 +90,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 
 ## Next actions
 
+- [ ] **Jacob only — enable the spam check (Cloudflare Turnstile or hCaptcha) in the Web3Forms dashboard.** The access key is public by design, so a script can POST straight to Web3Forms and skip every browser-side guard; burning the free tier's 250 submissions/month would make a real family's intake bounce. A server-verified captcha is the only control that covers that path — no code change can
 - [ ] Mark PRs #3 and #4 ready for review and merge (both docs/small fixes, build-verified)
 - [ ] Decide on PR #2: merge the grant-finder kit, add `ANTHROPIC_API_KEY` locally, launch the agent
 - [ ] Re-authorize QuickBooks; re-consent Zoho CRM/Desk with broader scopes (claude.ai connector settings)

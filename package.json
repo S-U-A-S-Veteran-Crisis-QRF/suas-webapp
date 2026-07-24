@@ -2,12 +2,13 @@
   "name": "suas-next",
   "version": "1.0.0",
   "private": true,
-  "description": "SUAS Veteran Crisis Q.R.F. website — Next.js rebuild",
+  "description": "SUAS Veteran Crisis Q.R.F. website \u2014 Next.js rebuild",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "security-check": "node scripts/security-check.mjs"
   },
   "dependencies": {
     "next": "^15.1.6",
@@ -19,6 +20,7 @@
     "@types/node": "^22.10.7",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
+    "playwright": "^1.61.1",
     "typescript": "^5.7.3"
   },
   "overrides": {

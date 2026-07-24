@@ -41,6 +41,29 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        {/* GitHub Pages can't send HTTP headers, so this meta tag is the only
+            place a CSP can live. 'unsafe-inline' is unavoidable: the static
+            export ships an inline bootstrap script and no server exists to
+            issue nonces. frame-ancestors and report-only are ignored in meta,
+            so framing can't be blocked here. */}
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content={[
+            "default-src 'self'",
+            "connect-src 'self' https://api.web3forms.com",
+            "img-src 'self' data:",
+            "style-src 'self' 'unsafe-inline'",
+            "script-src 'self' 'unsafe-inline'",
+            "frame-src 'self'",
+            "object-src 'none'",
+            "base-uri 'none'",
+            "form-action 'self' https://api.web3forms.com",
+            "upgrade-insecure-requests",
+          ].join("; ")}
+        />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+      </head>
       <body>
         <CrisisBar />
         <Header />
