@@ -53,22 +53,22 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit}>
+    <form className="demo" method="post" onSubmit={onSubmit}>
       <div>
         <label htmlFor="name">Name</label>
-        <input id="name" name="name" required autoComplete="name" />
+        <input id="name" name="name" maxLength={100} required autoComplete="name" />
       </div>
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" name="email" type="email" required autoComplete="email" />
+        <input id="email" name="email" maxLength={200} type="email" required autoComplete="email" />
       </div>
       <div>
         <label htmlFor="role">Role</label>
-        <input id="role" name="role" placeholder="e.g. veteran, family, nonprofit, county, donor" />
+        <input id="role" name="role" maxLength={80} placeholder="e.g. veteran, family, nonprofit, county, donor" />
       </div>
       <div>
         <label htmlFor="message">Message</label>
-        <textarea id="message" name="message" required />
+        <textarea id="message" name="message" maxLength={2000} required />
       </div>
 
       {/* Honeypot — a hidden checkbox autofill never ticks; bots that do are ignored */}
@@ -91,6 +91,8 @@ export default function ContactForm() {
         {status === "submitting" ? "Sending…" : "Send message"}
       </button>
       <p className="muted" style={{ fontSize: ".82rem" }}>
+        Your message is delivered to us by email through Web3Forms — it isn&apos;t stored on
+        this website.{" "}
         Prefer to reach out directly? Email{" "}
         <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a> · (925) 727-6109.
       </p>

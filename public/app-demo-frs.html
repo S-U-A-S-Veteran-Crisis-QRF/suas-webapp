@@ -126,6 +126,11 @@
 </div>
 
 <script>
+/* The render helpers below build markup with innerHTML. Every value they
+   interpolate comes from the hardcoded constants in this file or a locally
+   generated ref — nothing from the URL, postMessage, or a text field. Keep it
+   that way: feeding a query param or user input into these templates would be
+   an XSS hole. */
 const SVC = {
   ride:    { label:"Free Ride", emoji:"🚗", color:"var(--ride)", sub:"Waymo · Amazon AV · Dispatched now",
              name:"Non-Medical Transportation", low:25, high:75, eta:"5 – 7 minutes", etaLabel:"Estimated arrival",

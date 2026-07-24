@@ -55,26 +55,26 @@ export default function PilotForm() {
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit}>
+    <form className="demo" method="post" onSubmit={onSubmit}>
       <div>
         <label htmlFor="name">Name</label>
-        <input id="name" name="name" required autoComplete="name" />
+        <input id="name" name="name" maxLength={100} required autoComplete="name" />
       </div>
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" name="email" type="email" required autoComplete="email" />
+        <input id="email" name="email" maxLength={200} type="email" required autoComplete="email" />
       </div>
       <div>
         <label htmlFor="phone">Phone</label>
-        <input id="phone" name="phone" type="tel" autoComplete="tel" />
+        <input id="phone" name="phone" maxLength={30} type="tel" autoComplete="tel" />
       </div>
       <div>
         <label htmlFor="organization">Organization</label>
-        <input id="organization" name="organization" />
+        <input id="organization" name="organization" maxLength={120} />
       </div>
       <div>
         <label htmlFor="county">County</label>
-        <input id="county" name="county" placeholder="e.g. Santa Clara" />
+        <input id="county" name="county" maxLength={80} placeholder="e.g. Santa Clara" />
       </div>
       <div>
         <label htmlFor="interestedAs">Interested as</label>
@@ -89,7 +89,7 @@ export default function PilotForm() {
       </div>
       <div>
         <label htmlFor="message">Message</label>
-        <textarea id="message" name="message" />
+        <textarea id="message" name="message" maxLength={2000} />
       </div>
 
       {/* Honeypot — a hidden checkbox autofill never ticks; bots that do are ignored */}
@@ -112,6 +112,8 @@ export default function PilotForm() {
         {status === "submitting" ? "Sending…" : "Submit pilot interest"}
       </button>
       <p className="muted" style={{ fontSize: ".82rem" }}>
+        Your message is delivered to us by email through Web3Forms — it isn&apos;t stored on
+        this website.{" "}
         Prefer to reach out directly? Email{" "}
         <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a> · (925) 727-6109.
       </p>

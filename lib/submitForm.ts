@@ -25,6 +25,26 @@ export const FORMS_CONNECTED = !WEB3FORMS_ACCESS_KEY.startsWith("REPLACE_");
 
 export type SubmitResult = { ok: boolean; message?: string };
 
+// Per-field caps, mirrored by maxLength on the inputs. The browser enforces
+// the visible limit; this is the backstop for the programmatic path.
+const FIELD_MAX = 2000;
+// Whole-payload ceiling. One oversized submission can make the notification
+// email unreadable and corrupts a row if Google Sheets is connected.
+const PAYLOAD_MAX_BYTES = 8000;
+
+// Web3Forms renders submissions into an HTML email, so angle brackets in a
+// field value could plant a phishing link or tracking image in a message that
+// genuinely came from our own website form. Encode them. This protects
+// submissions made through the site; the access key is public by design, so a
+// direct POST to Web3Forms bypasses this — the server-side captcha in the
+// Web3Forms dashboard is what covers that path.
+function clean(value: FormDataEntryValue | string | null): string {
+  return String(value ?? "")
+    .slice(0, FIELD_MAX)
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 const FALLBACK =
   "This form isn't connected yet. In the meantime, email jacobsilver@suasqrf.org or call (925) 727-6109.";
 
@@ -71,21 +91,34 @@ export async function submitForm(
     .trim()
     .slice(0, 80);
 
+  const safeFields = Object.fromEntries(
+    Object.entries(fields).map(([key, value]) => [key, clean(value)])
+  );
+
   // Reserved keys are set after the field spread so a form field can
   // never clobber them.
   const payload: Record<string, unknown> = {
-    ...fields,
+    ...safeFields,
     access_key: WEB3FORMS_ACCESS_KEY,
     from_name: "SUAS QRF website",
     subject: `[${source}] ${label}`,
     form_source: source,
   };
 
+  const body = JSON.stringify(payload);
+  if (new TextEncoder().encode(body).length > PAYLOAD_MAX_BYTES) {
+    return {
+      ok: false,
+      message:
+        "That message is too long to send. Please shorten it, or email jacobsilver@suasqrf.org.",
+    };
+  }
+
   try {
     const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(payload),
+      body,
       signal: AbortSignal.timeout(15000),
     });
     const json = await res.json().catch(() => ({}));

@@ -63,37 +63,37 @@ export default function FamilyIntakeForm() {
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit}>
+    <form className="demo" method="post" onSubmit={onSubmit}>
       <div className="field-row">
         <div>
           <label htmlFor="name">
             Your name <span className="req">*</span>
           </label>
-          <input id="name" name="name" required autoComplete="name" />
+          <input id="name" name="name" maxLength={100} required autoComplete="name" />
         </div>
         <div>
           <label htmlFor="email">
             Email <span className="req">*</span>
           </label>
-          <input id="email" name="email" type="email" required autoComplete="email" />
+          <input id="email" name="email" maxLength={200} type="email" required autoComplete="email" />
         </div>
       </div>
 
       <div className="field-row">
         <div>
           <label htmlFor="phone">Phone (optional)</label>
-          <input id="phone" name="phone" type="tel" autoComplete="tel" />
+          <input id="phone" name="phone" maxLength={30} type="tel" autoComplete="tel" />
         </div>
         <div>
           <label htmlFor="relationship">Relationship to the veteran</label>
-          <input id="relationship" name="relationship" placeholder="e.g. spouse, parent, friend" />
+          <input id="relationship" name="relationship" maxLength={80} placeholder="e.g. spouse, parent, friend" />
         </div>
       </div>
 
       <div className="field-row">
         <div>
           <label htmlFor="county">County (optional)</label>
-          <input id="county" name="county" placeholder="e.g. Santa Clara" />
+          <input id="county" name="county" maxLength={80} placeholder="e.g. Santa Clara" />
         </div>
         <div>
           <label htmlFor="contactPref">Preferred contact</label>
@@ -110,7 +110,7 @@ export default function FamilyIntakeForm() {
         </label>
         <textarea
           id="message"
-          name="message"
+          name="message" maxLength={2000}
           required
           placeholder="Share what you're seeing or what kind of support you're looking for. Please don't include clinical details."
         />
@@ -144,6 +144,8 @@ export default function FamilyIntakeForm() {
         {status === "submitting" ? "Sending…" : "Send to SUAS"}
       </button>
       <p className="muted" style={{ fontSize: ".82rem" }}>
+        Your message is delivered to us by email through Web3Forms — it isn&apos;t stored on
+        this website.{" "}
         We typically respond within a few business days. Prefer to reach out directly? Email{" "}
         <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a> · (925) 727-6109.
       </p>

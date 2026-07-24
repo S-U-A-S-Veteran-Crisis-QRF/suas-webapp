@@ -76,3 +76,37 @@ private `suas-claude-program` repo.
 check the destination's visibility. Default to private. Public repos carry
 only what must be public to operate (the website itself and its code/docs).
 This applies to branches too — every branch of a public repo is public.
+
+## 2026-07-24 — Verify links against the deployed basePath, not the local build [self-correction]
+
+**What happened:** The 2026-07-20 fix for the donate page's 404 IRS
+determination letter added the missing PDF to `public/docs/` and logged the
+issue as closed. The link was still 404 on the live site: the real cause was
+that a plain `<a href="/docs/...">` ignores Next's `basePath`, so on the
+`/suas-webapp` project-site deploy it resolved to `github.io/docs/...`. A
+local build (where `NEXT_PUBLIC_BASE_PATH` is empty) hides this completely —
+the link works locally and only ever breaks in production. Found four days
+later during a security pass.
+
+**Rule going forward:** `basePath` rewriting applies to `next/link` and
+`next/image` only — never to raw `<a href="/...">`, `<img src="/...">`, or
+`fetch("/...")`. Prefix those with `process.env.NEXT_PUBLIC_BASE_PATH`. And
+when verifying any link or asset fix, build the way the site actually deploys
+(`NEXT_PUBLIC_BASE_PATH=/suas-webapp npm run build`) and check the built HTML,
+because the local default silently masks this whole class of bug.
+
+## 2026-07-24 — A form with no `method` degrades to a GET that leaks PII [self-correction]
+
+**What happened:** All four site forms were `<form onSubmit={...}>` with no
+`method`. React's handler calls `preventDefault()`, so this looks safe — but
+it only works *after* hydration. On a slow phone, or with JS blocked, a native
+submit falls through to the browser default (**GET** to the current URL), so a
+family member's name, phone, county, relationship, and free-text about their
+veteran ended up in the address bar — and therefore in browser history,
+GitHub Pages access logs, and the `Referer` header of every later request.
+Reproduced in a real browser with JS disabled, then confirmed fixed.
+
+**Rule going forward:** Any form carrying sensitive input gets an explicit
+`method="post"`, even when a JS handler is supposed to intercept it. Reason
+about what a form does *before* hydration and with JS off, not just in the
+happy path — on a static site there is no server to catch the difference.

@@ -68,19 +68,19 @@ export default function PartnerForm() {
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit}>
+    <form className="demo" method="post" onSubmit={onSubmit}>
       <div className="field-row">
         <div>
           <label htmlFor="organization">
             Organization <span className="req">*</span>
           </label>
-          <input id="organization" name="organization" required autoComplete="organization" />
+          <input id="organization" name="organization" maxLength={120} required autoComplete="organization" />
         </div>
         <div>
           <label htmlFor="name">
             Your name <span className="req">*</span>
           </label>
-          <input id="name" name="name" required autoComplete="name" />
+          <input id="name" name="name" maxLength={100} required autoComplete="name" />
         </div>
       </div>
 
@@ -89,11 +89,11 @@ export default function PartnerForm() {
           <label htmlFor="email">
             Email <span className="req">*</span>
           </label>
-          <input id="email" name="email" type="email" required autoComplete="email" />
+          <input id="email" name="email" maxLength={200} type="email" required autoComplete="email" />
         </div>
         <div>
           <label htmlFor="phone">Phone (optional)</label>
-          <input id="phone" name="phone" type="tel" autoComplete="tel" />
+          <input id="phone" name="phone" maxLength={30} type="tel" autoComplete="tel" />
         </div>
       </div>
 
@@ -112,7 +112,7 @@ export default function PartnerForm() {
         </div>
         <div>
           <label htmlFor="coverage">Service area / capacity (optional)</label>
-          <input id="coverage" name="coverage" placeholder="e.g. Santa Clara County; 50 rides/mo" />
+          <input id="coverage" name="coverage" maxLength={120} placeholder="e.g. Santa Clara County; 50 rides/mo" />
         </div>
       </div>
 
@@ -132,7 +132,7 @@ export default function PartnerForm() {
         <label htmlFor="message">Anything else?</label>
         <textarea
           id="message"
-          name="message"
+          name="message" maxLength={2000}
           placeholder="Tell us how your organization would like to support veterans — in-kind rides, reimbursement, sponsorship, or more."
         />
       </div>
@@ -157,6 +157,8 @@ export default function PartnerForm() {
         {status === "submitting" ? "Sending…" : "Express partner interest"}
       </button>
       <p className="muted" style={{ fontSize: ".82rem" }}>
+        Your message is delivered to us by email through Web3Forms — it isn&apos;t stored on
+        this website.{" "}
         Prefer to reach out directly? Email{" "}
         <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a> · (925) 727-6109.
       </p>
