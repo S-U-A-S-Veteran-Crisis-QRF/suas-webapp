@@ -38,6 +38,28 @@ export default function HomePage() {
 
       <section>
         <div className="container">
+          <div className="band">
+            <div className="eyebrow">August 28–30, 2026 · Hacker Dojo, Mountain View</div>
+            <h2>Veterans Innovation Hackathon</h2>
+            <p className="lead" style={{ margin: "12px auto 0" }}>
+              Three days where veterans, engineers, designers, and nonprofit leaders build real
+              solutions together. Veterans share what coming home is actually like — then teams turn
+              that into working prototypes. Free to attend.
+            </p>
+            <div className="cta-row" style={{ justifyContent: "center" }}>
+              <Link className="btn btn-primary" href="/hackathon">
+                Hackathon details
+              </Link>
+              <Link className="btn btn-ghost" href="/hackathon#sponsor">
+                Sponsor the event
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
           <div className="panel">
             <span className="demo-tag">Demo · sample data</span>
             <div className="mock-row">
