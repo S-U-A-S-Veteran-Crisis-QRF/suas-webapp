@@ -130,18 +130,29 @@ export default function HackathonPage() {
     location: {
       "@type": "Place",
       name: "Hacker Dojo",
+      url: "https://hackerdojo.org",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "855 Maude Ave",
         addressLocality: "Mountain View",
         addressRegion: "CA",
+        postalCode: "94043",
         addressCountry: "US",
       },
     },
-    organizer: {
-      "@type": "NonprofitOrganization",
-      name: "S.U.A.S. Veteran Crisis Q.R.F.",
-      url: "https://suasqrf.org/",
-    },
+    // Co-hosted: SUAS runs the program, Hacker Dojo partners and hosts the space.
+    organizer: [
+      {
+        "@type": "NonprofitOrganization",
+        name: "S.U.A.S. Veteran Crisis Q.R.F.",
+        url: "https://suasqrf.org/",
+      },
+      {
+        "@type": "Organization",
+        name: "Hacker Dojo",
+        url: "https://hackerdojo.org",
+      },
+    ],
     isAccessibleForFree: true,
     offers: {
       "@type": "Offer",
@@ -186,6 +197,7 @@ export default function HackathonPage() {
             </a>
           </div>
           <div className="pill-row">
+            <span className="pill">S.U.A.S. × Hacker Dojo</span>
             <span className="pill">Free to attend</span>
             <span className="pill">3 days · Fri–Sun</span>
             <span className="pill">Veterans co-design, not just attend</span>
@@ -429,8 +441,13 @@ export default function HackathonPage() {
           <div className="band">
             <h2>Free to attend. Bring what you have.</h2>
             <p className="lead" style={{ margin: "12px auto 0" }}>
-              August 28–30, 2026 · Hacker Dojo, Mountain View, CA. Meals included, teams formed on
-              site, no idea required to walk in the door.
+              August 28–30, 2026 · Hacker Dojo, 855 Maude Ave, Mountain View, CA. Meals included,
+              teams formed on site, no idea required to walk in the door. Hosted by S.U.A.S. Veteran
+              Crisis Q.R.F. in partnership with{" "}
+              <a href="https://hackerdojo.org" target="_blank" rel="noopener noreferrer">
+                Hacker Dojo
+              </a>
+              .
             </p>
             <div className="cta-row" style={{ justifyContent: "center" }}>
               <a
