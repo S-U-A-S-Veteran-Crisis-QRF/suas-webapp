@@ -26,6 +26,34 @@ Template:
 
 ---
 
+## 2026-07-30 — Compliance/filing packets are vault work, not repo work [self-correction]
+
+**What happened:** A session asked to prepare a statutory filing produced a packet
+containing the org's principal-office street address, officer/agent fields, and
+corrected tax-form details. The working branch was in **this public repo**, so
+committing the packet there would have published all of it.
+
+**Rule going forward:** Filing packets, corporate records, and anything drawn from
+tax or corporate forms go to the **private vault** (Drive) and to the user directly —
+never into a public repo, on any branch. What a public branch may carry from that
+work is only the generic lesson, like this entry. When a cloud session can't run
+`vault-sync.sh` or update `_index.md`, follow the vault's existing
+`📥 <date> … fold me in.md` root-note convention instead of leaving an orphan.
+
+## 2026-07-30 — State filing sites are blocked from cloud sessions [self-correction]
+
+**What happened:** Verifying a Secretary of State record failed —
+`bizfileonline.sos.ca.gov` and `sos.ca.gov` both got a **403 to CONNECT** from the
+egress proxy (an organization policy denial, not a TLS or retry problem). The proxy's
+`/__agentproxy/status` endpoint named the blocked host.
+
+**Rule going forward:** Government filing portals are generally unreachable from
+cloud sessions. Don't retry or route around a proxy 403 — report the blocked host,
+verify the fact from a local/desktop session or a normal browser, and mark anything
+depending on it as unverified rather than asserting it. Check
+`curl -sS "$HTTPS_PROXY/__agentproxy/status"` to tell a policy denial from a
+transient failure.
+
 ## 2026-07-19 — Check the second brain before re-deriving org facts [self-correction]
 
 **What happened:** Claude concluded the public `help` repo "serves
