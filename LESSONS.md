@@ -26,6 +26,20 @@ Template:
 
 ---
 
+## 2026-07-30 — Adding a nav item is a layout change, not a list edit [self-correction]
+
+**What happened:** Adding an eighth link to `NAV_LINKS` overflowed the header:
+`.nav-links` wraps, but `.nav` had a fixed `height:62px`, so the extra row
+spilled out of the header and floated over the hero. It only showed up in a
+Playwright screenshot — the build passed clean. (Between ~780px and ~1050px the
+same overflow already existed with seven links.)
+
+**Rule going forward:** After touching `lib/nav.ts` or the header, screenshot
+the header at desktop **and** mid-laptop widths (1280 / 1100 / 1024) and check
+the last link's right edge against `.nav-cta`'s left edge — not just that the
+build passes. Keep `.nav` on `min-height` so any future wrap grows the header
+instead of overlapping the page.
+
 ## 2026-07-19 — Check the second brain before re-deriving org facts [self-correction]
 
 **What happened:** Claude concluded the public `help` repo "serves

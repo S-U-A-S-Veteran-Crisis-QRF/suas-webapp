@@ -24,10 +24,12 @@ img{max-width:100%;display:block}
 
 /* header */
 header.site{position:sticky;top:0;z-index:50;background:rgba(244,239,229,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;gap:18px;height:62px}
+/* min-height (not height): if the links ever wrap on a narrow laptop the header
+   grows instead of spilling a second row over the hero */
+.nav{display:flex;align-items:center;gap:18px;min-height:62px;padding:6px 0}
 .brand{font-weight:800;letter-spacing:.02em;color:var(--ink);white-space:nowrap;font-size:.98rem}
 .brand span{display:block;font-weight:600;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.nav-links{display:flex;gap:18px;flex-wrap:wrap;margin-left:14px}
+.nav-links{display:flex;gap:14px;flex-wrap:wrap;margin-left:14px}
 .nav-links a{color:var(--ink);font-size:.9rem;font-weight:600;opacity:.8}
 .nav-links a:hover,.nav-links a.active{opacity:1;color:var(--ink)}
 .nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
