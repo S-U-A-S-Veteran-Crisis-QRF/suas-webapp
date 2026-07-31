@@ -23,6 +23,7 @@ crisis-services app demo.
 
 | PR | State | Branch | What it delivers | Blocking merge |
 |----|-------|--------|------------------|----------------|
+| [#28](https://github.com/S-U-A-S-Veteran-Crisis-QRF/suas-webapp/pull/28) | Draft | `claude/hackathon-printable-flyer-9infho` | Printable one-page hackathon flyer: `/hackathon-flyer` (unlisted, noindex) + pre-rendered `public/docs/hackathon-flyer-2026.pdf` + registration QR | Jacob confirms the Luma link (`Innovation4Veterans` vs `t9gewhzc`) and the Fri Aug 28 start, then mark ready |
 | [#4](https://github.com/S-U-A-S-Veteran-Crisis-QRF/suas-webapp/pull/4) | Draft | `claude/consolidate-device-chats-files-fz0zd1` | Device handoff doc + this MASTER.md + CLAUDE.md + 3 new vendored skills | Mark ready & merge — docs/tooling only |
 | [#3](https://github.com/S-U-A-S-Veteran-Crisis-QRF/suas-webapp/pull/3) | Draft | `worktree-website-fixes` | Fixes dead /app demo cards; corrects stale `.env.example` doc | Mark ready & merge — small, verified build |
 | [#2](https://github.com/S-U-A-S-Veteran-Crisis-QRF/suas-webapp/pull/2) | Draft | `claude/launch-agent-skill-github-xcoiez` | `my-agent/` build kit for the **suas-grant-finder** managed agent (design/config only) | Decide: merge kit, then launch with API key |
