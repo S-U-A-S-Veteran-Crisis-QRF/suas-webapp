@@ -212,3 +212,95 @@ footer.site .brand span{color:var(--muted-light)}
   .foot-grid{grid-template-columns:1fr 1fr}
   .workflow{justify-content:flex-start}
 }
+
+/* ============================================================
+   printable flyer (/hackathon-flyer) — one US-Letter sheet.
+   Screen: the sheet sits on the cream page like paper.
+   Print: site chrome drops away and only the sheet prints.
+   Emphasis blocks use borders + colored TEXT, never
+   white-on-color, so they survive printing with background
+   graphics turned off (Chrome's default).
+   ============================================================ */
+.flyer-actions{display:flex;gap:20px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;padding:40px 24px 8px}
+.flyer-page{padding:24px 12px 56px;display:flex;justify-content:center;background:var(--cream-2)}
+.flyer-sheet{width:8.5in;min-height:11in;background:#fff;color:var(--ink);border:1px solid var(--line);
+  box-shadow:0 18px 50px rgba(16,31,51,.16);padding:.34in .5in;display:flex;flex-direction:column;gap:10px}
+.flyer-sheet section{padding:0;background:none}
+.flyer-sheet h1,.flyer-sheet h2{color:var(--ink)}
+.flyer-sheet .fl-k{display:block;color:var(--gold);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.57rem;margin-bottom:3px}
+
+.fl-top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:2px solid var(--navy);padding-bottom:7px}
+.fl-top .fl-brand{font-weight:800;font-size:1rem;letter-spacing:.02em;color:var(--navy)}
+.fl-top .fl-brand span{display:block;font-weight:700;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.fl-cohost{font-size:.75rem;color:var(--muted);text-align:right}
+.fl-cohost strong{color:var(--ink)}
+
+.fl-hero .fl-eyebrow{color:var(--gold);font-weight:800;letter-spacing:.13em;text-transform:uppercase;font-size:.68rem}
+.fl-headline{font-size:2.7rem;line-height:1.03;letter-spacing:-.02em;font-weight:800;margin-top:7px;max-width:none}
+.fl-lede{color:var(--muted);font-size:.88rem;line-height:1.48;margin-top:10px;max-width:6.7in}
+
+.fl-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.fl-fact{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:8px 11px}
+.fl-fact strong{display:block;font-size:.92rem;color:var(--ink)}
+.fl-fact span:last-child{display:block;font-size:.74rem;color:var(--muted);margin-top:2px;line-height:1.35}
+
+.fl-cols{display:grid;grid-template-columns:1fr 2.7in;gap:16px;align-items:start}
+.fl-who h2{font-size:1.08rem}
+.fl-who ul{list-style:none;margin-top:7px;display:grid;gap:4px}
+.fl-who li{font-size:.82rem;color:var(--muted);padding-left:15px;position:relative;line-height:1.32}
+.fl-who li:before{content:"\25B8";position:absolute;left:0;color:var(--gold);font-weight:800}
+.fl-who li strong{color:var(--ink)}
+
+/* app-demo callout — the working prototype is the reason to show up */
+.fl-demo{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:8px;padding:10px 12px}
+.fl-demo>strong{display:block;font-size:.95rem;color:var(--navy);line-height:1.25}
+.fl-demo p{font-size:.78rem;color:var(--muted);line-height:1.42;margin-top:5px}
+.fl-demo p strong{color:var(--ink)}
+.fl-demo .fl-demo-url{font-size:.92rem;font-weight:800;color:var(--gold);margin-top:6px}
+
+.fl-days{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.fl-day{border:1px solid var(--line);border-radius:8px;padding:8px 11px}
+.fl-day strong{display:block;font-size:.84rem;color:var(--ink)}
+.fl-day span:last-child{display:block;font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.35}
+
+.fl-sponsors{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:8px;
+  padding:9px 12px;font-size:.76rem;line-height:1.42;color:var(--muted)}
+.fl-sponsors strong{color:var(--navy)}
+
+/* register band — the one QR on the sheet, sitting above the footer */
+.fl-cta{display:flex;align-items:center;gap:16px;border:2px solid var(--gold);background:#fdfaf3;
+  border-radius:10px;padding:11px 14px;margin-top:auto}
+.fl-cta .fl-qr{width:1.3in;height:1.3in;flex:none}
+.fl-cta-copy>strong{display:block;font-size:1.18rem;color:var(--navy);line-height:1.2}
+.fl-cta-url{display:block;font-size:1rem;font-weight:800;color:var(--gold);margin-top:3px;overflow-wrap:anywhere}
+.fl-cta-note{display:block;font-size:.72rem;color:var(--muted);margin-top:4px}
+
+.fl-foot{text-align:center;font-size:.69rem;color:var(--muted)}
+
+/* screen-only: the print sheet is laid out at 816px, which would otherwise
+   match this breakpoint and stack the printed page */
+@media screen and (max-width:900px){
+  /* on screens narrower than the sheet, reflow it instead of shrinking the
+     type — the PDF/print output stays the fixed Letter layout */
+  .flyer-page{padding:16px 8px 40px}
+  .flyer-sheet{width:auto;max-width:100%;min-height:0;padding:22px 18px;gap:14px}
+  .fl-top{flex-direction:column;align-items:flex-start;gap:5px}
+  .fl-cohost{text-align:left}
+  .fl-headline{font-size:2.15rem}
+  .fl-lede{font-size:.95rem}
+  .fl-facts,.fl-days,.fl-cols{grid-template-columns:1fr}
+  .fl-cta{flex-direction:column;text-align:center;gap:10px}
+  .fl-who li,.fl-fact span:last-child,.fl-day span:last-child,.fl-demo p,.fl-sponsors{font-size:.88rem}
+}
+
+@media print{
+  @page{size:letter;margin:0}
+  html,body{background:#fff}
+  .crisis-bar,header.site,.mobile-menu,footer.site,.flyer-actions{display:none !important}
+  main{margin:0}
+  .flyer-page{padding:0;background:#fff;display:block}
+  .flyer-sheet{width:8.5in;height:10.9in;min-height:0;border:none;box-shadow:none;transform:none;margin:0;
+    overflow:hidden;break-inside:avoid;page-break-inside:avoid}
+  .reveal{opacity:1;transform:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}

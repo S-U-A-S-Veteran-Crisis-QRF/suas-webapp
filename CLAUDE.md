@@ -51,7 +51,7 @@ touches it as high-risk and verify it visually.
 
 ```bash
 npm run dev     # local dev server
-npm run build   # static export — must pass before pushing (all 15 pages)
+npm run build   # static export — must pass before pushing (all 16 pages)
 npm run lint
 ```
 
