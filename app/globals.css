@@ -216,16 +216,15 @@ footer.site .brand span{color:var(--muted-light)}
 /* ============================================================
    printable flyer (/hackathon-flyer) — one US-Letter sheet.
    Screen: the sheet sits on the cream page like paper.
-   Print: site chrome drops away and only the sheet prints; the
-   crisis line stays on the sheet itself (top strip + red band).
-   Red/navy blocks are drawn with borders + colored TEXT, never
+   Print: site chrome drops away and only the sheet prints.
+   Emphasis blocks use borders + colored TEXT, never
    white-on-color, so they survive printing with background
    graphics turned off (Chrome's default).
    ============================================================ */
 .flyer-actions{display:flex;gap:20px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;padding:40px 24px 8px}
 .flyer-page{padding:24px 12px 56px;display:flex;justify-content:center;background:var(--cream-2)}
 .flyer-sheet{width:8.5in;min-height:11in;background:#fff;color:var(--ink);border:1px solid var(--line);
-  box-shadow:0 18px 50px rgba(16,31,51,.16);padding:.38in .5in;display:flex;flex-direction:column;gap:10px}
+  box-shadow:0 18px 50px rgba(16,31,51,.16);padding:.34in .5in;display:flex;flex-direction:column;gap:10px}
 .flyer-sheet section{padding:0;background:none}
 .flyer-sheet h1,.flyer-sheet h2{color:var(--ink)}
 .flyer-sheet .fl-k{display:block;color:var(--gold);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.57rem;margin-bottom:3px}
@@ -236,31 +235,28 @@ footer.site .brand span{color:var(--muted-light)}
 .fl-cohost{font-size:.75rem;color:var(--muted);text-align:right}
 .fl-cohost strong{color:var(--ink)}
 
-.fl-crisis-strip{background:#fdf3f2;border:2px solid var(--crisis);color:var(--crisis);text-align:center;
-  font-size:.78rem;font-weight:700;padding:5px 10px;border-radius:6px}
-
-.fl-hero .fl-eyebrow{color:var(--gold);font-weight:800;letter-spacing:.13em;text-transform:uppercase;font-size:.66rem}
-.fl-headline{font-size:2.75rem;line-height:1.03;letter-spacing:-.02em;font-weight:800;margin-top:6px;max-width:none}
-.fl-lede{color:var(--muted);font-size:.85rem;line-height:1.45;margin-top:9px;max-width:6.7in}
+.fl-hero .fl-eyebrow{color:var(--gold);font-weight:800;letter-spacing:.13em;text-transform:uppercase;font-size:.68rem}
+.fl-headline{font-size:2.7rem;line-height:1.03;letter-spacing:-.02em;font-weight:800;margin-top:7px;max-width:none}
+.fl-lede{color:var(--muted);font-size:.88rem;line-height:1.48;margin-top:10px;max-width:6.7in}
 
 .fl-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
 .fl-fact{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:8px 11px}
 .fl-fact strong{display:block;font-size:.92rem;color:var(--ink)}
 .fl-fact span:last-child{display:block;font-size:.74rem;color:var(--muted);margin-top:2px;line-height:1.35}
 
-.fl-cols{display:grid;grid-template-columns:1fr 2.35in;gap:15px;align-items:start}
+.fl-cols{display:grid;grid-template-columns:1fr 2.7in;gap:16px;align-items:start}
 .fl-who h2{font-size:1.08rem}
-.fl-who ul{list-style:none;margin-top:7px;display:grid;gap:3px}
+.fl-who ul{list-style:none;margin-top:7px;display:grid;gap:4px}
 .fl-who li{font-size:.82rem;color:var(--muted);padding-left:15px;position:relative;line-height:1.32}
 .fl-who li:before{content:"\25B8";position:absolute;left:0;color:var(--gold);font-weight:800}
 .fl-who li strong{color:var(--ink)}
-.fl-principle{margin-top:9px;font-size:.79rem;color:var(--ink);background:#fbf8f1;border-left:3px solid var(--gold);border-radius:6px;padding:7px 10px;line-height:1.4}
 
-.fl-qr-card{border:1px solid var(--line);border-radius:10px;padding:11px;text-align:center;background:#fff}
-.fl-qr{width:1.4in;height:1.4in;margin:0 auto}
-.fl-qr-cta{margin-top:7px;font-weight:800;font-size:.88rem;color:var(--navy)}
-.fl-qr-url{font-size:.68rem;font-weight:700;color:var(--gold);margin-top:2px;overflow-wrap:anywhere}
-.fl-qr-note{font-size:.69rem;color:var(--muted);margin-top:5px}
+/* app-demo callout — the working prototype is the reason to show up */
+.fl-demo{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:8px;padding:10px 12px}
+.fl-demo>strong{display:block;font-size:.95rem;color:var(--navy);line-height:1.25}
+.fl-demo p{font-size:.78rem;color:var(--muted);line-height:1.42;margin-top:5px}
+.fl-demo p strong{color:var(--ink)}
+.fl-demo .fl-demo-url{font-size:.92rem;font-weight:800;color:var(--gold);margin-top:6px}
 
 .fl-days{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
 .fl-day{border:1px solid var(--line);border-radius:8px;padding:8px 11px}
@@ -271,11 +267,14 @@ footer.site .brand span{color:var(--muted-light)}
   padding:9px 12px;font-size:.76rem;line-height:1.42;color:var(--muted)}
 .fl-sponsors strong{color:var(--navy)}
 
-.fl-crisis-band{background:#fdf3f2;border:3px solid var(--crisis);border-radius:8px;padding:8px 14px;text-align:center;
-  color:var(--crisis);margin-top:auto}
-.fl-crisis-lead{display:block;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-.fl-crisis-num{display:block;font-size:1.26rem;font-weight:800;letter-spacing:.01em;margin-top:1px}
-.fl-crisis-note{display:block;font-size:.7rem;font-weight:600;color:#8f1d16;margin-top:2px}
+/* scan row — register, app demo, org, donate */
+.fl-links{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:auto}
+.fl-link{border:1px solid var(--line);border-radius:8px;padding:9px 8px;text-align:center;background:#fff}
+.fl-link.feature{border-color:var(--gold);border-width:2px;background:#fdfaf3}
+.fl-link .fl-qr{width:.85in;height:.85in;margin:0 auto}
+.fl-link-label{margin-top:6px;font-weight:800;font-size:.78rem;color:var(--navy);line-height:1.2}
+.fl-link-url{font-size:.61rem;font-weight:700;color:var(--gold);margin-top:2px;letter-spacing:-.01em;overflow-wrap:anywhere}
+.fl-link-note{font-size:.64rem;color:var(--muted);margin-top:3px;line-height:1.3}
 
 .fl-foot{text-align:center;font-size:.69rem;color:var(--muted)}
 
@@ -291,8 +290,8 @@ footer.site .brand span{color:var(--muted-light)}
   .fl-headline{font-size:2.15rem}
   .fl-lede{font-size:.95rem}
   .fl-facts,.fl-days,.fl-cols{grid-template-columns:1fr}
-  .fl-qr-card{max-width:2.6in;margin:0 auto}
-  .fl-who li,.fl-fact span:last-child,.fl-day span:last-child,.fl-principle,.fl-sponsors{font-size:.88rem}
+  .fl-links{grid-template-columns:1fr 1fr}
+  .fl-who li,.fl-fact span:last-child,.fl-day span:last-child,.fl-demo p,.fl-sponsors{font-size:.88rem}
 }
 
 @media print{

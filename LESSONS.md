@@ -93,3 +93,18 @@ breakpoints with `@media screen and (…)` so they can't leak into print. Verify
 by rendering the page to PDF and checking the page count is what you intend
 (one sheet stays one sheet) — the browser print preview is the deliverable, not
 the screen view.
+
+## 2026-07-31 — The crisis-bar guardrail covers site pages, not print handouts [user direction]
+
+**What happened:** The first flyer draft carried the 988 crisis line twice on
+the printed sheet, on the reasoning that the repo guardrail says the banner
+stays prominent "on every page." Jacob's call: the flyer is event outreach —
+it should carry the links that move the project (Luma registration,
+`suasqrf.org`, `suasqrf.org/app`, and the donation page), not a crisis block.
+
+**Rule going forward:** The guardrail protects **web pages** — `CrisisBar`
+stays in the site layout and renders on every route, including
+`/hackathon-flyer`. Standalone print/outreach artifacts are Jacob's editorial
+call; don't re-add a 988 block to the flyer sheet, and don't treat its absence
+there as a guardrail regression. Removing the banner from the *site* is still
+off-limits.

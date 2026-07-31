@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 // Deploy base path (empty locally / on the root custom domain) — same pattern as
-// the app-demo iframe, needed because this is a plain <img>, not next/image.
+// the app-demo iframe, needed because these are plain <img> tags, not next/image.
 const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const ROLES: { role: string; why: string }[] = [
@@ -17,9 +17,10 @@ const ROLES: { role: string; why: string }[] = [
   { role: "Veterans in tech", why: "lived experience plus technical skill" },
   { role: "Designers & UX", why: "design for crisis, not clicks" },
   { role: "Students", why: "learn by building something that matters" },
-  { role: "Product & project managers", why: "keep teams focused and shipping" },
-  { role: "Storytellers & pitch coaches", why: "help teams land the demo" },
-  { role: "Mentors & judges", why: "AI, hardware, product, legal/IP, startup strategy" },
+  { role: "Project managers", why: "keep teams focused and shipping" },
+  { role: "Storytellers", why: "help teams pitch and land the demo" },
+  { role: "Visionaries", why: "see the big idea others might miss" },
+  { role: "Mentors & judges", why: "AI, hardware, product, legal/IP, strategy" },
 ];
 
 const DAYS: { day: string; title: string; body: string }[] = [
@@ -37,6 +38,35 @@ const DAYS: { day: string; title: string; body: string }[] = [
     day: "Day 3 — Sunday",
     title: "Demo day & awards",
     body: "Final build, five-minute demos, judging on veteran impact, and prizes that help the best ideas keep going.",
+  },
+];
+
+const LINKS: { label: string; url: string; qr: string; note: string; feature?: boolean }[] = [
+  {
+    label: "Register",
+    url: "luma.com/Innovation4Veterans",
+    qr: "hackathon-qr.svg",
+    note: "Free · limited space",
+    feature: true,
+  },
+  {
+    label: "App demo",
+    url: "suasqrf.org/app",
+    qr: "hackathon-qr-app.svg",
+    note: "Food · Ride · Shelter",
+    feature: true,
+  },
+  {
+    label: "About us",
+    url: "suasqrf.org",
+    qr: "hackathon-qr-site.svg",
+    note: "Who we serve",
+  },
+  {
+    label: "Donate",
+    url: "suasqrf.org/donate",
+    qr: "hackathon-qr-donate.svg",
+    note: "Tax-deductible",
   },
 ];
 
@@ -67,10 +97,6 @@ export default function HackathonFlyerPage() {
             </div>
           </header>
 
-          <div className="fl-crisis-strip">
-            Veterans Crisis Line — call <strong>988, press 1</strong> · text <strong>838255</strong>
-          </div>
-
           <div className="fl-hero">
             <p className="fl-eyebrow">Veterans Innovation Hackathon · August 28–30, 2026</p>
             <h1 className="fl-headline">
@@ -80,9 +106,8 @@ export default function HackathonFlyerPage() {
             </h1>
             <p className="fl-lede">
               Three days where veterans, engineers, designers, students, and nonprofit leaders build
-              the tools veterans actually asked for. Veterans open the weekend by sharing what
-              coming home is really like — then we build it together, with them, and keep going
-              after the weekend ends.
+              the tools veterans actually asked for. Veterans open the weekend by saying what coming
+              home is really like — then we build it together, with them.
             </p>
           </div>
 
@@ -114,23 +139,16 @@ export default function HackathonFlyerPage() {
                   </li>
                 ))}
               </ul>
-              <p className="fl-principle">
-                Veterans are collaborators, not just beneficiaries. No matter your role, there is a
-                place for you on a team.
-              </p>
             </section>
 
-            <aside className="fl-qr-card">
-              <img
-                className="fl-qr"
-                src={`${base}/images/hackathon-qr.svg`}
-                alt="QR code linking to the hackathon registration page at luma.com/Innovation4Veterans"
-                width={180}
-                height={180}
-              />
-              <div className="fl-qr-cta">Scan to register</div>
-              <div className="fl-qr-url">luma.com/Innovation4Veterans</div>
-              <div className="fl-qr-note">Free · space is limited</div>
+            <aside className="fl-demo">
+              <span className="fl-k">Start here</span>
+              <strong>The prototype already runs</strong>
+              <p>
+                Three buttons — <strong>food, ride, shelter</strong>. A veteran taps one; a
+                dispatcher fulfills it. Try it before you show up, then help us make it real.
+              </p>
+              <p className="fl-demo-url">suasqrf.org/app</p>
             </aside>
           </div>
 
@@ -147,15 +165,24 @@ export default function HackathonFlyerPage() {
           <div className="fl-sponsors">
             <strong>Sponsors, partners &amp; veteran service organizations welcome.</strong>{" "}
             Sponsorship starts at $1,000 — cloud and API credits, equipment, mentors, and judges
-            count too. Every dollar supports a California 501(c)(3) serving veterans in crisis.
+            count too. Veterans are collaborators here, not just beneficiaries.
           </div>
 
-          <div className="fl-crisis-band">
-            <span className="fl-crisis-lead">In crisis? Veterans Crisis Line</span>
-            <span className="fl-crisis-num">Call 988, press 1 · Text 838255</span>
-            <span className="fl-crisis-note">
-              S.U.A.S. is support coordination, not emergency care.
-            </span>
+          <div className="fl-links">
+            {LINKS.map((l) => (
+              <div className={l.feature ? "fl-link feature" : "fl-link"} key={l.url}>
+                <img
+                  className="fl-qr"
+                  src={`${base}/images/${l.qr}`}
+                  alt={`QR code linking to ${l.url}`}
+                  width={110}
+                  height={110}
+                />
+                <div className="fl-link-label">{l.label}</div>
+                <div className="fl-link-url">{l.url}</div>
+                <div className="fl-link-note">{l.note}</div>
+              </div>
+            ))}
           </div>
 
           <footer className="fl-foot">
