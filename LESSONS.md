@@ -76,3 +76,20 @@ private `suas-claude-program` repo.
 check the destination's visibility. Default to private. Public repos carry
 only what must be public to operate (the website itself and its code/docs).
 This applies to branches too — every branch of a public repo is public.
+
+## 2026-07-31 — Print CSS: don't trust white-on-color, and scope mobile breakpoints [self-correction]
+
+**What happened:** The printable hackathon flyer was first built with the SUAS
+navy/crisis-red bands rendered as white text on a colored background — which
+disappears entirely when a browser prints with "Background graphics" off
+(Chrome's default). The crisis line (988) was one of those bands, so the
+guardrail would have silently vanished on many printed copies. Separately, the
+`@media (max-width:900px)` mobile reflow also matched the *print* layout
+(Chrome lays a Letter page out at 816px), so the PDF came out stacked.
+
+**Rule going forward:** For anything meant to be printed, draw emphasis with
+borders plus colored *text* (never white-on-color), and scope responsive
+breakpoints with `@media screen and (…)` so they can't leak into print. Verify
+by rendering the page to PDF and checking the page count is what you intend
+(one sheet stays one sheet) — the browser print preview is the deliverable, not
+the screen view.
