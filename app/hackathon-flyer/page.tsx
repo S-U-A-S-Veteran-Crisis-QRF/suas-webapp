@@ -41,34 +41,6 @@ const DAYS: { day: string; title: string; body: string }[] = [
   },
 ];
 
-const LINKS: { label: string; url: string; qr: string; note: string; feature?: boolean }[] = [
-  {
-    label: "Register",
-    url: "luma.com/Innovation4Veterans",
-    qr: "hackathon-qr.svg",
-    note: "Free · limited space",
-    feature: true,
-  },
-  {
-    label: "App demo",
-    url: "suasqrf.org/app",
-    qr: "hackathon-qr-app.svg",
-    note: "Food · Ride · Shelter",
-    feature: true,
-  },
-  {
-    label: "About us",
-    url: "suasqrf.org",
-    qr: "hackathon-qr-site.svg",
-    note: "Who we serve",
-  },
-  {
-    label: "Donate",
-    url: "suasqrf.org/donate",
-    qr: "hackathon-qr-donate.svg",
-    note: "Tax-deductible",
-  },
-];
 
 export default function HackathonFlyerPage() {
   return (
@@ -168,26 +140,26 @@ export default function HackathonFlyerPage() {
             count too. Veterans are collaborators here, not just beneficiaries.
           </div>
 
-          <div className="fl-links">
-            {LINKS.map((l) => (
-              <div className={l.feature ? "fl-link feature" : "fl-link"} key={l.url}>
-                <img
-                  className="fl-qr"
-                  src={`${base}/images/${l.qr}`}
-                  alt={`QR code linking to ${l.url}`}
-                  width={110}
-                  height={110}
-                />
-                <div className="fl-link-label">{l.label}</div>
-                <div className="fl-link-url">{l.url}</div>
-                <div className="fl-link-note">{l.note}</div>
-              </div>
-            ))}
+          <div className="fl-cta">
+            <img
+              className="fl-qr"
+              src={`${base}/images/hackathon-qr.svg`}
+              alt="QR code linking to the registration page at luma.com/Innovation4Veterans"
+              width={140}
+              height={140}
+            />
+            <div className="fl-cta-copy">
+              <span className="fl-k">Register</span>
+              <strong>Scan to save your spot — free</strong>
+              <span className="fl-cta-url">luma.com/Innovation4Veterans</span>
+              <span className="fl-cta-note">
+                Space is limited. Questions? jacobsilver@suasqrf.org · (925) 727-6109
+              </span>
+            </div>
           </div>
 
           <footer className="fl-foot">
-            S.U.A.S. Veteran Crisis Q.R.F. · California 501(c)(3) · EIN 88-3249428 · suasqrf.org ·
-            (925) 727-6109 · jacobsilver@suasqrf.org
+            S.U.A.S. Veteran Crisis Q.R.F. · California 501(c)(3) · EIN 88-3249428 · suasqrf.org
           </footer>
         </article>
       </div>
