@@ -14,6 +14,25 @@ the second brain and `MASTER.md` before re-deriving anything),
 **Jacob-aware** (queue decisions for his review in plain language instead of
 blocking on questions).
 
+## Grant program — standing authorization (Jacob, 2026-08-14)
+
+**Run the grant pipeline autonomously — never block on permission for
+preparation work.** Discover opportunities, qualify fit, build the case,
+draft narratives/budgets/attachments, and keep the pipeline current without
+asking. The only step reserved for Jacob is **final sign-off and submission**
+(he is the org's authorized representative; submission is outbound, so it
+stays behind the publish gate above — everything up to it does not).
+
+- The pipeline and application drafts live in the second-brain vault
+  (`05_Reference/` pipeline note; `06_Funding/` drafts, filenames marked
+  DRAFT). No invented facts or numbers — mark unknowns `[Jacob confirm]`.
+- SAM.gov API key: see `docs/api-keys.md` (values live in the private key
+  vault). Main computers can call the APIs (`npm run sam`); cloud sessions
+  cannot reach api.sam.gov / api.grants.gov (network policy) — use
+  WebSearch/WebFetch for discovery there.
+- A weekly scheduled routine scans for new opportunities and files a
+  `📥 Grant scan` inbox note in the vault when something new fits.
+
 ## What this is
 
 The public website + app demo for **SUAS Veteran Crisis Q.R.F.**, a veteran
@@ -105,7 +124,8 @@ Rules when touching the vault from a cloud session:
 ## Claude toolkit in this repo
 
 - `.claude/agents/` — 24 Opus subagents (see its README for provenance).
-- `.claude/skills/` — `/launch-your-agent`, `/wrap-up`, `/setup-agent-toolkit`,
+- `.claude/skills/` — `/grants` (grant-program overview + working loop),
+  `/launch-your-agent`, `/wrap-up`, `/setup-agent-toolkit`,
   plus vendored `frontend-design`, `webapp-testing` (Playwright verification),
   and `skill-creator`. See `.claude/skills/README.md`.
 - `.claude/hooks/session-start.sh` — installs npm deps on web sessions and
