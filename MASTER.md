@@ -48,6 +48,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-19** — Cross-device session sync shipped: `/sync` skill (catchup/handoff/note) + SessionStart auto-catch-up, with the message bus on a **private** repo's `claude-sync` branch so session state never touches this public repo (`docs/cross-device-sync.md`); `LESSONS.md` self-learning corrections log added
 - **2026-07-19** — Expert operating posture made auto-loading: six commitments in the shared program `CLAUDE.md` + `/expert-mode` skill (private program repo, on `main`), mirrored into this repo's `CLAUDE.md` for cloud sessions
 - **2026-07-20** — Demo-site feedback fixes (Hacker Dojo): IRS determination letter PDF added to `public/docs/` (donate-page link was 404 on the live site); `/app` "Demo screens" copy rewritten for visitors (was product-manager-facing "Say the word…" text); Lyft Concierge + Expedia Rapid integration leads captured in `docs/integration-leads.md`
+- **2026-08-14** — SAM.gov API key onboarded for the grant program + org key management set up: secret value stored in the new private `SUAS-SECURE` Drive folder (`API-KEY-REGISTRY.md` — the single home for all key values, outside the git-synced vault), pointer note added to the vault's `05_Reference/`; this repo gained `docs/api-keys.md`, a `SAM_GOV_API_KEY` placeholder in `.env.example`, and `scripts/sam-gov.mjs` (`npm run sam`) for key checks, SAM registration status, and opportunity search
 
 ## Claude capability stack
 
@@ -87,6 +88,8 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 
 ## Next actions
 
+- [ ] Verify the SAM.gov API key from a main computer (`npm run sam -- check` after copying it from the `SUAS-SECURE` registry into `.env`) — cloud sessions can't reach api.sam.gov; then put the ~90-day rotation date (~2026-11-12) in the vault's 🔔 Reminders
+- [ ] Fold in the vault inbox note `📥 2026-08-14 SAM.gov API key + key registry — fold me in` (link the new `05_Reference/` note from its `_index.md`, refresh Recent Context, log line)
 - [ ] Mark PRs #3 and #4 ready for review and merge (both docs/small fixes, build-verified)
 - [ ] Decide on PR #2: merge the grant-finder kit, add `ANTHROPIC_API_KEY` locally, launch the agent
 - [ ] Re-authorize QuickBooks; re-consent Zoho CRM/Desk with broader scopes (claude.ai connector settings)
