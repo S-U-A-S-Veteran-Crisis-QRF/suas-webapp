@@ -12,6 +12,15 @@ loads on every device. It encodes exactly how this repo was set up so another
 repo can be configured the same way. Invoke with `/setup-agent-toolkit`. It opens
 a draft PR but always asks before merging or deploying.
 
+## grants (local)
+
+`grants/` — the SUAS grant program's entry point. Loads the standing
+authorization (all preparation autonomous; Jacob signs finals only), the map
+of where everything lives (key vault, pipeline note, SOP, drafts, `npm run
+sam`), the capability differences between cloud and main-computer sessions,
+and the working loop: discover → qualify → draft → queue for signature.
+Invoke with `/grants` before doing any grant work.
+
 ## sync (local)
 
 `sync/` — cross-device session sync. Uses the `claude-sync` orphan branch of

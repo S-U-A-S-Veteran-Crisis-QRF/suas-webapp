@@ -124,7 +124,8 @@ Rules when touching the vault from a cloud session:
 ## Claude toolkit in this repo
 
 - `.claude/agents/` — 24 Opus subagents (see its README for provenance).
-- `.claude/skills/` — `/launch-your-agent`, `/wrap-up`, `/setup-agent-toolkit`,
+- `.claude/skills/` — `/grants` (grant-program overview + working loop),
+  `/launch-your-agent`, `/wrap-up`, `/setup-agent-toolkit`,
   plus vendored `frontend-design`, `webapp-testing` (Playwright verification),
   and `skill-creator`. See `.claude/skills/README.md`.
 - `.claude/hooks/session-start.sh` — installs npm deps on web sessions and
