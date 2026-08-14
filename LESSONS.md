@@ -26,6 +26,19 @@ Template:
 
 ---
 
+## 2026-08-14 — Don't infer org geography; check the org's own references [self-correction]
+
+**What happened:** A grant-discovery sweep targeted East Bay county funders
+(Contra Costa/Alameda) based on an inference from the org phone number's
+area code. The org's curated comms references state Santa Clara County /
+Los Altos. The two sources conflict; county-specific pipeline items were
+flagged for Jacob instead of silently picking one.
+
+**Rule going forward:** Never infer org facts (geography, counties served,
+addresses) from indirect signals like area codes. Check the org's own
+references (comms skill, vault, MASTER.md) first; when sources conflict,
+surface the conflict and mark dependent work as pending confirmation.
+
 ## 2026-07-19 — Check the second brain before re-deriving org facts [self-correction]
 
 **What happened:** Claude concluded the public `help` repo "serves
