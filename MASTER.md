@@ -51,6 +51,8 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 
 - **2026-08-16** — Tailscale multi-device runbook added (`docs/tailscale-setup.md`): one tailnet across the Beelink PC, MacBook Pro, and Android phone, with the public-repo rule that tailnet names/addresses/keys stay in the private vault; linked from `docs/cross-device-sync.md` as the network layer beneath the five sync layers
 
+- **2026-08-16** — SyncTrayzor/Syncthing runbook added (`docs/syncthing-setup.md`): the installed build is the unmaintained `canton7` original, so the doc covers migrating to the maintained `GermanCoding` v2 fork, the one-way Syncthing v1→v2 SQLite database migration, pinning sync to the tailnet instead of public relays, and the rule that the vault keeps Drive + Obsidian Git as its only sync owners
+
 ## Claude capability stack
 
 - **24 Opus subagents** (`.claude/agents/`) — frontend, React/Next, TypeScript, code review, debugging, QA, accessibility, security, performance, refactoring, docs, and more.

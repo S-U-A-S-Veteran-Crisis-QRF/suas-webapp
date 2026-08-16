@@ -153,6 +153,13 @@ all three devices unless you're specifically trying to route phone traffic
 through the house connection — turning it on sends *all* your phone traffic
 through the Beelink, which is rarely what you want.
 
+## Related: Syncthing
+
+Once the tailnet is up, Syncthing/SyncTrayzor on the Beelink can be pinned to
+tailnet addresses with global discovery and public relays switched off — file
+sync that never touches third-party infrastructure. See
+[`docs/syncthing-setup.md`](./syncthing-setup.md).
+
 ## Troubleshooting
 
 | Symptom | Cause | Fix |
