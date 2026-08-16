@@ -102,6 +102,23 @@ Pick one owner per folder. Concretely:
   scanned documents, working files you want on the phone without uploading to a
   cloud provider.
 
+## Collect the diagnosis in one command
+
+Rather than walking the ladder below by hand, run the collector on the Beelink.
+It is read-only — it starts nothing, stops nothing, changes no settings — and it
+writes `syncthing-report.txt` to the Desktop covering every step below:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\diagnose-syncthing.ps1
+```
+
+It reports whether the processes are running, the installed SyncTrayzor and
+Syncthing versions, the configured devices and folders, live connection state via
+the local API, listening ports, firewall rules, Tailscale status, and whether the
+machine is set to sleep. Device IDs are truncated and the API key is never
+printed; folder paths are included, so glance over it before sharing if a path
+names a person.
+
 ## "It won't sync" — diagnostic ladder
 
 Work these in order. Each step tells you whether to stop or keep going, and most
