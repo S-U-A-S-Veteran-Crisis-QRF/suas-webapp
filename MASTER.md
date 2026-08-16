@@ -49,6 +49,8 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-19** — Expert operating posture made auto-loading: six commitments in the shared program `CLAUDE.md` + `/expert-mode` skill (private program repo, on `main`), mirrored into this repo's `CLAUDE.md` for cloud sessions
 - **2026-07-20** — Demo-site feedback fixes (Hacker Dojo): IRS determination letter PDF added to `public/docs/` (donate-page link was 404 on the live site); `/app` "Demo screens" copy rewritten for visitors (was product-manager-facing "Say the word…" text); Lyft Concierge + Expedia Rapid integration leads captured in `docs/integration-leads.md`
 
+- **2026-08-16** — Tailscale multi-device runbook added (`docs/tailscale-setup.md`): one tailnet across the Beelink PC, MacBook Pro, and Android phone, with the public-repo rule that tailnet names/addresses/keys stay in the private vault; linked from `docs/cross-device-sync.md` as the network layer beneath the five sync layers
+
 ## Claude capability stack
 
 - **24 Opus subagents** (`.claude/agents/`) — frontend, React/Next, TypeScript, code review, debugging, QA, accessibility, security, performance, refactoring, docs, and more.
@@ -92,6 +94,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - [ ] Re-authorize QuickBooks; re-consent Zoho CRM/Desk with broader scopes (claude.ai connector settings)
 - [ ] Point `suasqrf.org` custom domain at GitHub Pages
 - [ ] Pull this branch (or `main` after merge) on the MacBook Pro and Beelink PC to sync the toolkit
+- [ ] **Install Tailscale on all three devices** (Beelink PC, MacBook Pro, Android phone) following [`docs/tailscale-setup.md`](docs/tailscale-setup.md) — must be done by hand on each device; the one thing to get right is signing in with the *same* account on all three
 - [ ] Add `suas-claude-program` to the Claude Code cloud environment sources so phone/cloud sessions auto-receive the private sync channel
 - [ ] `help` repo visibility — corrected 2026-07-19: the vault records suasqrf.org repointed to **this repo's site on 2026-07-15**, so the `CNAME` file still sitting in `help` is likely a stale leftover, not proof it serves the domain. Verify with one look at suasqrf.org (new Next.js site vs old Jekyll Cayman theme); if the new site serves, archive `help` and flip it private
 - [ ] End each working session with `/sync handoff` so the next device picks up seamlessly
