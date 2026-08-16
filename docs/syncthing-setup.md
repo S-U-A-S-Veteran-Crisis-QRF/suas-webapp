@@ -102,7 +102,85 @@ Pick one owner per folder. Concretely:
   scanned documents, working files you want on the phone without uploading to a
   cloud provider.
 
-## Troubleshooting
+## "It won't sync" — diagnostic ladder
+
+Work these in order. Each step tells you whether to stop or keep going, and most
+"won't sync" reports end at step 1, 3, or 4.
+
+### 1. Are both ends running *at the same time*?
+
+Syncthing is peer-to-peer. **There is no server holding your files.** If the
+Beelink is asleep, hibernating, or logged out, nothing on the MacBook or phone
+can sync — there's nobody to sync with. Two devices that are never awake
+simultaneously will never sync, and the UI won't call this an error.
+
+Check on the Beelink: Windows power settings → confirm it isn't sleeping. This is
+the single most common cause on a laptop/desktop pair.
+
+### 2. Is the phone even running a working Syncthing?
+
+**The official Syncthing Android app was discontinued** — its last release
+shipped with the December 2024 Syncthing version, and it's gone from the Play
+Store. If the phone is running that abandoned app, or you couldn't find it in the
+Play Store at all, that's the answer for the phone leg.
+
+The maintained replacement is **Syncthing-Fork** (Catfriend1), available from
+**F-Droid** — not the Play Store. It keeps the original functionality and adds
+battery-friendly scheduling.
+
+While you're there: Android's battery optimization kills background Syncthing
+constantly. Settings → Apps → Syncthing-Fork → Battery → **Unrestricted**.
+A phone that syncs only while the app is open on screen is this, every time.
+
+### 3. Is each device added on *both* sides?
+
+Pairing is mutual. Adding the MacBook's device ID on the Beelink does nothing
+until the Beelink's device ID is also added on the MacBook (or the prompt on the
+other end is accepted). A one-sided pairing sits at **Disconnected** forever.
+
+On each device: web UI → the remote device should be listed, not just pending.
+
+### 4. Is the folder accepted on both sides?
+
+This one masquerades as a network problem. Sharing a folder only sends an
+*offer*. Until the other device accepts it and picks a local path, the folder
+doesn't exist over there — while the devices themselves cheerfully report
+**Connected**. Devices connected + nothing syncing = almost always this.
+
+Look for a "wants to share folder X" notification on the receiving device.
+
+### 5. Devices show Disconnected
+
+Now it's a network problem:
+
+- If you've done the Tailscale setup: `tailscale status` on both ends first.
+  Syncthing can't connect if the tunnel is down.
+- Windows Defender Firewall may be blocking `syncthing.exe` — allow it on private
+  networks. Syncthing uses **TCP and UDP 22000** for sync, UDP 21027 for local
+  discovery.
+- If you disabled global discovery/relaying per the section above but didn't set
+  explicit tailnet addresses, devices have no way to find each other. Set them.
+
+### 6. Connected, folder accepted, still not moving
+
+- **Folder or device paused** — check for a Pause button toggled on either end.
+- **Folder type mismatch.** A folder set to *Receive Only* will never send its
+  changes upstream; it reports "Local Additions" instead. If you set one side
+  Receive Only expecting a two-way mirror, that's the bug. Both sides should be
+  *Send & Receive* for normal use.
+- **Out of Sync with errors** — expand the folder and read the actual error.
+  Usually a permission denial, a missing path (unmounted drive), or a file locked
+  by another program.
+- **`.stignore` patterns** silently excluding what you're watching for.
+- **Minimum free disk space** (default 1%) — Syncthing refuses to write below it.
+
+### 7. Still stuck
+
+Grab the log rather than guessing: SyncTrayzor → **File → Show Syncthing Log**,
+or the web UI → **Actions → Logs**. The failing operation names itself there. If
+you paste that log back, redact device IDs and any file paths that name people.
+
+## Troubleshooting quick table
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
