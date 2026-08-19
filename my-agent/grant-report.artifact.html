@@ -1,0 +1,346 @@
+<title>SUAS Grant Prospect Report</title>
+<style>
+  :root{
+    --paper:#eef1f0; --card:#ffffff; --ink:#17242b; --dim:#54666c;
+    --accent:#255e6b; --accent-soft:#e2ecec;
+    --go:#2f7a54; --warn:#9a6b16; --closed:#8a5350;
+    --line:#d3dad7; --line-soft:#e4e9e7;
+    --serif:Georgia,"Iowan Old Style","Palatino Linotype","Book Antiqua",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px 72px}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)}
+  a:hover{border-bottom-color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+  h1,h2,h3{font-family:var(--serif);text-wrap:balance;line-height:1.2;font-weight:600}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0}
+
+  /* hero */
+  header.hero{padding:56px 0 34px;border-bottom:1px solid var(--line)}
+  header.hero h1{font-size:40px;margin:14px 0 10px;letter-spacing:-.01em}
+  header.hero .sub{font-size:18px;color:var(--dim);max-width:64ch;margin:0}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:20px;font-family:var(--mono);
+    font-size:12.5px;color:var(--dim);letter-spacing:.02em}
+  .meta b{color:var(--ink);font-weight:600}
+
+  .note{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);
+    border-left:4px solid var(--warn);border-radius:10px;padding:16px 18px;margin:26px 0 0}
+  .note .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--warn);font-weight:700;flex-shrink:0;padding-top:2px}
+  .note p{margin:0 0 8px;font-size:14.5px;color:var(--ink)}
+  .note p:last-child{margin:0}
+
+  section{margin-top:48px}
+  section > h2{font-size:25px;margin:0 0 4px}
+  section > .lede{color:var(--dim);margin:0 0 20px;max-width:70ch}
+
+  /* start here */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:720px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .step .n{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:700}
+  .step h3{font-size:16px;margin:8px 0 6px}
+  .step p{margin:0;font-size:14px;color:var(--dim)}
+  .step .when{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:11px;
+    letter-spacing:.04em;color:var(--go);border:1px solid var(--line-soft);border-radius:999px;padding:3px 9px}
+
+  /* highlight cards */
+  .tops{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+  @media(max-width:720px){.tops{grid-template-columns:1fr}}
+  .top{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);
+    border-radius:12px;padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px}
+  .top .rank{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+  .top h3{font-size:17px;margin:0}
+  .top .amt{font-family:var(--mono);font-size:14px;color:var(--ink);font-weight:600}
+  .top p{margin:0;font-size:13.5px;color:var(--dim)}
+
+  /* table */
+  .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+  table{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
+  thead th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--dim);font-weight:700;padding:13px 14px;
+    border-bottom:1px solid var(--line);background:#f7f9f8;position:sticky;top:0}
+  tbody td{padding:13px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#f7faf9}
+  td .fund{font-weight:600;color:var(--ink)}
+  td .why{color:var(--dim);font-size:13px;margin-top:3px;display:block;max-width:34ch}
+  td.amt{font-family:var(--mono);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .rk{font-family:var(--mono);color:var(--dim);font-variant-numeric:tabular-nums}
+
+  .chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;
+    font-weight:700;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap;border:1px solid}
+  .chip.go{color:var(--go);border-color:#bcdcc9;background:#eef7f1}
+  .chip.warn{color:var(--warn);border-color:#e6d2a3;background:#faf4e6}
+  .chip.closed{color:var(--closed);border-color:#e0c3c0;background:#f8eeed}
+
+  ul.plain{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+  ul.plain li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 15px;font-size:14px}
+  ul.plain li b{color:var(--ink)}
+  ul.plain li .r{color:var(--dim)}
+
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+  summary{cursor:pointer;padding:16px 18px;font-family:var(--serif);font-size:17px;font-weight:600;
+    list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  summary::-webkit-details-marker{display:none}
+  summary .tag{font-family:var(--mono);font-size:11px;color:var(--dim);font-weight:400}
+  summary::after{content:"+";font-family:var(--mono);color:var(--accent);font-size:20px;line-height:1}
+  details[open] summary::after{content:"\2013"}
+  .letter{padding:0 18px 18px;border-top:1px solid var(--line-soft)}
+  .letter .subj{font-family:var(--mono);font-size:12px;color:var(--dim);margin:14px 0 12px;
+    padding:8px 10px;background:#f7f9f8;border-radius:6px}
+  .letter p{margin:0 0 11px;font-size:14.5px;line-height:1.62}
+  .letter .br{color:var(--accent);font-family:var(--mono);font-size:.9em}
+
+  ol.caveats{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:11px}
+  ol.caveats li{font-size:14.5px}
+  ol.caveats li b{color:var(--ink)}
+
+  footer{margin-top:52px;padding-top:22px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--dim);font-family:var(--mono);letter-spacing:.02em}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Fundraising · Grant Prospect Report</p>
+    <h1>Funding SUAS can go after now</h1>
+    <p class="sub">A ranked shortlist of real, non-repayable funding for veteran-crisis and suicide-prevention work — with the fastest paths flagged and draft outreach for the top picks.</p>
+    <div class="meta">
+      <span>Prepared <b>2026-06-30</b></span>
+      <span>For <b>S-U-A-S Veteran Crisis QRF</b></span>
+      <span><b>12</b> opportunities · <b>3</b> draft letters</span>
+      <span><a href="https://suasqrf.org">suasqrf.org</a></span>
+    </div>
+
+    <div class="note">
+      <span class="k">Read first</span>
+      <div>
+        <p><b>Confirm every figure on the funder's own site before applying.</b> Details here were surfaced from funder pages via search, not opened page-by-page (this environment's network policy blocked direct fetching). Deadlines that couldn't be pinned to an open cycle are marked <span class="chip warn">verify</span>.</p>
+        <p><b>Check SUAS's eligibility first.</b> Many funders gate on confirmed 501(c)(3) status, 2+ years of IRS 990s, audited financials, or a specific service geography. SUAS's tax status, state, and budget aren't confirmed here — each entry flags its gate.</p>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Start here</h2>
+    <p class="lede">The bottleneck isn't time — it's paperwork. Lock down tax status first; it unlocks nearly everything below.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="n">01</span>
+        <h3>Confirm 501(c)(3) + docs</h3>
+        <p>Determination letter, last two 990s, financials. This is the gate on almost every grant here.</p>
+        <span class="when">prerequisite</span>
+      </div>
+      <div class="step">
+        <span class="n">02</span>
+        <h3>Claim the free wins</h3>
+        <p>TechSoup validation unlocks Google Ad Grants ($10k/mo in search ads) and Microsoft for Nonprofits.</p>
+        <span class="when">days, once verified</span>
+      </div>
+      <div class="step">
+        <span class="n">03</span>
+        <h3>Send the rolling LOIs</h3>
+        <p>Bob Woodruff, PenFed, DAV take submissions on a rolling or quarterly basis. Drafts are below.</p>
+        <span class="when">this week</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Top 3 to act on</h2>
+    <p class="lede">Best mission fit that you can actually move on right now. (The strongest match overall — VA SSG Fox — is between cycles; see the table.)</p>
+    <div class="tops">
+      <div class="top">
+        <span class="rank">01 · Rolling</span>
+        <h3>Bob Woodruff Foundation</h3>
+        <span class="amt">$100k–$250k typical</span>
+        <p>Premier veteran funder that explicitly backs mental-health and suicide-prevention programs. Rolling LOI, reviewed spring &amp; fall.</p>
+      </div>
+      <div class="top">
+        <span class="rank">02 · Crisis focus</span>
+        <h3>PenFed Foundation</h3>
+        <span class="amt">$25k–$50k</span>
+        <p>Funds nonprofits delivering crisis and emergency support to the military/veteran community — directly aligned with QRF work.</p>
+      </div>
+      <div class="top">
+        <span class="rank">03 · Next cycle</span>
+        <h3>VA SSG Fox SPGP</h3>
+        <span class="amt">up to $750,000</span>
+        <p>The single best mission match. FY27 window closed Jun 12 — prepare documentation now for the ~spring-2027 cycle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>All opportunities, ranked</h2>
+    <p class="lede">Ranked by mission fit + likely award size + how actionable the path is today. Purpose-built veteran suicide-prevention money ranks highest; tightly-scoped or invitation-only programs lower.</p>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Funder / Program</th><th>Amount</th><th>Status</th><th>Eligibility gate</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rk">1</td>
+            <td><span class="fund">VA — SSG Fox Suicide Prevention Grant (SPGP)</span><span class="why">Community-based, largely non-clinical veteran suicide prevention — exactly SUAS's mission. <a href="https://www.mentalhealth.va.gov/ssgfox-grants/">source</a></span></td>
+            <td class="amt">up to $750k</td>
+            <td><span class="chip closed">closed · ~2027</span></td>
+            <td>Org capacity + veteran-service track record</td>
+          </tr>
+          <tr>
+            <td class="rk">2</td>
+            <td><span class="fund">Face the Fight — Charitable Fund</span><span class="why">National fund whose entire purpose is veteran suicide prevention. <a href="https://wefacethefight.org/">source</a></span></td>
+            <td class="amt">~$16.5M / 27 orgs</td>
+            <td><span class="chip warn">by invitation</span></td>
+            <td>Nonprofits with evidence-informed strategies</td>
+          </tr>
+          <tr>
+            <td class="rk">3</td>
+            <td><span class="fund">Bob Woodruff Foundation</span><span class="why">Explicitly backs mental-health &amp; suicide-prevention programs for veterans/families. <a href="https://bobwoodrufffoundation.org/our-partners/veteran-serving-organizations/grants-for-organizations/">source</a></span></td>
+            <td class="amt">$5k–$1M</td>
+            <td><span class="chip go">rolling</span></td>
+            <td>501(c)(3); ≥70% program spend; 2 yrs 990s</td>
+          </tr>
+          <tr>
+            <td class="rk">4</td>
+            <td><span class="fund">PenFed Foundation — Military Heroes</span><span class="why">Strengthens nonprofits delivering crisis/emergency support to veterans. <a href="https://penfedfoundation.org/">source</a></span></td>
+            <td class="amt">$25k–$50k</td>
+            <td><span class="chip warn">verify cycle</span></td>
+            <td>501(c)(3) serving military/veteran community</td>
+          </tr>
+          <tr>
+            <td class="rk">5</td>
+            <td><span class="fund">DAV Charitable Service Trust</span><span class="why">Funds direct assistance to ill/injured veterans. <a href="https://cst.dav.org/grants/">source</a></span></td>
+            <td class="amt">$10k–$20k</td>
+            <td><span class="chip go">quarterly</span></td>
+            <td>Tax-exempt; 1 award/yr; direct-assistance priority</td>
+          </tr>
+          <tr>
+            <td class="rk">6</td>
+            <td><span class="fund">Wounded Warrior Project — Community Partners</span><span class="why">Funds partners specifically to reduce suicide risk. <a href="https://www.woundedwarriorproject.org/programs/community-partners">source</a></span></td>
+            <td class="amt">cohort-based</td>
+            <td><span class="chip warn">by inquiry</span></td>
+            <td>Serves <b>post-9/11</b> veterans/caregivers</td>
+          </tr>
+          <tr>
+            <td class="rk">7</td>
+            <td><span class="fund">Texas Veterans Commission — Mental Health Grant</span><span class="why">Directly funds veteran mental-health/peer/crisis services. <a href="https://tvc.texas.gov/grants/grantseekers/">source</a></span></td>
+            <td class="amt">varies</td>
+            <td><span class="chip closed">TX only</span></td>
+            <td>Serves veterans who <b>live in Texas</b></td>
+          </tr>
+          <tr>
+            <td class="rk">8</td>
+            <td><span class="fund">Walmart Foundation — Spark Good Local</span><span class="why">Small, genuinely winnable local grants; apply at store level. <a href="https://www.walmart.org/how-we-give/program-guidelines/spark-good-local-grants-guidelines">source</a></span></td>
+            <td class="amt">$250–$5k</td>
+            <td><span class="chip warn">verify cycle</span></td>
+            <td>501(c)(3); verified Spark Good account</td>
+          </tr>
+          <tr>
+            <td class="rk">9</td>
+            <td><span class="fund">Newman's Own Awards (w/ Fisher House)</span><span class="why">Rewards innovative programs improving veterans' lives. <a href="https://www.fisherhouse.org/">source</a></span></td>
+            <td class="amt">$250k pool</td>
+            <td><span class="chip warn">annual · verify</span></td>
+            <td>501(c); ≥2 yrs old; provides 990</td>
+          </tr>
+          <tr>
+            <td class="rk">10</td>
+            <td><span class="fund">APA Foundation — MOORE Equity in Mental Health</span><span class="why">Mental-health grant — only if serving young people of color. <a href="https://www.apaf.org/our-programs/grants-and-awards/grants/the-moore-equity-in-mental-health-community-grants-program/">source</a></span></td>
+            <td class="amt">$10k</td>
+            <td><span class="chip go">Aug–Sep</span></td>
+            <td>US nonprofit ≥2 yrs; serves young people of color</td>
+          </tr>
+          <tr>
+            <td class="rk">11</td>
+            <td><span class="fund">Home Depot Foundation — Veteran Housing</span><span class="why">Large award, but scope is housing, not crisis response. <a href="https://corporate.homedepot.com/page/veteran-housing-grants">source</a></span></td>
+            <td class="amt">$100k–$500k</td>
+            <td><span class="chip closed">housing only</span></td>
+            <td>501(c)(3) in good standing ≥5 yrs</td>
+          </tr>
+          <tr>
+            <td class="rk">12</td>
+            <td><span class="fund">May &amp; Stanley Smith Charitable Trust</span><span class="why">Funds veteran mental/behavioral-health programs. <a href="https://smithct.org/funding-priorities/veterans">source</a></span></td>
+            <td class="amt">$30k–$600k</td>
+            <td><span class="chip closed">West U.S. · invite</span></td>
+            <td>Serves Western U.S.; enlisted transition focus</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Free &amp; in-kind resources</h2>
+    <p class="lede">Non-cash, high value for a low-budget org — and the fastest wins on this page. All require verified 501(c)(3) status.</p>
+    <ul class="plain">
+      <li><b>Google Ad Grants</b> — <span class="r">$10,000/month in free Search ads. Puts SUAS at the top when a veteran in crisis searches for help. Requires Google for Nonprofits (via TechSoup) + a quality HTTPS site.</span></li>
+      <li><b>Microsoft for Nonprofits</b> — <span class="r">Microsoft 365 at ~75% off plus donated seats, and $2,000/yr in Azure credits for a dispatch tool or hotline backend.</span></li>
+      <li><b>TechSoup</b> — <span class="r">Deeply discounted software/hardware, and the gateway that unlocks Google for Nonprofits + many vendor donations. Upload the IRS determination letter; ~2-day validation.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Draft letters of inquiry</h2>
+    <p class="lede">Starting drafts — insert SUAS's verified facts where <span class="br">[bracketed]</span>, and confirm each funder's current submission method before sending. No funder has been contacted.</p>
+
+    <details open>
+      <summary>Bob Woodruff Foundation <span class="tag">rolling LOI</span></summary>
+      <div class="letter">
+        <p class="subj">Subject: Letter of Inquiry — Veteran-crisis quick-reaction force (suicide prevention)</p>
+        <p>Dear Bob Woodruff Foundation Grants Team,</p>
+        <p>I'm writing on behalf of S-U-A-S Veteran Crisis QRF (SUAS), a <span class="br">[501(c)(3) — confirm]</span> organization operating a veteran-crisis quick-reaction force: rapid, person-to-person response to U.S. veterans in acute crisis, including suicide-risk situations and mental-health emergencies.</p>
+        <p>The Foundation's focus on closing the gap between what veterans need and the resources available maps directly onto our work. When a veteran reaches a breaking point, the time-to-contact gap is where lives are lost. SUAS exists to close that gap with immediate outreach, safety planning, and warm hand-offs to longer-term care.</p>
+        <p>In <span class="br">[year]</span>, SUAS <span class="br">[responded to ___ crisis contacts / served ___ veterans]</span>, operating on a budget of approximately <span class="br">[$___]</span>. We are seeking <span class="br">[$___]</span> to <span class="br">[expand responder coverage / sustain 24/7 crisis response]</span>.</p>
+        <p>I understand BWF reviews proposals on a rolling basis each spring and fall, and that applicants demonstrate at least 70% program spend and provide recent 990s and financials. Could I share a short concept summary for your review? Thank you for your service to those who served.</p>
+        <p>Respectfully,<br><span class="br">[Name, title]</span> · SUAS Veteran Crisis QRF · suasqrf.org · <span class="br">[phone/email]</span></p>
+      </div>
+    </details>
+
+    <details>
+      <summary>PenFed Foundation <span class="tag">Military Heroes / partnership</span></summary>
+      <div class="letter">
+        <p class="subj">Subject: Inquiry — Crisis-response nonprofit serving veterans in acute need</p>
+        <p>Dear PenFed Foundation Team,</p>
+        <p>On behalf of S-U-A-S Veteran Crisis QRF (SUAS), I'm reaching out about your support for nonprofits that directly assist veterans and military families in times of crisis.</p>
+        <p>SUAS runs a veteran-crisis quick-reaction force — rapid response for veterans facing suicide risk and mental-health emergencies, with immediate outreach and connection to care. The Foundation's Military Heroes work aligns closely with what we do every day.</p>
+        <p>We are seeking <span class="br">[$___]</span> to <span class="br">[sustain/expand]</span> our crisis-response capacity, which in <span class="br">[year]</span> reached <span class="br">[___ veterans / ___ contacts]</span>. SUAS operates on roughly <span class="br">[$___]</span> annually as a <span class="br">[501(c)(3) — confirm]</span> organization based in <span class="br">[state]</span>.</p>
+        <p>Could you point me to the current application window and eligibility specifics for nonprofit partners? I'd be glad to provide our 990, financials, and program outcomes. Thank you for the Foundation's commitment to those who served.</p>
+        <p>Respectfully,<br><span class="br">[Name, title]</span> · SUAS Veteran Crisis QRF · suasqrf.org · <span class="br">[phone/email]</span></p>
+      </div>
+    </details>
+
+    <details>
+      <summary>VA — SSG Fox SPGP <span class="tag">intent to apply · next cycle</span></summary>
+      <div class="letter">
+        <p class="subj">Subject: SSG Fox SPGP — intent to apply in the upcoming cycle</p>
+        <p>Dear SSG Fox SPGP Grants Team,</p>
+        <p>I'm writing on behalf of S-U-A-S Veteran Crisis QRF (SUAS) regarding the Staff Sergeant Parker Gordon Fox Suicide Prevention Grant Program. We understand the FY27 window has closed and are preparing to apply in the next cycle, and would appreciate guidance to ensure we're eligible and ready.</p>
+        <p>SUAS operates a community-based veteran-crisis quick-reaction force: rapid, largely non-clinical outreach to veterans and service members in acute crisis, with safety planning and connection to care — directly within the program's emphasis on suicide prevention beyond clinical settings.</p>
+        <p>In <span class="br">[year]</span>, SUAS <span class="br">[served ___ veterans / responded to ___ crisis contacts]</span> across <span class="br">[service area]</span>. We are a <span class="br">[501(c)(3) / community-based organization — confirm]</span> and would seek up to <span class="br">[$___]</span> (new applicants may request up to $750,000) to expand responder capacity and follow-up.</p>
+        <p>Could you confirm the expected timing of the next NOFO and any eligibility documentation we should prepare in advance? Thank you for your work to prevent veteran suicide.</p>
+        <p>Respectfully,<br><span class="br">[Name, title]</span> · SUAS Veteran Crisis QRF · suasqrf.org · <span class="br">[phone/email]</span></p>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <h2>How to use this</h2>
+    <ol class="caveats">
+      <li><b>Confirm every deadline and amount on the funder's own site.</b> Grant cycles change often; this reflects what funder pages showed via search on 2026-06-30. Treat all <span class="chip warn">verify</span> flags seriously.</li>
+      <li><b>Verify SUAS's eligibility first</b> — tax status, 990 history, financials, budget, and geography. Several top prospects gate on these; each entry above flags its gate.</li>
+      <li><b>Sequence the effort:</b> lock the 501(c)(3) docs + TechSoup → free Google/Microsoft wins in days; send the rolling LOIs now; calendar the annual cycles; pursue invitation-only funders only via a warm introduction.</li>
+      <li><b>The excluded funders were excluded for a reason</b> — research-only (AFSP), individuals-only (Semper Fi, Veterans United), or invitation-only (USAA, Boeing, Lockheed, Northrop). Don't spend cycles on them without a specific opening.</li>
+      <li><b>Drafts are drafts.</b> Insert SUAS's real facts and have a person review before sending. This report involved no contact with any funder.</li>
+    </ol>
+  </section>
+
+  <footer>
+    Generated by the /grant-finder skill · run free in Claude Code, no API key · re-run anytime for a fresh sweep. Not legal or financial advice; verify all details with each funder.
+  </footer>
+
+</div>
