@@ -1,11 +1,18 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
 import CrisisBar from "@/components/CrisisBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PwaInstaller from "@/components/PwaInstaller";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export const viewport: Viewport = {
+  themeColor: "#0A1628",
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://suasqrf.org"),
@@ -15,6 +22,14 @@ export const metadata: Metadata = {
   },
   description:
     "Nonprofit veteran support: private check-ins, trusted-circle alerts, and resource routing before crisis. Demo and pilot — not emergency care.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "SUAS QRF",
+  },
+  icons: {
+    apple: `${BASE}/icons/apple-touch-icon.png`,
+  },
   openGraph: {
     title: "SUAS Veteran Crisis Q.R.F.",
     description:
@@ -129,6 +144,19 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <PwaInstaller />
+        <Script
+          id="sw-register"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('${BASE}/sw.js', { scope: '${BASE}/' })
+                  .catch(function() {});
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

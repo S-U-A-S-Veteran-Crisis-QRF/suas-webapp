@@ -200,6 +200,19 @@ footer.site .brand span{color:var(--muted-light)}
   html{scroll-behavior:auto}
 }
 
+/* PWA install banner */
+.pwa-install-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:var(--navy);color:#fff;padding:14px 20px;
+  border-top:2px solid var(--gold);box-shadow:0 -2px 12px rgba(0,0,0,.22);
+}
+.pwa-install-text{flex:1;font-size:.9rem;font-weight:600;opacity:.95}
+.pwa-install-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.pwa-install-btn{padding:9px 18px;font-size:.88rem}
+.pwa-install-dismiss{padding:6px 10px;font-size:.95rem;line-height:1;border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.8)}
+.pwa-install-dismiss:hover{border-color:rgba(255,255,255,.7);color:#fff}
+
 @media (max-width:780px){
   h1{font-size:2rem} h2{font-size:1.5rem}
   .hero-image h1{font-size:2.05rem}
@@ -211,4 +224,7 @@ footer.site .brand span{color:var(--muted-light)}
   .mobile-menu .mobile-cta{display:flex;gap:10px;padding:14px 24px 18px}
   .foot-grid{grid-template-columns:1fr 1fr}
   .workflow{justify-content:flex-start}
+  .pwa-install-banner{flex-direction:column;align-items:flex-start}
+  .pwa-install-actions{width:100%}
+  .pwa-install-btn{flex:1}
 }
