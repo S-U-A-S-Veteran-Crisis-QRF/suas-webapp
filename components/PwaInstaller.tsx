@@ -9,7 +9,9 @@ interface BeforeInstallPromptEvent extends Event {
 
 export default function PwaInstaller() {
   const [prompt, setPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [dismissed, setDismissed] = useState(false);
+  const [dismissed, setDismissed] = useState(() => {
+    try { return sessionStorage.getItem("pwa-dismissed") === "1"; } catch { return false; }
+  });
 
   useEffect(() => {
     const onPrompt = (e: Event) => {
@@ -32,8 +34,13 @@ export default function PwaInstaller() {
     if (!prompt) return;
     await prompt.prompt();
     const { outcome } = await prompt.userChoice;
-    if (outcome === "accepted") setDismissed(true);
+    if (outcome === "accepted") dismiss();
     setPrompt(null);
+  };
+
+  const dismiss = () => {
+    try { sessionStorage.setItem("pwa-dismissed", "1"); } catch {}
+    setDismissed(true);
   };
 
   return (
@@ -47,7 +54,7 @@ export default function PwaInstaller() {
         </button>
         <button
           className="btn btn-ghost pwa-install-dismiss"
-          onClick={() => setDismissed(true)}
+          onClick={dismiss}
           aria-label="Dismiss install prompt"
         >
           ✕

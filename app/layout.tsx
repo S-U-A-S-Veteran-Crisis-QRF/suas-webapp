@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "SUAS QRF",
   },
   icons: {
-    apple: "/icons/apple-touch-icon.png",
+    apple: `${BASE}/icons/apple-touch-icon.png`,
   },
   openGraph: {
     title: "SUAS Veteran Crisis Q.R.F.",
