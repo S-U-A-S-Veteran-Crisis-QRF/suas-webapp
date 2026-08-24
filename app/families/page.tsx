@@ -91,7 +91,7 @@ export default function FamiliesPage() {
           <div className="pill-row">
             <span className="pill">Consent-based</span>
             <span className="pill">Privacy-first</span>
-            <span className="pill">You're not the case manager</span>
+            <span className="pill">You&apos;re not the case manager</span>
           </div>
         </div>
       </section>
@@ -156,10 +156,10 @@ export default function FamiliesPage() {
       <section>
         <div className="container">
           <Reveal>
-            <div className="sec-label">When you're not sure what to do</div>
+            <div className="sec-label">When you&apos;re not sure what to do</div>
             <h2>Three things that genuinely help</h2>
             <p className="lead">
-              You don't have to have the answers. Most support comes down to presence, listening,
+              You don&apos;t have to have the answers. Most support comes down to presence, listening,
               and connection — and SUAS helps you know when to lean in.
             </p>
           </Reveal>
@@ -192,7 +192,7 @@ export default function FamiliesPage() {
             <div className="sec-label">Connect with SUAS</div>
             <h2>Reach out about a veteran you love</h2>
             <p className="lead">
-              Tell us a little about your situation and how you'd like to be involved. A SUAS team
+              Tell us a little about your situation and how you&apos;d like to be involved. A SUAS team
               member will follow up. This form is for coordination and questions — not emergencies.
             </p>
             <FamilyIntakeForm />

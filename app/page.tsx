@@ -180,7 +180,7 @@ export default function HomePage() {
           <div className="band">
             <h2>Help shape the first pilot</h2>
             <p className="lead" style={{ margin: "12px auto 0" }}>
-              We're recruiting 25–50 veterans, partner organizations, and county collaborators to
+              We&apos;re recruiting 25–50 veterans, partner organizations, and county collaborators to
               test workflows with clear privacy and safety guardrails.
             </p>
             <div className="cta-row" style={{ justifyContent: "center" }}>

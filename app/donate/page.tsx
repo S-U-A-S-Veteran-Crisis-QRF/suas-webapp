@@ -36,6 +36,7 @@ export const metadata: Metadata = {
 };
 
 export default function DonatePage() {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
   return (
     <>
       <section className="hero-image">
@@ -109,7 +110,7 @@ export default function DonatePage() {
               Internal Revenue Code. No goods or services are provided in exchange for a gift.
             </p>
             <p className="note" style={{ marginTop: 12 }}>
-              <a href="/docs/IRS-Determination-Letter.pdf" target="_blank" rel="noopener noreferrer">
+              <a href={`${base}/docs/IRS-Determination-Letter.pdf`} target="_blank" rel="noopener noreferrer">
                 View our IRS determination letter (PDF) →
               </a>
             </p>
