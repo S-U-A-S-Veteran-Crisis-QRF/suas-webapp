@@ -46,6 +46,12 @@ touches it as high-risk and verify it visually.
 - Contrast rule learned the hard way: ghost buttons flip to white text only
   inside `.hero` / `.hero-image` / `.band` dark containers — check both
   contexts when styling CTAs.
+- Sub-path rule learned the hard way: the site deploys under `/suas-webapp`, and
+  Next rewrites `basePath` **only** for `next/link`, `next/image`, and
+  `image-loader.js`. Any raw URL in a plain `<a>`, `<iframe>`, or `fetch` must
+  prepend the base itself (`process.env.NEXT_PUBLIC_BASE_PATH || ""`) — see
+  `app/app/page.tsx`. Verify live-site link fixes with
+  `NEXT_PUBLIC_BASE_PATH=/suas-webapp npm run build` and grep `out/`.
 
 ## Commands
 

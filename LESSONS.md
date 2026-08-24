@@ -26,6 +26,39 @@ Template:
 
 ---
 
+## 2026-08-24 — A green build is not a working site; verify the deploy sub-path [self-correction]
+
+**What happened:** The donate page's IRS determination-letter link was reported
+404 on the live site. A previous session "fixed" it by adding the missing PDF to
+`public/docs/` — the build passed and the file existed, so it looked done. The
+link was still broken: this site deploys to a **`/suas-webapp` sub-path**, and
+Next.js rewrites `basePath` only for `next/link`, `next/image`, and the custom
+image loader — **never for a plain `<a href="/…">`**. The anchor kept resolving
+to the domain root. `npm run build` can never catch this, because the bug only
+exists in the sub-path build.
+
+**Rule going forward:** For any raw asset URL in a plain `<a>`, `<iframe>`,
+`fetch`, or inline style, prepend the base explicitly
+(`const base = process.env.NEXT_PUBLIC_BASE_PATH || ""`) — the idiom already in
+`app/app/page.tsx`. When fixing a live-site 404, verify by building the way it
+deploys (`NEXT_PUBLIC_BASE_PATH=/suas-webapp npm run build`) and grepping the
+emitted HTML in `out/`, not by confirming the file exists.
+
+## 2026-08-24 — A lint that exits 0 is not a passing lint [self-correction]
+
+**What happened:** `npm run lint` was documented as a project command but had
+never actually linted anything: no ESLint was installed and no config existed,
+so `next lint` printed its interactive "How would you like to configure ESLint?"
+prompt and **exited 0** — reading as success in every session and any
+non-interactive run. Once wired up properly it found 6 real errors on the first
+run.
+
+**Rule going forward:** Don't trust a zero exit code from a tool that may not
+have run. When a command's output shows a prompt, a setup wizard, or no findings
+at all, confirm it did the work (check the tool is installed and configured).
+Note `next lint` is deprecated and removed in Next 16 — this repo now calls the
+ESLint CLI via `eslint.config.mjs`.
+
 ## 2026-07-19 — Check the second brain before re-deriving org facts [self-correction]
 
 **What happened:** Claude concluded the public `help` repo "serves
