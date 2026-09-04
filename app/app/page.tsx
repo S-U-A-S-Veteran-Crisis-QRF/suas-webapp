@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import CrisisDemoApp from "@/components/CrisisDemoApp";
 import EmbeddedDemo from "@/components/EmbeddedDemo";
 
 export const metadata: Metadata = {
@@ -86,43 +85,7 @@ export default function AppPage() {
       <section>
         <div className="container">
           <Reveal>
-            <div className="sec-label">Interactive prototype</div>
-            <h2>Emergency services, one tap away</h2>
-            <p className="lead">
-              A working preview of the veteran-facing app: tap a need — ride, food, or shelter — and
-              walk through the confirmation flow. This is a prototype with sample data; no real
-              services are dispatched.
-            </p>
-          </Reveal>
-          <div className="device-frame">
-            <CrisisDemoApp />
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="container">
-          <Reveal>
-            <div className="sec-label">Full dispatch loop</div>
-            <h2>From a veteran&apos;s tap to the dispatcher&apos;s queue</h2>
-            <p className="lead">
-              The complete experience, end to end: tap a service on the veteran&apos;s phone and watch
-              the request land in the dispatcher console with its Medi-Cal billing detail, then advance
-              it through the live status flow. Sample data only — no real services are dispatched and
-              nothing is stored.
-            </p>
-          </Reveal>
-          <EmbeddedDemo
-            src={`${base}/app-demo-frs.html`}
-            title="Food, ride, and shelter dispatch demo"
-          />
-        </div>
-      </section>
-
-      <section>
-        <div className="container">
-          <Reveal>
-            <div className="sec-label">New: iOS operator loop</div>
+            <div className="sec-label">Interactive demo</div>
             <h2>The new app — one request, one visible path to support</h2>
             <p className="lead">
               The latest interactive demo of the SUAS iOS app: step through the operator loop from a
