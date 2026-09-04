@@ -121,6 +121,26 @@ export default function AppPage() {
 
       <section>
         <div className="container">
+          <Reveal>
+            <div className="sec-label">New: iOS operator loop</div>
+            <h2>The new app — one request, one visible path to support</h2>
+            <p className="lead">
+              The latest interactive demo of the SUAS iOS app: step through the operator loop from a
+              veteran&apos;s request to a resolved outcome. Every record, location, provider, and
+              outcome is synthetic — no API connection, no real services dispatched.
+            </p>
+          </Reveal>
+          <EmbeddedDemo src={`${base}/ios-operator.html`} title="SUAS iOS operator loop demo" />
+          <p className="note">
+            <a href={`${base}/ios-operator.html`} target="_blank" rel="noopener noreferrer">
+              Open the iOS operator demo in a full page
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
           <div className="panel">
             <span className="demo-tag">Demo · sample data</span>
             <div className="mock-row">
