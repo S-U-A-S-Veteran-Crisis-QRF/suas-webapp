@@ -55,7 +55,13 @@ npm run build   # static export — must pass before pushing (all 15 pages)
 npm run lint
 ```
 
-Deploys go out via GitHub Pages from the static export; see README.md.
+**Deploying is a separate step — merging to `main` does NOT update the live
+site.** GitHub Pages serves the **`gh-pages` branch** (a manually rebuilt
+static export). To ship: merge to `main`, then rebuild (`npm run build`,
+`NEXT_PUBLIC_BASE_PATH` empty for the root domain) and push `out/` to
+`gh-pages`, preserving `CNAME` (`suasqrf.org`) and `.nojekyll`. Full runbook in
+README.md. Never report a change as live until the `gh-pages` push and its
+"pages build and deployment" run have succeeded.
 
 ## Second brain (org memory)
 
