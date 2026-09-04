@@ -76,3 +76,22 @@ private `suas-claude-program` repo.
 check the destination's visibility. Default to private. Public repos carry
 only what must be public to operate (the website itself and its code/docs).
 This applies to branches too — every branch of a public repo is public.
+
+## 2026-08-26 — Never hand back a draft with blanks in it [user correction]
+
+**What happened:** Asked to draft a reply to a vendor's information request,
+Claude returned the draft with `[bracketed]` placeholders for the billing
+address and a phone extension — facts that were already available. The address
+was inside the IRS determination letter sitting in this repo
+(`public/docs/IRS-Determination-Letter.pdf`); the phone number on the site has
+no extension at all. Jacob's correction: "never do a draft with unfinished
+information — you know we have that — run a check before returning a prompt to
+me unchecked."
+
+**Rule going forward:** A placeholder is a last resort, not a shortcut. Before
+leaving any blank in a deliverable, exhaust the sources we already have — this
+repo (including PDFs in `public/`), the second brain, Gmail/Drive, and skill
+reference files such as `suas-comms/references/`. Then verify what was found
+rather than asserting it. A bracket is acceptable only for something genuinely
+unknowable (a decision only Jacob can make), and it must be labeled as a
+decision, not as missing homework.
