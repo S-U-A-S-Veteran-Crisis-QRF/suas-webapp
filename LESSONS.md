@@ -26,6 +26,34 @@ Template:
 
 ---
 
+## 2026-09-04 — "Install the new X" means replace the old X, not add alongside [user correction]
+
+**What happened:** Asked to install the new app demo on the website's app page,
+Claude added it as a new section while leaving the two old demos in place.
+Jacob, looking at the live page, had to correct it: "there are two apps on the
+screen so remove the old one and insert the new one."
+
+**Rule going forward:** When Jacob says install/put/add the *new* version of
+something that already has an old equivalent on the page, default to
+**replacing** the old one (keep the old files in the repo, just stop rendering
+them). After shipping, sanity-check the page as a visitor sees it — if old and
+new versions of the same thing are both visible, that's almost never the
+intent.
+
+## 2026-09-04 — Merging to main does NOT deploy the live site [user correction]
+
+**What happened:** After merging a PR to `main`, Claude told Jacob the change
+was live. It wasn't — this site has no auto-deploy: GitHub Pages serves the
+**`gh-pages` branch**, which is a manually rebuilt static export. Jacob had to
+report "the old website is up" before Claude found the runbook and pushed the
+build.
+
+**Rule going forward:** Shipping a website change is a two-step: (1) merge to
+`main`, (2) rebuild (`npm run build`, base path empty for the root domain) and
+push `out/` to `gh-pages`, preserving `CNAME` (`suasqrf.org`) and `.nojekyll`
+(full runbook in README.md). Never report a change as live until the
+`gh-pages` push and the "pages build and deployment" run have succeeded.
+
 ## 2026-07-19 — Check the second brain before re-deriving org facts [self-correction]
 
 **What happened:** Claude concluded the public `help` repo "serves
