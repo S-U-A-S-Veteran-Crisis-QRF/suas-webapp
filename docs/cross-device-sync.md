@@ -94,6 +94,15 @@ says the channel is unreachable.
 - "What's the overall project status?" → `MASTER.md` (4)
 - "Claude got corrected — make it stick" → `LESSONS.md` (1)
 
+## Related: the network layer
+
+Everything above syncs *state* through git and works from anywhere on the open
+internet. If you also want the devices to reach **each other** directly — file
+transfer without a third-party inbox, remote access to the always-on Beelink,
+previewing a local `npm run dev` build on the real phone — that's Tailscale, and
+it's set up in [`docs/tailscale-setup.md`](./tailscale-setup.md). It sits under
+these five layers rather than replacing any of them.
+
 ## History
 
 The one-time consolidation snapshot that predates this system lives in

@@ -50,6 +50,10 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-20** — Demo-site feedback fixes (Hacker Dojo): IRS determination letter PDF added to `public/docs/` (donate-page link was 404 on the live site); `/app` "Demo screens" copy rewritten for visitors (was product-manager-facing "Say the word…" text); Lyft Concierge + Expedia Rapid integration leads captured in `docs/integration-leads.md`
 - **2026-09-04** — New iOS operator-loop demo installed on `/app`: `public/ios-operator.{html,css,js}` vendored from the live page at scrimshawlife-ctrl.github.io/suas (synthetic data, no API calls), embedded via `EmbeddedDemo` with a full-page link; crisis-line banner (988 · Press 1 · text 838255) added to the standalone page; old CrisisDemoApp prototype + app-demo-frs dispatch embed removed from the page so the new demo is the single app demo
 
+- **2026-08-16** — Tailscale multi-device runbook added (`docs/tailscale-setup.md`): one tailnet across the Beelink PC, MacBook Pro, and Android phone, with the public-repo rule that tailnet names/addresses/keys stay in the private vault; linked from `docs/cross-device-sync.md` as the network layer beneath the five sync layers
+
+- **2026-08-16** — SyncTrayzor/Syncthing runbook added (`docs/syncthing-setup.md`): the installed build is the unmaintained `canton7` original, so the doc covers migrating to the maintained `GermanCoding` v2 fork, the one-way Syncthing v1→v2 SQLite database migration, pinning sync to the tailnet instead of public relays, and the rule that the vault keeps Drive + Obsidian Git as its only sync owners
+
 ## Claude capability stack
 
 - **24 Opus subagents** (`.claude/agents/`) — frontend, React/Next, TypeScript, code review, debugging, QA, accessibility, security, performance, refactoring, docs, and more.
@@ -93,6 +97,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - [ ] Re-authorize QuickBooks; re-consent Zoho CRM/Desk with broader scopes (claude.ai connector settings)
 - [ ] Point `suasqrf.org` custom domain at GitHub Pages
 - [ ] Pull this branch (or `main` after merge) on the MacBook Pro and Beelink PC to sync the toolkit
+- [ ] **Install Tailscale on all three devices** (Beelink PC, MacBook Pro, Android phone) following [`docs/tailscale-setup.md`](docs/tailscale-setup.md) — must be done by hand on each device; the one thing to get right is signing in with the *same* account on all three
 - [ ] Add `suas-claude-program` to the Claude Code cloud environment sources so phone/cloud sessions auto-receive the private sync channel
 - [ ] `help` repo visibility — corrected 2026-07-19: the vault records suasqrf.org repointed to **this repo's site on 2026-07-15**, so the `CNAME` file still sitting in `help` is likely a stale leftover, not proof it serves the domain. Verify with one look at suasqrf.org (new Next.js site vs old Jekyll Cayman theme); if the new site serves, archive `help` and flip it private
 - [ ] End each working session with `/sync handoff` so the next device picks up seamlessly
