@@ -48,6 +48,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 - **2026-07-19** — Cross-device session sync shipped: `/sync` skill (catchup/handoff/note) + SessionStart auto-catch-up, with the message bus on a **private** repo's `claude-sync` branch so session state never touches this public repo (`docs/cross-device-sync.md`); `LESSONS.md` self-learning corrections log added
 - **2026-07-19** — Expert operating posture made auto-loading: six commitments in the shared program `CLAUDE.md` + `/expert-mode` skill (private program repo, on `main`), mirrored into this repo's `CLAUDE.md` for cloud sessions
 - **2026-07-20** — Demo-site feedback fixes (Hacker Dojo): IRS determination letter PDF added to `public/docs/` (donate-page link was 404 on the live site); `/app` "Demo screens" copy rewritten for visitors (was product-manager-facing "Say the word…" text); Lyft Concierge + Expedia Rapid integration leads captured in `docs/integration-leads.md`
+- **2026-09-10** — VA Suicide Prevention BAA (36C10X24R0053, Topic 010) application staged: concept paper rebuilt on the official VA template with a fact-check pass (all unverified claims bracketed for Jacob), DOCX + status note filed to the second brain, and a Gmail draft to the VA submission inbox staged with the paper attached — **not sent**; awaiting Jacob's placeholder fixes and explicit send approval (rolling deadline 2026-09-30)
 - **2026-09-04** — New iOS operator-loop demo installed on `/app`: `public/ios-operator.{html,css,js}` vendored from the live page at scrimshawlife-ctrl.github.io/suas (synthetic data, no API calls), embedded via `EmbeddedDemo` with a full-page link; crisis-line banner (988 · Press 1 · text 838255) added to the standalone page; old CrisisDemoApp prototype + app-demo-frs dispatch embed removed from the page so the new demo is the single app demo
 
 ## Claude capability stack
@@ -88,6 +89,7 @@ Full dated history lives in [`docs/claude-device-handoff.md`](docs/claude-device
 
 ## Next actions
 
+- [ ] **VA BAA submission (deadline 2026-09-30):** resolve the yellow [JACOB CONFIRM] brackets in the staged concept paper (Gmail drafts + second brain `03_Projects/food-ride-shelter/`), then send the staged Gmail draft to the VA inbox
 - [ ] Mark PRs #3 and #4 ready for review and merge (both docs/small fixes, build-verified)
 - [ ] Decide on PR #2: merge the grant-finder kit, add `ANTHROPIC_API_KEY` locally, launch the agent
 - [ ] Re-authorize QuickBooks; re-consent Zoho CRM/Desk with broader scopes (claude.ai connector settings)
