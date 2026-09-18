@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SUAS Q.R.F. — Indiegogo Campaign Mockup</title>
+<style>
+  /* SUAS design tokens (mirrors app/globals.css) */
+  :root{
+    --cream:#f4efe5; --cream-2:#efe9dc; --card:#ffffff; --line:#e6dfd0;
+    --navy:#101f33; --navy-grad1:#13243a; --navy-grad2:#0d1a2c;
+    --ink:#1b2733; --muted:#5c6a79; --muted-light:#aeb8c4;
+    --gold:#c8993f; --gold-2:#d8a948; --gold-soft:#e7d9b6;
+    --green:#3a9d5d; --yellow:#d6a52a; --orange:#df7c3c; --crisis:#b3261e;
+    --radius:14px; --max:1100px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold);text-decoration:none}
+  a:hover{color:var(--gold-2)}
+  img{max-width:100%;display:block}
+  .container{max-width:var(--max);margin:0 auto;padding:0 24px}
+  .muted{color:var(--muted)}
+
+  .mock-banner{background:var(--navy);color:var(--muted-light);text-align:center;
+    padding:6px 14px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
+  .crisis-bar{background:var(--crisis);color:#fff;text-align:center;padding:9px 16px;
+    font-size:.9rem;font-weight:600}
+  .crisis-bar a{color:#fff;text-decoration:underline}
+
+  header.site{background:rgba(244,239,229,.94);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:18px;height:62px}
+  .brand{font-weight:800;color:var(--ink);font-size:.98rem}
+  .brand span{display:block;font-weight:600;font-size:.62rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted)}
+  .igg-tag{margin-left:auto;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:3px 9px}
+
+  .btn{display:inline-block;padding:12px 22px;border-radius:9px;font-weight:700;font-size:.92rem;
+    border:1px solid transparent;cursor:pointer;text-align:center}
+  .btn-primary{background:var(--gold);color:#231a06}
+  .btn-primary:hover{background:var(--gold-2)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--gold)}
+  .btn-block{display:block;width:100%}
+
+  /* campaign top: gallery + sidebar */
+  .campaign-top{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;padding:32px 0}
+  .gallery{border-radius:var(--radius);overflow:hidden;box-shadow:0 14px 40px rgba(16,31,51,.16)}
+  .video-frame{position:relative;aspect-ratio:16/9;
+    background:linear-gradient(160deg,var(--navy-grad1),var(--navy-grad2));
+    display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff}
+  .play{width:74px;height:74px;border-radius:999px;background:var(--gold);display:flex;
+    align-items:center;justify-content:center;font-size:1.6rem;color:#231a06;margin-bottom:14px}
+  .video-frame .vh{font-size:1.35rem;font-weight:800;max-width:420px;text-align:center;line-height:1.25}
+  .video-frame .vs{color:#c4cdd9;font-size:.85rem;margin-top:8px}
+  .eyebrow{color:var(--gold);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.74rem}
+
+  .side{display:flex;flex-direction:column;gap:14px}
+  .side h1{font-size:1.7rem;line-height:1.18;letter-spacing:-.01em}
+  .side .tagline{color:var(--muted);font-size:.98rem}
+  .raised{font-size:1.9rem;font-weight:800;color:var(--ink)}
+  .raised small{font-size:.9rem;font-weight:600;color:var(--muted)}
+  .meter{height:10px;border-radius:999px;background:var(--cream-2);border:1px solid var(--line);overflow:hidden}
+  .meter i{display:block;height:100%;width:34%;background:linear-gradient(90deg,var(--gold),var(--gold-2))}
+  .stats{display:flex;gap:22px;font-size:.88rem;color:var(--muted)}
+  .stats b{display:block;color:var(--ink);font-size:1.05rem}
+  .badges{display:flex;gap:8px;flex-wrap:wrap}
+  .pill{border:1px solid var(--line);border-radius:999px;padding:5px 13px;color:var(--muted);
+    font-size:.78rem;background:var(--card)}
+
+  .band{background:linear-gradient(160deg,var(--navy-grad1),var(--navy-grad2));color:#fff;
+    border-radius:var(--radius);padding:26px;text-align:center}
+  .band .lead{color:#c4cdd9}
+
+  /* story + perks columns */
+  .campaign-body{display:grid;grid-template-columns:1.6fr 1fr;gap:36px;padding:12px 0 60px}
+  .story h2{font-size:1.5rem;margin:34px 0 10px;letter-spacing:-.01em}
+  .story h2:first-child{margin-top:0}
+  .sec-label{color:var(--gold);font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    font-size:.72rem;margin:34px 0 4px}
+  .sec-label + h2{margin-top:0}
+  .story p{margin:10px 0;color:var(--ink)}
+  .story .lead{color:var(--muted)}
+  .imgph{aspect-ratio:16/8;border-radius:var(--radius);border:2px dashed var(--gold-soft);
+    background:var(--cream-2);display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:.85rem;margin:16px 0;text-align:center;padding:12px}
+  .note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--crisis);
+    border-radius:10px;padding:14px 16px;font-size:.92rem;margin:16px 0}
+  .grid{display:grid;gap:14px;margin:16px 0}
+  .cols-3{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .card h3{font-size:1rem;margin-bottom:4px}
+  .card p{color:var(--muted);font-size:.9rem;margin:0}
+  .steps{counter-reset:s;display:grid;gap:10px;margin:16px 0}
+  .step{display:flex;gap:12px;align-items:flex-start;background:var(--card);
+    border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .num{flex:none;display:flex;align-items:center;justify-content:center;width:30px;height:30px;
+    border-radius:999px;background:var(--navy);color:#fff;font-weight:800;font-size:.85rem}
+  .step p{margin:0;font-size:.92rem;color:var(--muted)}
+  .step b{color:var(--ink)}
+  table{width:100%;border-collapse:collapse;font-size:.9rem;margin:14px 0}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}
+  .signals{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+  .sig{border-radius:999px;padding:5px 13px;font-size:.78rem;font-weight:700;color:#fff}
+  .sig.g{background:var(--green)} .sig.y{background:var(--yellow)}
+  .sig.o{background:var(--orange)} .sig.r{background:var(--crisis)}
+
+  /* perks */
+  .perks h2{font-size:1.2rem;margin-bottom:12px}
+  .perk{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;margin-bottom:14px;transition:border-color .15s ease}
+  .perk:hover{border-color:var(--gold)}
+  .perk .price{font-size:1.25rem;font-weight:800}
+  .perk .pname{color:var(--gold);font-weight:700;font-size:.78rem;letter-spacing:.12em;
+    text-transform:uppercase;margin-bottom:2px}
+  .perk p{color:var(--muted);font-size:.88rem;margin:8px 0 12px}
+  .perk .claimed{font-size:.76rem;color:var(--muted)}
+  .perk.anchor{border-color:var(--gold);box-shadow:0 6px 22px rgba(200,153,63,.18)}
+  .perk .flag{display:inline-block;background:var(--gold-soft);color:#5c4712;border-radius:6px;
+    font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:2px 8px;margin-left:8px;vertical-align:middle}
+  .perk .impact{background:var(--cream-2);border-radius:8px;padding:8px 10px;font-size:.82rem;
+    color:var(--ink);margin:0 0 12px}
+
+  footer{background:var(--navy);color:var(--muted-light);padding:26px 0;font-size:.85rem;text-align:center}
+  footer a{color:var(--gold-soft)}
+
+  @media (max-width:880px){
+    .campaign-top,.campaign-body{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="mock-banner">Design mockup · not a live campaign · copy source: docs/indiegogo/campaign-kit.md</div>
+
+<div class="crisis-bar">
+  In crisis? Veterans Crisis Line: <a href="tel:988">Dial 988, press 1</a> · or text <a href="sms:838255">838255</a> — free, confidential, 24/7
+</div>
+
+<header class="site">
+  <div class="container nav">
+    <div class="brand">SUAS Veteran Crisis Q.R.F.<span>Quick Reaction Force · 501(c)(3)</span></div>
+    <div class="igg-tag">Indiegogo · Community Projects</div>
+  </div>
+</header>
+
+<div class="container campaign-top">
+  <div class="gallery">
+    <div class="video-frame">
+      <div class="play">▶</div>
+      <div class="eyebrow">75-second pitch video</div>
+      <div class="vh">"Most veterans don't reach out until they're already in crisis."</div>
+      <div class="vs">Founder on camera · captions burned in · crisis-line end card</div>
+    </div>
+  </div>
+
+  <aside class="side">
+    <h1>SUAS Q.R.F.: Reach Veterans Before the Crisis</h1>
+    <p class="tagline">A veteran-led 501(c)(3) building check-ins, trusted-circle alerts &amp; responder tools — before crisis.</p>
+    <div>
+      <div class="raised">$8,540 <small>raised of $25,000 goal</small></div>
+      <div class="meter" style="margin:10px 0"><i></i></div>
+      <div class="stats">
+        <span><b>34%</b> funded</span>
+        <span><b>127</b> backers</span>
+        <span><b>22</b> days left</span>
+      </div>
+    </div>
+    <a class="btn btn-primary btn-block" href="#perks">Back this campaign</a>
+    <a class="btn btn-ghost btn-block" href="#story">Read the full story</a>
+    <div class="badges">
+      <span class="pill">Tax-deductible · EIN 88-3249428</span>
+      <span class="pill">Consent-based alerts</span>
+      <span class="pill">Privacy-first design</span>
+      <span class="pill">Working demo live</span>
+    </div>
+  </aside>
+</div>
+
+<div class="container campaign-body">
+  <article class="story" id="story">
+    <h2>Veterans shouldn't have to reach a breaking point before support shows up.</h2>
+    <p>Every veteran crisis has a <em>before</em>. Lost sleep. Skipped meals. Calls that go
+      unanswered. Benefits paperwork that piles up. The warning signs are visible — but they're
+      scattered across family, buddies, and case workers who each see only a piece, until someone
+      is in crisis.</p>
+    <p><strong>SUAS Veteran Crisis Q.R.F. is building the infrastructure that connects those
+      pieces earlier</strong> — so support arrives while it can still be light.</p>
+
+    <div class="imgph">[Hero photo — founder / veterans, warm and human. No stock photos posing as pilot participants.]</div>
+
+    <div class="note"><strong>If you or a veteran you love needs help right now:</strong>
+      Veterans Crisis Line — dial <strong>988, press 1</strong>, or text <strong>838255</strong>.
+      Free, confidential, 24/7.</div>
+
+    <div class="sec-label">The problem</div>
+    <h2>Warning signs stay disconnected</h2>
+    <div class="grid cols-3">
+      <div class="card"><h3>Veterans</h3><p>Carry stress privately — nightmares, withdrawal, avoiding calls.</p></div>
+      <div class="card"><h3>Families</h3><p>See pieces, not the full picture — short answers, missed dinners.</p></div>
+      <div class="card"><h3>Responders</h3><p>Lose track between touchpoints — outreach goes cold, referrals stall.</p></div>
+    </div>
+
+    <div class="sec-label">The solution</div>
+    <h2>A Quick Reaction Force for support</h2>
+    <div class="imgph">[Annotated demo screenshots — check-in flow, support signal, trusted circle]</div>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><p><b>Check in</b> — private, judgment-free: mood, sleep, safety.</p></div>
+      <div class="step"><span class="num">2</span><p><b>Support signal</b> — stable → light support → active outreach.</p></div>
+      <div class="step"><span class="num">3</span><p><b>Trusted circle</b> — consent-based alerts to people the veteran chooses.</p></div>
+      <div class="step"><span class="num">4</span><p><b>Resource routing</b> — county-relevant help: housing, benefits, health.</p></div>
+      <div class="step"><span class="num">5</span><p><b>Follow-up</b> — responders log outreach so no one falls through the cracks.</p></div>
+    </div>
+    <div class="signals">
+      <span class="sig g">Stable</span><span class="sig y">Light support</span>
+      <span class="sig o">Active outreach</span><span class="sig r">Immediate safety concern</span>
+    </div>
+    <p class="lead"><strong>What SUAS is not:</strong> not a diagnosis tool, not surveillance, not a
+      replacement for emergency care. Early-support coordination, privacy-first by design.</p>
+
+    <div class="sec-label">Why us</div>
+    <h2>Veteran-led, nonprofit, already building</h2>
+    <div class="imgph">[Founder story + team photos with one-line bios — the trust section]</div>
+    <p>S.U.A.S. Veteran Crisis Q.R.F. is a California 501(c)(3) public charity (EIN 88-3249428).
+      Contributions are tax-deductible to the extent allowed by law. A working demo is live today
+      at <a href="https://suasqrf.org/">suasqrf.org</a>.</p>
+
+    <div class="sec-label">What your money builds</div>
+    <h2>$25,000 launches our first pilot — 25 to 50 veterans</h2>
+    <table>
+      <tr><th>Allocation</th><th>%</th><th>Funds</th></tr>
+      <tr><td>Pilot app build</td><td>40%</td><td>Check-in, trusted-circle &amp; responder tools</td></tr>
+      <tr><td>Privacy &amp; legal review</td><td>20%</td><td>Consent flows reviewed <em>before</em> launch</td></tr>
+      <tr><td>Veteran outreach</td><td>20%</td><td>Recruiting &amp; supporting the pilot cohort</td></tr>
+      <tr><td>Responder tools</td><td>12%</td><td>Support queue, outreach logging, follow-up</td></tr>
+      <tr><td>Resource routing</td><td>8%</td><td>County resource navigation &amp; referrals</td></tr>
+    </table>
+    <p class="lead" style="font-size:.85rem">Illustrative allocation for planning — not audited
+      financials. 100% of contributions support the mission.</p>
+
+    <div class="sec-label">Risks &amp; challenges</div>
+    <h2>Honest about where we are</h2>
+    <p class="lead">This is early-stage: the platform is a working demo, and the pilot is where we
+      prove workflows. Recruiting veterans takes trust, so we work through partner organizations.
+      Privacy is hard, which is why legal review is funded before launch — and we make no clinical
+      or outcome claims a pilot hasn't earned. Every backer gets the findings report, win or lose.</p>
+
+    <div class="band" style="margin-top:30px">
+      <h2 style="margin:0 0 6px">No one is left behind.</h2>
+      <p class="lead">Back the campaign — then share it with one veteran or military family you know.</p>
+    </div>
+  </article>
+
+  <aside class="perks" id="perks">
+    <h2>Select a perk</h2>
+
+    <div class="perk">
+      <div class="pname">Fire Watch</div>
+      <div class="price">$10</div>
+      <p>Name on the digital Founding Supporters wall + backer-only updates.</p>
+      <a class="btn btn-ghost btn-block" href="#">Get this perk</a>
+    </div>
+
+    <div class="perk anchor">
+      <div class="pname">Battle Buddy <span class="flag">Most popular</span></div>
+      <div class="price">$25</div>
+      <p>Supporters wall + founding-supporter certificate + the pilot findings report.</p>
+      <div class="claimed">Early bird: 42 of 100 claimed</div>
+      <a class="btn btn-primary btn-block" style="margin-top:10px" href="#">Get this perk</a>
+    </div>
+
+    <div class="perk">
+      <div class="pname">Overwatch</div>
+      <div class="price">$50</div>
+      <div class="impact">🎖 Impact: supports one veteran through a month of pilot check-ins.</div>
+      <p>Everything in Battle Buddy.</p>
+      <a class="btn btn-ghost btn-block" href="#">Get this perk</a>
+    </div>
+
+    <div class="perk">
+      <div class="pname">Squad Leader</div>
+      <div class="price">$100</div>
+      <p>Overwatch + SUAS challenge coin.</p>
+      <a class="btn btn-ghost btn-block" href="#">Get this perk</a>
+    </div>
+
+    <div class="perk">
+      <div class="pname">Platoon Sponsor</div>
+      <div class="price">$250</div>
+      <p>Name/logo on the pilot findings report + live virtual pilot briefing with the founder.</p>
+      <a class="btn btn-ghost btn-block" href="#">Get this perk</a>
+    </div>
+
+    <div class="perk">
+      <div class="pname">Company Sponsor</div>
+      <div class="price">$500</div>
+      <div class="impact">🎖 Impact: funds a full pilot seat — one veteran, onboarding through findings.</div>
+      <p>Everything in Platoon Sponsor.</p>
+      <a class="btn btn-ghost btn-block" href="#">Get this perk</a>
+    </div>
+
+    <div class="perk">
+      <div class="pname">Mission Partner</div>
+      <div class="price">$1,000</div>
+      <p>Website partners recognition + 1:1 briefing call with the founder.</p>
+      <a class="btn btn-ghost btn-block" href="#">Get this perk</a>
+    </div>
+
+    <div class="perk" style="border-style:dashed">
+      <div class="pname">🔒 Founding QRF Circle · secret perk</div>
+      <div class="price">$2,500</div>
+      <p>Advisory preview of the responder dashboard + named acknowledgment in the pilot report.
+        Link shared only with the email list &amp; partner orgs.</p>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="container">
+    S.U.A.S. Veteran Crisis Q.R.F. · 501(c)(3) public charity · EIN 88-3249428 ·
+    <a href="https://suasqrf.org/">suasqrf.org</a><br>
+    Veterans Crisis Line: dial 988, press 1 · text 838255 — free, confidential, 24/7
+  </div>
+</footer>
+
+</body>
+</html>

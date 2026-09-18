@@ -20,6 +20,7 @@ export const FOOTER_EXPLORE: NavLink[] = [
   { href: "/nonprofits", label: "Nonprofits" },
   { href: "/counties", label: "Counties" },
   { href: "/pilot", label: "Pilot" },
+  { href: "/campaign", label: "Founding Campaign" },
   { href: "/donate", label: "Donate" },
   { href: "/app", label: "App Demo" },
 ];
