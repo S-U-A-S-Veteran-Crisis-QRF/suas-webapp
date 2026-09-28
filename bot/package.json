@@ -1,0 +1,16 @@
+{
+  "name": "suas-qrf-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Telegram signpost bot for SUAS Veteran Crisis Q.R.F. — surfaces the Veterans Crisis Line and routes to real help. Runs as a stateless Cloudflare Worker webhook.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250101.0",
+    "typescript": "^5.6.0",
+    "wrangler": "^3.90.0"
+  }
+}
