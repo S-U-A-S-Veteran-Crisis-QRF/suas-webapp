@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import FounderBlock from "@/components/FounderBlock";
 import Reveal from "@/components/Reveal";
 
 const campaignTitle = "Founding Supporter Campaign — SUAS Veteran Crisis Q.R.F.";
@@ -34,7 +35,10 @@ export const metadata: Metadata = {
   },
 };
 
+// PayPal Giving Fund charity pages have no documented amount parameter, so tier
+// buttons link plainly; donors pick the amount on PayPal.
 const DONATE_URL = "https://www.paypal.com/US/fundraiser/charity/4819148";
+const GOFUNDME_URL = "https://gofund.me/62aa802f0";
 
 const LEVELS = [
   {
@@ -187,6 +191,9 @@ export default function CampaignPage() {
                 </div>
                 <h3>{level.amount}</h3>
                 <p>{level.detail}</p>
+                <a className="btn btn-primary btn-sm" href={DONATE_URL} style={{ marginTop: 14 }}>
+                  Give {level.amount}
+                </a>
               </Reveal>
             ))}
             <Reveal className="card lift">
@@ -198,8 +205,14 @@ export default function CampaignPage() {
                 Every contribution is tax-deductible and goes directly to pilot
                 infrastructure.
               </p>
+              <a className="btn btn-primary btn-sm" href={DONATE_URL} style={{ marginTop: 14 }}>
+                Give any amount
+              </a>
             </Reveal>
           </div>
+          <p style={{ marginTop: 18 }}>
+            Prefer GoFundMe? <a href={GOFUNDME_URL}>Give there instead</a>.
+          </p>
           <div className="cta-row" style={{ marginTop: 24 }}>
             <a className="btn btn-primary" href={DONATE_URL}>
               Donate via PayPal Giving Fund (0% fees)
@@ -208,6 +221,15 @@ export default function CampaignPage() {
               Talk to us about sponsoring
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <Reveal>
+            <div className="sec-label">Who runs SUAS</div>
+          </Reveal>
+          <FounderBlock compact />
         </div>
       </section>
 
