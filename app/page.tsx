@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import FounderBlock from "@/components/FounderBlock";
 import Reveal from "@/components/Reveal";
 
 export default function HomePage() {
@@ -172,6 +173,14 @@ export default function HomePage() {
             <Link className="card lift" href="/app"><h3>Peer responders</h3><p>Follow-up queue and outreach tracking for trusted support.</p></Link>
             <Link className="card lift" href="/donate"><h3>Donors</h3><p>Fund pilot infrastructure, privacy review, and outreach.</p></Link>
           </div>
+          <div className="note" style={{ marginTop: 24 }}>
+            <h3>What your gift does</h3>
+            <p>
+              Donations fund the crisis response itself: rides to critical appointments, meals,
+              emergency overnight shelter, and peer check-ins from fellow veterans.{" "}
+              <Link href="/campaign">Donate →</Link>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -228,6 +237,16 @@ export default function HomePage() {
               <Link className="btn btn-ghost" href="/contact">Contact us</Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <Reveal>
+            <div className="sec-label">Who runs SUAS</div>
+            <h2>Meet the founder</h2>
+          </Reveal>
+          <FounderBlock />
         </div>
       </section>
     </>

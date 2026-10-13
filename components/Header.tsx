@@ -28,10 +28,14 @@ export default function Header() {
           <Link className="btn btn-ghost btn-sm" href="/pilot">
             Join Pilot
           </Link>
-          <Link className="btn btn-primary btn-sm" href="/donate">
-            Support Mission
+          <Link className="btn btn-primary btn-sm" href="/campaign">
+            Donate
           </Link>
         </div>
+        {/* Donate stays visible on mobile without opening the menu. */}
+        <Link className="btn btn-primary btn-sm nav-donate-mobile" href="/campaign">
+          Donate
+        </Link>
         <button
           className="nav-toggle"
           aria-label="Toggle navigation menu"
@@ -60,8 +64,8 @@ export default function Header() {
             <Link className="btn btn-ghost btn-sm" href="/pilot">
               Join Pilot
             </Link>
-            <Link className="btn btn-primary btn-sm" href="/donate">
-              Support Mission
+            <Link className="btn btn-primary btn-sm" href="/campaign">
+              Donate
             </Link>
           </div>
         </div>

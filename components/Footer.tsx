@@ -14,6 +14,13 @@ export default function Footer() {
               Nonprofit veteran crisis-prevention and care-coordination. Demo environment — not
               live clinical services.
             </p>
+            <div className="foot-contact">
+              <p>
+                Email: <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a>
+              </p>
+              <p>S.U.A.S. Veteran Crisis QRF · 501(c)(3) nonprofit · EIN 88-3249428</p>
+              <p>Donations are tax-deductible.</p>
+            </div>
             <span className="attrib">Owned site for S.U.A.S. — California 501(c)(3)</span>
           </div>
           <div>
