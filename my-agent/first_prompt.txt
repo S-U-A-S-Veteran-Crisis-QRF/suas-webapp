@@ -1,0 +1,18 @@
+Find real, currently-open funding that S-U-A-S Veteran Crisis QRF can apply for, and write the decision-ready report described in your instructions to /mnt/session/outputs/grant-report.md.
+
+=== SUAS organizational profile ===
+(Confirm/fill the bracketed fields before relying on the report for eligibility. Where a field is left blank, search broadly and note the eligibility requirement so the team can verify it.)
+
+- Organization: S-U-A-S Veteran Crisis QRF ("SUAS")
+- Mission: Operates a veteran-crisis quick-reaction force — rapid response and support for U.S. military veterans in acute crisis (suicide prevention, mental-health emergencies, emergency outreach).
+- Website: suasqrf.org
+- Tax status / 501(c)(3): [FILL — e.g. "501(c)(3) public charity, EIN xx-xxxxxxx" or "fiscally sponsored" or "applying"]
+- State / primary service area: [FILL — e.g. "Texas; serves veterans nationwide"]
+- Approx. annual budget: [FILL — e.g. "under $50k"]
+- Year founded / staffing: [FILL — e.g. "2024; all-volunteer"]
+- Programs to fund: crisis response / QRF operations, peer support, suicide prevention, mental-health access, [add any others]
+
+=== What I need back ===
+1. A ranked table of >= 8 verified, currently-open funding opportunities (grants, foundations, government/VA programs, corporate giving) that fund this kind of work — each with funder, amount, deadline, eligibility, why-it-fits-SUAS, and the application/source link you fetched.
+2. For the top 3 best-fit opportunities, a tailored letter-of-inquiry / outreach email draft (<= 250 words each).
+Verify every opportunity by fetching its source page first. Do not invent anything. Drafts only — do not contact anyone.

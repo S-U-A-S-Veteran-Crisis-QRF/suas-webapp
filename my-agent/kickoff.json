@@ -1,0 +1,7 @@
+{
+  "_comment": "Reference snapshot of the kickoff event. launch.sh builds this live from first_prompt.txt + outcome.md so the two never drift. Sent to POST /v1/sessions/$SESSION_ID/events as {\"events\":[ <this> ]}.",
+  "type": "user.define_outcome",
+  "description": "<contents of first_prompt.txt>",
+  "rubric": { "type": "text", "content": "<contents of outcome.md>" },
+  "max_iterations": 3
+}

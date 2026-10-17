@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "founder": "Jacob Silver",
+    "company": "S-U-A-S Veteran Crisis QRF (SUAS)",
+    "problem": "We're a broke veteran-crisis nonprofit. We need funding we don't have to pay back — grants, foundations, corporate giving — found and teed up for application.",
+    "created": "2026-06-30",
+    "skill_version": "0.3.0"
+  },
+  "agent": {
+    "name": "suas-grant-finder",
+    "model": "claude-opus-4-8",
+    "model_rationale": "Newest Opus-class for careful, verified web research where a hallucinated grant wastes the team's time. A run is on-demand and costs cents; Sonnet is the cheaper fallback if cost matters more than depth (see NEXT-DIRECTIONS).",
+    "version": null,
+    "system_summary": "Fundraising/grants research expert for SUAS. Searches the web for real, currently-open grants/foundations/corporate-giving for veteran crisis, mental-health, suicide-prevention and QRF-type work; verifies each by fetching the source; ranks by fit/$/deadline; writes /mnt/session/outputs/grant-report.md with a ranked table + drafted letters of inquiry for the top 3.",
+    "never_dos": [
+      "Never contact, email, or submit anything to anyone — research and drafting only",
+      "Never invent a funder, link, award amount, or deadline; every entry must come from a page actually fetched, with its URL",
+      "Anything that can't be verified from a fetched source is omitted or marked 'unverified'"
+    ]
+  },
+  "outcome": {
+    "description": "Produce a decision-ready, verified grant-prospect report as grant-report.md",
+    "rubric_criteria": [
+      "grant-report.md exists and lists at least 8 currently-open funding opportunities relevant to veteran crisis / mental-health / suicide-prevention / emergency-response work",
+      "Each opportunity includes funder, award amount or range, deadline (or 'rolling'), eligibility summary, a one-line 'why it fits SUAS', and a working application/source URL the agent actually retrieved",
+      "The top 3 best-fit opportunities each include a tailored drafted letter of inquiry / outreach email of 250 words or fewer",
+      "No funder, link, deadline, or amount is fabricated; anything unverifiable from a fetched source is omitted or explicitly marked 'unverified'",
+      "Opportunities are ranked by fit + award size + deadline proximity, with a one-line ranking rationale"
+    ],
+    "max_iterations": 3
+  },
+  "tools": {
+    "toolset": "agent_toolset_20260401",
+    "enabled": ["bash", "read", "write", "edit", "glob", "grep", "web_search", "web_fetch"],
+    "disabled": [],
+    "permission_overrides": [],
+    "custom_tools": []
+  },
+  "connections": {
+    "mcp_servers": [],
+    "vault_credentials": [],
+    "github": null,
+    "notes": "v0 uses public web only and drafts (never sends). Roadmap: an email/Gmail connector + vault credential, gated always_ask, so the agent can send the LOIs after human approval (NEXT-DIRECTIONS v2)."
+  },
+  "skills": [],
+  "memory": {
+    "stores": [],
+    "notes": "No memory store in v0 (on-demand, full list each run). v1 adds a 'grants-seen' store so a recurring scan reports only NEW opportunities."
+  },
+  "environment": {
+    "name": "suas-grant-finder-env",
+    "type": "cloud",
+    "networking": "unrestricted",
+    "allowed_hosts": [],
+    "packages": {}
+  },
+  "schedule": {
+    "mode": "on-demand",
+    "cron": null,
+    "timezone": null,
+    "human": "Run it whenever you want a fresh sweep. v1 puts it on a monthly cron.",
+    "kickoff": "user.define_outcome (task + rubric above)"
+  },
+  "evals": {
+    "cases": [
+      {"name": "case-01", "input": "evals/case-01/input.md", "expected": "evals/case-01/expected.md (filled with the first verified good run)", "last_verdict": null}
+    ],
+    "notes": "No golden set yet — the first verified report becomes the regression baseline."
+  },
+  "defaults_applied": {
+    "iteration_bound": "Outcome stops after 3 grade-and-improve cycles",
+    "write_actions": "None in v0 — the agent drafts, humans send"
+  },
+  "interface": {
+    "who": "Jacob + SUAS team",
+    "how": "Report lands as grant-report.md (download from the session). Console for run history."
+  },
+  "next_directions": [
+    {
+      "what": "Run it monthly on a schedule, reporting only NEW grants since last time",
+      "why_deferred": "v0 is on-demand to prove the output first; scheduling is a deliberate v1 upgrade",
+      "how": "Create a scheduled deployment (monthly cron + timezone, same kickoff as initial_events) + a 'grants-seen' memory store attached read_write; the agent diffs against it each run"
+    },
+    {
+      "what": "Let the agent send the top LOIs itself after you approve each one",
+      "why_deferred": "Write-action to an external system — kept human-in-the-loop and drafts-only for v0",
+      "how": "Add an email/Gmail MCP connector + a vault credential; gate the toolset always_ask so Jacob approves each send"
+    },
+    {
+      "what": "Clone this expert into marketing, brand, and donor-appeal experts under one coordinator (the full-automation vision)",
+      "why_deferred": "Out of scope for the first iteration — prove one expert end-to-end first",
+      "how": "Build each specialist as its own agent with a scoped system prompt, then a multiagent coordinator (type: coordinator) that delegates to the roster"
+    },
+    {
+      "what": "Switch the model to Sonnet-class if run cost matters more than research depth",
+      "why_deferred": "Opus chosen for verification quality; cost is cents either way at on-demand frequency",
+      "how": "agents update with model claude-sonnet-4-6 (or fast Opus {\"id\":\"claude-opus-4-8\",\"speed\":\"fast\"}); re-run evals/case-01 before trusting it"
+    },
+    {
+      "what": "Re-run evals/case-01 before promoting any new agent version",
+      "why_deferred": "Process habit, not a build task",
+      "how": "Run evals/run-evals.sh against the new version; only promote when the verdict holds"
+    }
+  ],
+  "ids": {}
+}

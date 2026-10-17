@@ -1,0 +1,8 @@
+{
+  "name": "suas-grant-finder-env",
+  "config": {
+    "type": "cloud",
+    "networking": { "type": "unrestricted" },
+    "packages": {}
+  }
+}
