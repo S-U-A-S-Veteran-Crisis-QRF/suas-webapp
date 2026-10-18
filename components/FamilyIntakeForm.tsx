@@ -1,59 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import { submitForm } from "@/lib/submitForm";
+import { useEffect, useState } from "react";
 
-type Status = "idle" | "submitting" | "ok" | "error";
+const FORMSUBMIT = "https://formsubmit.co/jacobsilver@suasqrf.org";
 
 export default function FamilyIntakeForm() {
-  const [status, setStatus] = useState<Status>("idle");
-  const [serverMsg, setServerMsg] = useState<string>("");
+  const [sent, setSent] = useState(false);
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const fd = new FormData(form);
-
-    // Honeypot — real users never tick this.
-    if (fd.get("botcheck")) {
-      setStatus("ok");
-      form.reset();
-      return;
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("sent") === "1") {
+      setSent(true);
     }
+  }, []);
 
-    setStatus("submitting");
-    setServerMsg("");
-
-    if (!fd.get("consent")) {
-      setStatus("error");
-      setServerMsg("Please confirm you understand SUAS is not emergency care.");
-      return;
-    }
-
-    const res = await submitForm("Family intake", {
-      name: fd.get("name"),
-      email: fd.get("email"),
-      phone: fd.get("phone"),
-      relationship: fd.get("relationship"),
-      county: fd.get("county"),
-      contact_preference: fd.get("contactPref"),
-      message: fd.get("message"),
-      consent_acknowledged: fd.get("consent") ? "yes" : "no",
-    });
-
-    if (res.ok) {
-      setStatus("ok");
-      form.reset();
-    } else {
-      setStatus("error");
-      setServerMsg(res.message || "");
-    }
-  }
-
-  if (status === "ok") {
+  if (sent) {
     return (
       <div className="form-status ok" role="status">
-        <strong>Thank you — your message reached us.</strong>
+        <strong>Message sent — we&apos;ll reply soon.</strong>
         <p style={{ marginTop: 6 }}>
           A SUAS team member will follow up using your preferred contact method. If this is an
           urgent safety concern, call the Veterans Crisis Line now: 988, press 1 (text 838255).
@@ -63,7 +26,14 @@ export default function FamilyIntakeForm() {
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit}>
+    <form className="demo" action={FORMSUBMIT} method="POST">
+      <input type="hidden" name="_subject" value="SUAS site: Family intake" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value="https://suasqrf.org/families?sent=1" />
+      {/* Honeypot — real users never fill this */}
+      <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
       <div className="field-row">
         <div>
           <label htmlFor="name">
@@ -116,16 +86,6 @@ export default function FamilyIntakeForm() {
         />
       </div>
 
-      {/* Honeypot — a hidden checkbox autofill never ticks; bots that do are ignored */}
-      <input
-        type="checkbox"
-        name="botcheck"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-        style={{ display: "none" }}
-      />
-
       <label style={{ display: "flex", gap: 10, alignItems: "flex-start", fontWeight: 400 }}>
         <input type="checkbox" name="consent" required style={{ width: "auto", marginTop: 4 }} />
         <span>
@@ -134,14 +94,8 @@ export default function FamilyIntakeForm() {
         </span>
       </label>
 
-      {status === "error" && serverMsg && (
-        <div className="form-status err" role="alert">
-          {serverMsg}
-        </div>
-      )}
-
-      <button className="btn btn-primary" type="submit" disabled={status === "submitting"}>
-        {status === "submitting" ? "Sending…" : "Send to SUAS"}
+      <button className="btn btn-primary" type="submit">
+        Send to SUAS
       </button>
       <p className="muted" style={{ fontSize: ".82rem" }}>
         We typically respond within a few business days. Prefer to reach out directly? Email{" "}
