@@ -1,61 +1,38 @@
 "use client";
 
-import { useState } from "react";
-import { submitForm } from "@/lib/submitForm";
+import { useEffect, useState } from "react";
 
-type Status = "idle" | "submitting" | "ok" | "error";
+const FORMSUBMIT = "https://formsubmit.co/jacobsilver@suasqrf.org";
 
 export default function PilotForm() {
-  const [status, setStatus] = useState<Status>("idle");
-  const [serverMsg, setServerMsg] = useState("");
+  const [sent, setSent] = useState(false);
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const fd = new FormData(form);
-
-    // Honeypot — real users never tick this.
-    if (fd.get("botcheck")) {
-      setStatus("ok");
-      form.reset();
-      return;
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("sent") === "1") {
+      setSent(true);
     }
+  }, []);
 
-    setStatus("submitting");
-    setServerMsg("");
-
-    const res = await submitForm("Pilot interest", {
-      name: fd.get("name"),
-      email: fd.get("email"),
-      phone: fd.get("phone"),
-      organization: fd.get("organization"),
-      county: fd.get("county"),
-      interested_as: fd.get("interestedAs"),
-      message: fd.get("message"),
-    });
-
-    if (res.ok) {
-      setStatus("ok");
-      form.reset();
-    } else {
-      setStatus("error");
-      setServerMsg(res.message || "");
-    }
-  }
-
-  if (status === "ok") {
+  if (sent) {
     return (
       <div className="form-status ok" role="status">
-        <strong>Thanks — your pilot interest has been captured.</strong>
+        <strong>Message sent — we&apos;ll reply soon.</strong>
         <p style={{ marginTop: 6 }}>
-          We&apos;ll follow up. Or reach us at jacobsilver@suasqrf.org · (925) 727-6109.
+          Thanks for your pilot interest. Or reach us at jacobsilver@suasqrf.org · (925) 727-6109.
         </p>
       </div>
     );
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit}>
+    <form className="demo" action={FORMSUBMIT} method="POST">
+      <input type="hidden" name="_subject" value="SUAS site: Pilot interest" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value="https://suasqrf.org/pilot?sent=1" />
+      {/* Honeypot — real users never fill this */}
+      <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
       <div>
         <label htmlFor="name">Name</label>
         <input id="name" name="name" required autoComplete="name" />
@@ -92,24 +69,8 @@ export default function PilotForm() {
         <textarea id="message" name="message" />
       </div>
 
-      {/* Honeypot — a hidden checkbox autofill never ticks; bots that do are ignored */}
-      <input
-        type="checkbox"
-        name="botcheck"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-        style={{ display: "none" }}
-      />
-
-      {status === "error" && serverMsg && (
-        <div className="form-status err" role="alert">
-          {serverMsg}
-        </div>
-      )}
-
-      <button className="btn btn-primary" type="submit" disabled={status === "submitting"}>
-        {status === "submitting" ? "Sending…" : "Submit pilot interest"}
+      <button className="btn btn-primary" type="submit">
+        Submit pilot interest
       </button>
       <p className="muted" style={{ fontSize: ".82rem" }}>
         Prefer to reach out directly? Email{" "}
