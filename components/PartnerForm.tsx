@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const FORMSUBMIT = "https://formsubmit.co/jacobsilver@suasqrf.org";
+const FORMSUBMIT = "https://formsubmit.co/info@suasqrf.org";
 
 const WAYS = [
   "In-kind free rides (rideshare / AV)",

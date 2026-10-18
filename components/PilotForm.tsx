@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const FORMSUBMIT = "https://formsubmit.co/jacobsilver@suasqrf.org";
+const FORMSUBMIT = "https://formsubmit.co/info@suasqrf.org";
 
 export default function PilotForm() {
   const [sent, setSent] = useState(false);
