@@ -46,38 +46,38 @@ export default function AppPage() {
               being <strong>Hungry</strong>, <strong>Angry</strong>, <strong>Lonely</strong>, or{" "}
               <strong>Tired</strong>. Together they spell <strong>HALT</strong> — and the word is the
               instruction: when you notice them, halt. For an isolated veteran these are the quiet
-              conditions that turn a hard night into an emergency. The app is built to interrupt them —
-              every tap meets the basic human need behind a trigger before it can escalate.
+              conditions that turn a hard night into an emergency. The app is designed to interrupt them —
+              so a tap can meet the basic human need behind a trigger before it can escalate.
             </p>
           </Reveal>
           <div className="grid cols-4">
             <div className="card">
               <h3>H — Hungry</h3>
-              <p>A hot meal, delivered free. No empty stomach left to sharpen a bad night.</p>
+              <p>Designed so a veteran can get a hot meal, delivered free — no empty stomach left to sharpen a bad night.</p>
             </div>
             <div className="card">
               <h3>A — Angry</h3>
               <p>
-                A peer who&apos;s been there and help that comes fast, so frustration doesn&apos;t
-                compound in isolation.
+                Designed to connect a veteran with a peer who&apos;s been there, and help that comes
+                fast, so frustration doesn&apos;t compound in isolation.
               </p>
             </div>
             <div className="card">
               <h3>L — Lonely</h3>
               <p>
-                A ride to connection and a fellow veteran on the other end. Isolation is the risk;
-                presence is the answer.
+                Designed so a veteran can get a ride to connection and reach a fellow veteran on the
+                other end. Isolation is the risk; presence is the answer.
               </p>
             </div>
             <div className="card">
               <h3>T — Tired</h3>
-              <p>A safe place to sleep tonight, no payment. Rest, before exhaustion becomes despair.</p>
+              <p>Designed so a veteran can find a safe place to sleep tonight, no payment. Rest, before exhaustion becomes despair.</p>
             </div>
           </div>
           <p className="note">
-            Meet the need and the trigger loses its power. This isn&apos;t therapy or a hotline — it&apos;s
-            the practical step that keeps HALT from becoming the last straw. For immediate danger, the
-            Veterans Crisis Line (988, Press 1) is always one tap away.
+            The design intent: meet the need and the trigger loses its power. This isn&apos;t therapy or
+            a hotline — it&apos;s the practical step designed to keep HALT from becoming the last straw.
+            For immediate danger, the Veterans Crisis Line (988, Press 1) is always one tap away.
           </p>
         </div>
       </section>
