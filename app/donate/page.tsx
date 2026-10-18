@@ -140,8 +140,8 @@ export default function DonatePage() {
                 <Reveal className="card lift">
                   <h3>Free Ride</h3>
                   <p>
-                    A crisis ride to safety, coordinated the moment it&apos;s tapped — with a fellow
-                    veteran, not a stranger and a fare.
+                    A crisis ride to safety, coordinated the moment it&apos;s tapped — a connection to a
+                    fellow veteran, not a stranger and a fare.
                   </p>
                 </Reveal>
                 <Reveal className="card lift">
