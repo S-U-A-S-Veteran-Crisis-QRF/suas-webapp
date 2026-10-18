@@ -107,6 +107,24 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <section>
+        <div className="container">
+          <Reveal>
+            <div className="sec-label">Founder</div>
+            <h2>Jacob Silver, Founder &amp; CEO</h2>
+            <p className="lead">
+              Jacob founded S.U.A.S. Veteran Crisis QRF to get veterans in crisis help in hours,
+              not days: a ride, a meal, a safe bed for the night, and a peer check-in from
+              another veteran.
+            </p>
+            <p>
+              Contact:{" "}
+              <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a>
+            </p>
+          </Reveal>
+        </div>
+      </section>
     </>
   );
 }
