@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { submitForm } from "@/lib/submitForm";
+import { useEffect, useState } from "react";
 
-type Status = "idle" | "submitting" | "ok" | "error";
+const FORMSUBMIT = "https://formsubmit.co/jacobsilver@suasqrf.org";
 
 const WAYS = [
   "In-kind free rides (rideshare / AV)",
@@ -15,60 +14,35 @@ const WAYS = [
 ];
 
 export default function PartnerForm() {
-  const [status, setStatus] = useState<Status>("idle");
-  const [serverMsg, setServerMsg] = useState("");
+  const [sent, setSent] = useState(false);
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const fd = new FormData(form);
-
-    // Honeypot — real users never tick this.
-    if (fd.get("botcheck")) {
-      setStatus("ok");
-      form.reset();
-      return;
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("sent") === "1") {
+      setSent(true);
     }
+  }, []);
 
-    setStatus("submitting");
-    setServerMsg("");
-
-    const ways = fd.getAll("ways").join(", ");
-
-    const res = await submitForm("Partner/Services interest", {
-      organization: fd.get("organization"),
-      name: fd.get("name"),
-      email: fd.get("email"),
-      phone: fd.get("phone"),
-      organization_type: fd.get("orgType"),
-      ways_to_help: ways,
-      coverage_area: fd.get("coverage"),
-      message: fd.get("message"),
-    });
-
-    if (res.ok) {
-      setStatus("ok");
-      form.reset();
-    } else {
-      setStatus("error");
-      setServerMsg(res.message || "");
-    }
-  }
-
-  if (status === "ok") {
+  if (sent) {
     return (
       <div className="form-status ok" role="status">
-        <strong>Thank you — we&apos;ve received your interest in partnering.</strong>
+        <strong>Message sent — we&apos;ll reply soon.</strong>
         <p style={{ marginTop: 6 }}>
-          A SUAS team member will follow up to talk through how your organization can help veterans.
-          Or reach us directly at jacobsilver@suasqrf.org · (925) 727-6109.
+          Thanks for your interest in partnering. Or reach us directly at jacobsilver@suasqrf.org ·
+          (925) 727-6109.
         </p>
       </div>
     );
   }
 
   return (
-    <form className="demo" onSubmit={onSubmit}>
+    <form className="demo" action={FORMSUBMIT} method="POST">
+      <input type="hidden" name="_subject" value="SUAS site: Partner interest" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value="https://suasqrf.org/nonprofits?sent=1" />
+      {/* Honeypot — real users never fill this */}
+      <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
       <div className="field-row">
         <div>
           <label htmlFor="organization">
@@ -137,24 +111,8 @@ export default function PartnerForm() {
         />
       </div>
 
-      {/* Honeypot — a hidden checkbox autofill never ticks; bots that do are ignored */}
-      <input
-        type="checkbox"
-        name="botcheck"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-        style={{ display: "none" }}
-      />
-
-      {status === "error" && serverMsg && (
-        <div className="form-status err" role="alert">
-          {serverMsg}
-        </div>
-      )}
-
-      <button className="btn btn-primary" type="submit" disabled={status === "submitting"}>
-        {status === "submitting" ? "Sending…" : "Express partner interest"}
+      <button className="btn btn-primary" type="submit">
+        Express partner interest
       </button>
       <p className="muted" style={{ fontSize: ".82rem" }}>
         Prefer to reach out directly? Email{" "}
