@@ -162,9 +162,9 @@ export default function DonatePage() {
               <Reveal>
                 <p style={{ marginTop: 20 }}>
                   <strong>Your gift builds it — and funds what&apos;s behind it.</strong> Donations
-                  pay for the app&apos;s development and for the field operations every tap sets in
-                  motion: the $20 ride, the $25 meal, the $120 bed. The app is being built now, not
-                  finished.
+                  pay for the app&apos;s development and for the field operations every tap will
+                  set in motion: the $20 ride, the $25 meal, the $120 bed. The app is being built
+                  now, not finished.
                 </p>
                 <div className="cta-row" style={{ marginTop: 16 }}>
                   <a className="btn btn-primary" href="#give-money">
@@ -284,7 +284,7 @@ export default function DonatePage() {
                 </div>
               </div>
               <p className="note note-mo" style={{ marginTop: 12 }}>
-                Monthly gifts keep the QRF ready every night — the ride, the meal, and the bed are
+                Monthly gifts keep the QRF ready — the ride, the meal, and the bed are
                 funded before the call even comes in.
               </p>
               <div className="tiers">
@@ -310,6 +310,10 @@ export default function DonatePage() {
             </div>
           </Reveal>
           <Reveal>
+            <p className="note" style={{ marginTop: 12 }}>
+              Donations are processed securely by GoFundMe and PayPal Giving Fund. We never store
+              your card details.
+            </p>
             <p className="note" style={{ marginTop: 16 }}>
               Amounts reflect SUAS QRF&apos;s own per-unit service costs. Larger gifts — and gifts
               of property — stretch across many nights and many veterans.
@@ -695,8 +699,10 @@ export default function DonatePage() {
                 </a>
               </div>
               <p className="note" style={{ marginTop: 16, color: "rgba(255,255,255,.85)" }}>
-                S.U.A.S. Veteran Crisis QRF · EIN 88-3249428 · A registered 501(c)(3) nonprofit
-                organization. This page offers general information only and is not tax, legal, or
+                S.U.A.S. Veteran Crisis QRF is a 501(c)(3) nonprofit organization. EIN 88-3249428.
+                Donations are tax-deductible to the extent allowed by law. No goods or services
+                were provided in exchange for this contribution. We never sell or share donor
+                data. This page offers general information only and is not tax, legal, or
                 financial advice.
               </p>
             </div>
