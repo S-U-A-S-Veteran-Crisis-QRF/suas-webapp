@@ -113,7 +113,7 @@ export default function CampaignPage() {
           <div className="pill-row">
             <span className="pill">501(c)(3) · EIN 88-3249428</span>
             <span className="pill">Veteran-led</span>
-            <span className="pill">100% mission-directed</span>
+            <span className="pill">Every dollar funds the pilot</span>
           </div>
         </div>
       </section>
@@ -162,8 +162,8 @@ export default function CampaignPage() {
             </Reveal>
           </div>
           <p className="note">
-            Illustrative allocation for planning — not audited financials. 100% of donations
-            support the mission. Every supporter receives the pilot findings report — win or
+            Illustrative allocation for planning — not audited financials. Every dollar funds
+            the pilot. Every supporter receives the pilot findings report — win or
             lose, we publish what we learn.
           </p>
         </div>
@@ -187,6 +187,15 @@ export default function CampaignPage() {
                 </div>
                 <h3>{level.amount}</h3>
                 <p>{level.detail}</p>
+                <a
+                  className="btn btn-primary btn-sm"
+                  style={{ marginTop: 12 }}
+                  href={DONATE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Give {level.amount}
+                </a>
               </Reveal>
             ))}
             <Reveal className="card lift">
