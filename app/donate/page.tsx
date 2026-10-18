@@ -698,7 +698,7 @@ export default function DonatePage() {
                   Donate with PayPal
                 </a>
               </div>
-              <p className="note" style={{ marginTop: 16, color: "rgba(255,255,255,.85)" }}>
+              <p style={{ marginTop: 16, color: "rgba(255,255,255,.85)", fontSize: ".92rem" }}>
                 S.U.A.S. Veteran Crisis QRF is a 501(c)(3) nonprofit organization. EIN 88-3249428.
                 Donations are tax-deductible to the extent allowed by law. No goods or services
                 were provided in exchange for this contribution. We never sell or share donor
