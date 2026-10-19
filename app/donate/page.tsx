@@ -4,6 +4,7 @@ import Reveal from "@/components/Reveal";
 
 const GOFUNDME_URL = "https://gofund.me/62aa802f0";
 const PAYPAL_URL = "https://www.paypal.com/US/fundraiser/charity/4819148";
+const ZEFFY_URL = "https://www.zeffy.com/en-US/donation-form/donate-to-change-lives-26857";
 
 const donateTitle = "Donate — SUAS Veteran Crisis Q.R.F.";
 const donateDescription =
@@ -95,13 +96,19 @@ export default function DonatePage() {
             that becomes a place where combat veterans recover.
           </p>
           <div className="cta-row">
-            <a className="btn btn-primary" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
+            <a className="btn btn-primary" href={ZEFFY_URL} target="_blank" rel="noopener noreferrer">
+              Donate with Zeffy
+            </a>
+            <a className="btn btn-ghost" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
               Donate on GoFundMe
             </a>
             <a className="btn btn-ghost" href={PAYPAL_URL} target="_blank" rel="noopener noreferrer">
               Donate with PayPal
             </a>
           </div>
+          <p className="note" style={{ marginTop: 8 }}>
+            Zeffy charges 0% in fees — 100% of your gift goes to the mission.
+          </p>
         </div>
       </section>
 
@@ -288,19 +295,19 @@ export default function DonatePage() {
                 funded before the call even comes in.
               </p>
               <div className="tiers">
-                <a className="tier" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
+                <a className="tier" href={ZEFFY_URL} target="_blank" rel="noopener noreferrer">
                   <strong>
                     $25<span className="permo">/mo</span>
                   </strong>
                   <span>Puts a hot meal in a veteran&apos;s hands tonight</span>
                 </a>
-                <a className="tier" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
+                <a className="tier" href={ZEFFY_URL} target="_blank" rel="noopener noreferrer">
                   <strong>
                     $120<span className="permo">/mo</span>
                   </strong>
                   <span>Gets a veteran a safe bed instead of the street</span>
                 </a>
-                <a className="tier" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
+                <a className="tier" href={ZEFFY_URL} target="_blank" rel="noopener noreferrer">
                   <strong>
                     $165<span className="permo">/mo</span>
                   </strong>
@@ -311,7 +318,8 @@ export default function DonatePage() {
           </Reveal>
           <Reveal>
             <p className="note" style={{ marginTop: 12 }}>
-              Donations are processed securely by GoFundMe and PayPal Giving Fund. We never store
+              Donations are processed securely by Zeffy, GoFundMe, and PayPal Giving Fund. Zeffy
+              charges 0% in fees — 100% of your gift goes to the mission. We never store
               your card details.
             </p>
             <p className="note" style={{ marginTop: 16 }}>
@@ -322,7 +330,10 @@ export default function DonatePage() {
               $1,550 raised from 8 donors on GoFundMe — join them.
             </p>
             <div className="cta-row" style={{ marginTop: 12 }}>
-              <a className="btn btn-primary" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
+              <a className="btn btn-primary" href={ZEFFY_URL} target="_blank" rel="noopener noreferrer">
+                Donate with Zeffy
+              </a>
+              <a className="btn btn-ghost" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
                 Donate on GoFundMe
               </a>
               <a className="btn btn-ghost" href={PAYPAL_URL} target="_blank" rel="noopener noreferrer">
@@ -358,11 +369,13 @@ export default function DonatePage() {
             <Reveal className="card lift">
               <h3>Money</h3>
               <p>
-                One-time or monthly, on GoFundMe or through the PayPal Giving Fund. Even $20 moves a
-                veteran off the street and into a car with a peer responder beside them.
+                One-time or monthly through our Zeffy form — 0% fees, so 100% of your gift
+                goes to the mission. Also on GoFundMe or through the PayPal Giving Fund.
+                Even $20 moves a veteran off the street and into a car with a peer
+                responder beside them.
               </p>
               <p>
-                <a href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
+                <a href={ZEFFY_URL} target="_blank" rel="noopener noreferrer">
                   Give money →
                 </a>
               </p>
@@ -659,7 +672,11 @@ export default function DonatePage() {
             <details>
               <summary>How do I give money right now, without the form?</summary>
               <p>
-                Right now, on our{" "}
+                Right now, through our{" "}
+                <a href={ZEFFY_URL} target="_blank" rel="noopener noreferrer">
+                  Zeffy donation form
+                </a>{" "}
+                (0% fees), on our{" "}
                 <a href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
                   GoFundMe page
                 </a>{" "}
@@ -691,11 +708,11 @@ export default function DonatePage() {
                 not emergency care.
               </p>
               <div className="cta-row" style={{ justifyContent: "center" }}>
-                <a className="btn btn-primary" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
-                  Donate on GoFundMe
+                <a className="btn btn-primary" href={ZEFFY_URL} target="_blank" rel="noopener noreferrer">
+                  Donate with Zeffy
                 </a>
-                <a className="btn btn-ghost" href={PAYPAL_URL} target="_blank" rel="noopener noreferrer">
-                  Donate with PayPal
+                <a className="btn btn-ghost" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
+                  Donate on GoFundMe
                 </a>
               </div>
               <p style={{ marginTop: 16, color: "rgba(255,255,255,.85)", fontSize: ".92rem" }}>
