@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s | SUAS Veteran Crisis Q.R.F.",
   },
   description:
-    "Nonprofit veteran support: private check-ins, trusted-circle alerts, and resource routing before crisis. Demo and pilot — not emergency care.",
+    "Nonprofit peer-bridge crisis support for veterans in Santa Clara County, California: a fellow veteran who shows up, a ride, a meal, a safe bed, and a warm hand-off to services. Not emergency care.",
   openGraph: {
     title: "SUAS Veteran Crisis Q.R.F.",
     description:
@@ -80,9 +80,10 @@ export default function RootLayout({
               name: "S.U.A.S. Veteran Crisis Q.R.F.",
               alternateName: "SUAS Veteran Crisis Quick Reaction Force",
               url: "https://suasqrf.org/",
-              logo: "https://suasqrf.org/icon.png",
+              logo: "https://suasqrf.org/icon.svg",
               description:
-                "Nonprofit veteran crisis-prevention and care-coordination platform. Early-warning support through check-ins, trusted-circle alerts, resource routing, and responder follow-up.",
+                "Nonprofit peer-bridge crisis support for veterans in Santa Clara County, California: peer response, free rides, meals, emergency shelter nights, direct service referral, and free community events.",
+              areaServed: { "@type": "AdministrativeArea", name: "Santa Clara County, California" },
               foundingDate: "2022-07-08",
               taxID: "88-3249428",
               legalName: "S.U.A.S. Veteran Crisis Q.R.F.",

@@ -11,10 +11,19 @@ export default function Footer() {
               SUAS <span>Veteran Crisis Q.R.F.</span>
             </div>
             <p style={{ marginTop: 12, fontSize: ".9rem" }}>
-              Nonprofit veteran crisis-prevention and care-coordination. Demo environment — not
-              live clinical services.
+              Peer-bridge crisis support for veterans in Santa Clara County, California: a fellow
+              veteran, a ride, a meal, a safe bed. Not emergency care.
             </p>
-            <span className="attrib">Owned site for S.U.A.S. — California 501(c)(3)</span>
+            <p style={{ marginTop: 10, fontSize: ".85rem" }}>
+              S.U.A.S. Veteran Crisis Q.R.F.
+              <br />
+              727 Edge Lane, Los Altos, CA 94024
+              <br />
+              <a href="tel:+19257276109">(925) 727-6109</a>
+              <br />
+              <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a>
+            </p>
+            <span className="attrib">California 501(c)(3) public charity · EIN 88-3249428</span>
           </div>
           <div>
             <h4>Explore</h4>
@@ -26,8 +35,11 @@ export default function Footer() {
           </div>
           <div>
             <h4>Trust &amp; governance</h4>
-            <Link href="/safety">Safety</Link>
             <Link href="/about">About</Link>
+            <Link href="/programs">Programs</Link>
+            <Link href="/safety">Safety</Link>
+            <Link href="/transparency">Transparency &amp; financials</Link>
+            <Link href="/privacy">Privacy policy</Link>
             <Link href="/contact">Contact</Link>
           </div>
           <div>
@@ -40,8 +52,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="foot-bottom">
-          © 2026 S.U.A.S. Veteran Crisis Q.R.F. — California 501(c)(3), EIN 88-3249428. Demo
-          platform for pilot planning.
+          © 2026 S.U.A.S. Veteran Crisis Q.R.F. — California nonprofit public benefit corporation,
+          501(c)(3) public charity, EIN 88-3249428. Donations are tax-deductible as allowed by law.
         </div>
       </div>
     </footer>

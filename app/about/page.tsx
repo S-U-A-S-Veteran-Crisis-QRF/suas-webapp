@@ -39,10 +39,17 @@ export default function AboutPage() {
         <div className="container">
           <Reveal>
             <p className="lead">
-              SUAS Veteran Crisis Q.R.F. is a nonprofit veteran crisis-prevention and
-              care-coordination concept. We are building infrastructure that helps veterans check
-              in, stay connected to trusted support, and access help before everyday struggles
-              become serious crises.
+              S.U.A.S. Veteran Crisis Q.R.F. is a California 501(c)(3) nonprofit (EIN 88-3249428),
+              incorporated in 2022 and based in Los Altos, that provides peer-bridge crisis support
+              to veterans in Santa Clara County. When a veteran is slipping, a fellow veteran shows
+              up with a ride, a meal, a safe bed for the night, and a warm hand-off to the services
+              that can carry the rest. Alongside that field work we run free community events that
+              reduce isolation, and we are building the QRF app so that help is one tap away.
+            </p>
+            <p>
+              Read about our <Link href="/programs">programs and services</Link>, our{" "}
+              <Link href="/transparency">legal status and financials</Link>, or{" "}
+              <Link href="/contact">get in touch</Link>.
             </p>
           </Reveal>
         </div>
@@ -66,13 +73,13 @@ export default function AboutPage() {
           <Reveal>
             <h2>What we are building</h2>
             <p className="lead">
-              A privacy-first demo platform for check-ins, support signals, trusted-circle alerts,
-              resource routing, and responder follow-up — currently in pilot planning, not live
-              clinical deployment.
+              A privacy-first app for check-ins, support signals, trusted-circle alerts, resource
+              routing, and responder follow-up — currently in development and pilot planning, not
+              live clinical deployment.
             </p>
           </Reveal>
           <p className="note">
-            This site and app demo are for pilot planning and partner review. We do not claim
+            The app demo on this site is for pilot planning and partner review. We do not claim
             clinical validation, government partnership, or live institutional adoption.
           </p>
         </div>
@@ -120,7 +127,10 @@ export default function AboutPage() {
             </p>
             <p>
               Contact:{" "}
-              <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a>
+              <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a> ·{" "}
+              <a href="tel:+19257276109">(925) 727-6109</a>
+              <br />
+              S.U.A.S. Veteran Crisis Q.R.F., 727 Edge Lane, Los Altos, CA 94024
             </p>
           </Reveal>
         </div>

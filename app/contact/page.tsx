@@ -6,7 +6,7 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Questions about the pilot, partnerships, or the demo platform? Get in touch with SUAS.",
+    "Contact S.U.A.S. Veteran Crisis Q.R.F. by email, phone, form, or mail — 727 Edge Lane, Los Altos, CA 94024 · (925) 727-6109.",
 };
 
 export default function ContactPage() {
@@ -44,6 +44,39 @@ export default function ContactPage() {
             </Reveal>
             <ContactForm />
           </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container">
+          <div className="grid cols-3">
+            <div className="card">
+              <h3>Email</h3>
+              <p>
+                <a href="mailto:jacobsilver@suasqrf.org">jacobsilver@suasqrf.org</a>
+              </p>
+            </div>
+            <div className="card">
+              <h3>Phone</h3>
+              <p>
+                <a href="tel:+19257276109">(925) 727-6109</a>
+              </p>
+            </div>
+            <div className="card">
+              <h3>Mail</h3>
+              <p>
+                S.U.A.S. Veteran Crisis Q.R.F.
+                <br />
+                727 Edge Lane
+                <br />
+                Los Altos, CA 94024
+              </p>
+            </div>
+          </div>
+          <p className="note" style={{ marginTop: 20 }}>
+            If anyone is in immediate danger, call 911. Veterans in crisis: call 988 and press 1, or
+            text 838255. SUAS is peer support and coordination, not emergency care.
+          </p>
         </div>
       </section>
     </>
