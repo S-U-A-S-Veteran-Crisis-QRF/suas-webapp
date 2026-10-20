@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/home.jpg",
-        width: 3200,
-        height: 4800,
+        width: 1067,
+        height: 1600,
         alt: "An American flag backlit by sunlight",
       },
     ],
