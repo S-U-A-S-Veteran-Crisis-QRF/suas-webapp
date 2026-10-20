@@ -4,6 +4,7 @@ import "./globals.css";
 import CrisisBar from "@/components/CrisisBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import DonateClickTracker from "@/components/DonateClickTracker";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -126,6 +127,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <DonateClickTracker />
         <CrisisBar />
         <Header />
         <main>{children}</main>

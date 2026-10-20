@@ -40,3 +40,9 @@ deployed output, and attach the domain to this repo's Pages settings.
 ## Crisis safety
 The Veterans Crisis Line (988, press 1 · text 838255) banner is global and must stay
 accurate and prominent. SUAS is coordination, not emergency care.
+
+## Analytics (Google Ad Grants)
+GA4 property "SUAS Veteran Crisis QRF", web stream for https://suasqrf.org, Measurement ID
+`G-2GJCV5XX5B`. Always build with `NEXT_PUBLIC_GA_ID=G-2GJCV5XX5B` so the tag ships.
+Key events sent for Ad Grants conversion tracking: `generate_lead` (any form success),
+`donate_click` (PayPal/GoFundMe/Zeffy), `donate_page_click`, `contact_click` (tel/mailto).

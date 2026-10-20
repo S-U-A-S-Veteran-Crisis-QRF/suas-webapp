@@ -17,6 +17,7 @@
 // ─────────────────────────────────────────────────────────────────
 
 import { z } from "zod";
+import { track } from "@/lib/analytics";
 
 export const WEB3FORMS_ACCESS_KEY =
   process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "1efb2f90-1e2d-413d-bf81-7f864d5430d6";
@@ -89,7 +90,10 @@ export async function submitForm(
       signal: AbortSignal.timeout(15000),
     });
     const json = await res.json().catch(() => ({}));
-    if (res.ok && json.success) return { ok: true };
+    if (res.ok && json.success) {
+      track("generate_lead", { form_source: source });
+      return { ok: true };
+    }
     return {
       ok: false,
       message:
