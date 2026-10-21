@@ -163,7 +163,7 @@ export default function DonatePage() {
                 <p style={{ marginTop: 20 }}>
                   <strong>Your gift builds it — and funds what&apos;s behind it.</strong> Donations
                   pay for the app&apos;s development and for the field operations every tap will
-                  set in motion: the $20 ride, the $25 meal, the $120 bed. The app is being built
+                  set in motion: the $35 ride, the $25 meal, the $150 bed. The app is being built
                   now, not finished.
                 </p>
                 <div className="cta-row" style={{ marginTop: 16 }}>
@@ -296,13 +296,13 @@ export default function DonatePage() {
                 </a>
                 <a className="tier" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
                   <strong>
-                    $120<span className="permo">/mo</span>
+                    $150<span className="permo">/mo</span>
                   </strong>
                   <span>Gets a veteran a safe bed instead of the street</span>
                 </a>
                 <a className="tier" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
                   <strong>
-                    $165<span className="permo">/mo</span>
+                    $210<span className="permo">/mo</span>
                   </strong>
                   <span>Covers the full bundle — meal, ride, bed, and a peer check-in</span>
                 </a>
@@ -358,7 +358,7 @@ export default function DonatePage() {
             <Reveal className="card lift">
               <h3>Money</h3>
               <p>
-                One-time or monthly, on GoFundMe or through the PayPal Giving Fund. Even $20 moves a
+                One-time or monthly, on GoFundMe or through the PayPal Giving Fund. Even $35 moves a
                 veteran off the street and into a car with a peer responder beside them.
               </p>
               <p>
