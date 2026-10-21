@@ -77,8 +77,8 @@ export default function DonatePage() {
       <section className="hero-image">
         <div className="hero-bg">
           <Image
-            src="/images/donate-meal-line.jpg"
-            alt="Volunteers serving a hot meal line"
+            src="/images/veterans-hackathon-team.jpg"
+            alt="The SUAS QRF community on stage at the first Veterans Hackathon at Hacker Dojo"
             fill
             priority
             sizes="100vw"
