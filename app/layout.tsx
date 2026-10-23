@@ -50,6 +50,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google tag (gtag.js) — Google Ads AW-18532521945 */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18532521945"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-18532521945');
+            `,
+          }}
+        />
         {GA_ID && (
           <>
             <Script
