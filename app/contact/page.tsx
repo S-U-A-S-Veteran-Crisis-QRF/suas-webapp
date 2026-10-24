@@ -14,7 +14,7 @@ export default function ContactPage() {
     <>
       <section className="hero-image">
         <div className="hero-bg">
-          <Image src="/images/contact.jpg" alt="A support team member wearing a headset" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image src="/images/contact.webp" alt="A support team member wearing a headset" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
         <div className="container">

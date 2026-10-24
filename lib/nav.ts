@@ -2,6 +2,7 @@ export type NavLink = { href: string; label: string };
 
 // Primary header navigation (mirrors the original site order).
 export const NAV_LINKS: NavLink[] = [
+  { href: "/help", label: "Get Help" },
   { href: "/programs", label: "Programs" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/veterans", label: "Veterans" },
@@ -14,6 +15,7 @@ export const NAV_LINKS: NavLink[] = [
 // Footer "Explore" column.
 export const FOOTER_EXPLORE: NavLink[] = [
   { href: "/", label: "Home" },
+  { href: "/help", label: "Get Help" },
   { href: "/programs", label: "Programs" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/veterans", label: "Veterans" },

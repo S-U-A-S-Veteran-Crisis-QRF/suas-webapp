@@ -77,7 +77,7 @@ export default function DonatePage() {
       <section className="hero-image">
         <div className="hero-bg">
           <Image
-            src="/images/veterans-hackathon-team.jpg"
+            src="/images/veterans-hackathon-team.webp"
             alt="The SUAS QRF community on stage at the first Veterans Hackathon at Hacker Dojo"
             fill
             priority
@@ -123,7 +123,7 @@ export default function DonatePage() {
               <figure className="figure">
                 <span className="chip">In development</span>
                 <Image
-                  src="/images/donate-app-home.jpg"
+                  src="/images/donate-app-home.webp"
                   alt="SUAS QRF app home screen with Free Ride, Free Food, and Emergency Shelter options"
                   width={1080}
                   height={1920}
@@ -184,7 +184,7 @@ export default function DonatePage() {
             <Reveal>
               <figure className="figure">
                 <Image
-                  src="/images/donate-raider-bell.jpg"
+                  src="/images/donate-raider-bell.webp"
                   alt="The Raider Bell memorial"
                   width={1200}
                   height={1600}
@@ -242,7 +242,7 @@ export default function DonatePage() {
             <Reveal>
               <figure className="figure">
                 <Image
-                  src="/images/donate-vigil.jpg"
+                  src="/images/donate-vigil.webp"
                   alt="Votive candles lit in remembrance"
                   width={1200}
                   height={1600}
@@ -319,7 +319,7 @@ export default function DonatePage() {
               of property — stretch across many nights and many veterans.
             </p>
             <p style={{ marginTop: 12, fontWeight: 700 }}>
-              $1,550 raised from 8 donors on GoFundMe — join them.
+              Join the neighbors, veterans, and local businesses already giving on GoFundMe.
             </p>
             <div className="cta-row" style={{ marginTop: 12 }}>
               <a className="btn btn-primary" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
@@ -410,7 +410,7 @@ export default function DonatePage() {
           <Reveal>
             <figure className="figure" style={{ marginTop: 24 }}>
               <Image
-                src="/images/donate-recovery-home.jpg"
+                src="/images/donate-recovery-home.webp"
                 alt="A welcoming home that could become veteran recovery housing"
                 width={1024}
                 height={1024}

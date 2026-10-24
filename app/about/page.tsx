@@ -14,7 +14,7 @@ export default function AboutPage() {
     <>
       <section className="hero-image">
         <div className="hero-bg">
-          <Image src="/images/connection.jpg" alt="A multigenerational family embracing" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image src="/images/connection.webp" alt="A multigenerational family embracing" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
         <div className="container">

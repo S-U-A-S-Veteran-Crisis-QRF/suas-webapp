@@ -15,7 +15,7 @@ export default function AppPage() {
     <>
       <section className="hero-image">
         <div className="hero-bg">
-          <Image src="/images/app.jpg" alt="A person using a mobile app on their phone" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image src="/images/app.webp" alt="A person using a mobile app on their phone" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
         <div className="container">

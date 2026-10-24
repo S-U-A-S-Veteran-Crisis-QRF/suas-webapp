@@ -85,7 +85,7 @@ export default function CampaignPage() {
       <section className="hero-image">
         <div className="hero-bg">
           <Image
-            src="/images/donate.jpg"
+            src="/images/donate.webp"
             alt="Two people's hands resting together in support"
             fill
             priority

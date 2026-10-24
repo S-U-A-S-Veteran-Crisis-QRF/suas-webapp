@@ -93,8 +93,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "NonprofitOrganization",
-              name: "S.U.A.S. Veteran Crisis Q.R.F.",
-              alternateName: "SUAS Veteran Crisis Quick Reaction Force",
+              name: "SUAS QRF",
+              alternateName: "S.U.A.S. Veteran Crisis Q.R.F.",
               url: "https://suasqrf.org/",
               logo: "https://suasqrf.org/icon.svg",
               description:
@@ -102,8 +102,8 @@ export default function RootLayout({
               areaServed: { "@type": "AdministrativeArea", name: "Santa Clara County, California" },
               foundingDate: "2022-07-08",
               taxID: "88-3249428",
-              legalName: "S.U.A.S. Veteran Crisis Q.R.F.",
-              nonprofitStatus: "501(c)(3) Public Charity",
+              legalName: "S.U.A.S. Veteran Crisis QRF",
+              nonprofitStatus: "https://schema.org/Nonprofit501c3",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "727 Edge Lane",
@@ -119,9 +119,13 @@ export default function RootLayout({
                 availableLanguage: "English",
                 areaServed: "US",
               },
-              email: "jacobsilver@suasqrf.org",
+              email: "info@suasqrf.org",
               sameAs: [
                 "https://www.facebook.com/suasqrf/",
+                "https://www.instagram.com/suasqrf/",
+                "https://x.com/SUAS_QRF",
+                "https://www.tiktok.com/@jacob.sterling.si",
+                "https://www.youtube.com/channel/UCD2gV2g7f6QHO0iWwusZZaw",
                 "https://www.facebook.com/groups/451663376808281/",
               ],
               makesOffer: {

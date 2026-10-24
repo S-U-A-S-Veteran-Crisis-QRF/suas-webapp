@@ -38,19 +38,19 @@ const STEPS = [
 
 const ACTIONS = [
   {
-    img: "/images/presence.jpg",
+    img: "/images/presence.webp",
     alt: "One person resting a supportive arm around another at home",
     h: "Be present",
     p: "Show up consistently. A short check-in or a shared meal says more than advice. You don't need the right words — you need to stay.",
   },
   {
-    img: "/images/listening.jpg",
+    img: "/images/listening.webp",
     alt: "A reassuring hand resting on someone's shoulder",
     h: "Listen first",
     p: "Ask open questions and let answers breathe. Reflect back what you hear instead of rushing to solve. Listening is the support.",
   },
   {
-    img: "/images/connection.jpg",
+    img: "/images/connection.webp",
     alt: "A multigenerational family embracing on a porch",
     h: "Keep the circle warm",
     p: "Isolation grows in silence. Help keep your veteran connected to the people and routines that matter — gently, without pressure.",
@@ -64,7 +64,7 @@ export default function FamiliesPage() {
       <section className="hero-image">
         <div className="hero-bg">
           <Image
-            src="/images/families-hero.jpg"
+            src="/images/families-hero.webp"
             alt="A service member returning home, holding their child as their partner looks on"
             fill
             priority
@@ -141,7 +141,7 @@ export default function FamiliesPage() {
             </Reveal>
             <Reveal className="split-media">
               <Image
-                src="/images/families-support.jpg"
+                src="/images/families-support.webp"
                 alt="A veteran embracing their child on the couch at home"
                 fill
                 sizes="(max-width:820px) 100vw, 45vw"
