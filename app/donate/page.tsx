@@ -336,6 +336,10 @@ export default function DonatePage() {
               </a>
             </p>
             <p className="note" style={{ marginTop: 8 }}>
+              Does your employer match charitable gifts? Find SUAS QRF (EIN 88-3249428) in your
+              workplace giving portal — many employers double your donation.
+            </p>
+            <p className="note" style={{ marginTop: 8 }}>
               Giving property, a vehicle, or goods instead — or want to talk first? Use the donation
               form below. It starts a conversation, no obligation.
             </p>
