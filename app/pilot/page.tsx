@@ -15,7 +15,7 @@ export default function PilotPage() {
     <>
       <section className="hero-image">
         <div className="hero-bg">
-          <Image src="/images/pilot.jpg" alt="A diverse group joining hands together" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image src="/images/pilot.webp" alt="A diverse group joining hands together" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
         <div className="container">

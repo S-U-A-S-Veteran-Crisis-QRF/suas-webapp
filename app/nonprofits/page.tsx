@@ -15,7 +15,7 @@ export default function NonprofitsPage() {
     <>
       <section className="hero-image">
         <div className="hero-bg">
-          <Image src="/images/nonprofits.jpg" alt="Nonprofit volunteers together outside their van" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image src="/images/nonprofits.webp" alt="Nonprofit volunteers together outside their van" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
         <div className="container">

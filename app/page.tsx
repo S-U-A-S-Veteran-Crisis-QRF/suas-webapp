@@ -7,7 +7,7 @@ export default function HomePage() {
     <>
       <section className="hero-image">
         <div className="hero-bg">
-          <Image src="/images/home.jpg" alt="An American flag backlit by sunlight" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image src="/images/home.webp" alt="An American flag backlit by sunlight" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
         <div className="container">

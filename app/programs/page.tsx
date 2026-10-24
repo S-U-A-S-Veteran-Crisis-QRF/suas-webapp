@@ -15,7 +15,7 @@ export default function ProgramsPage() {
       <section className="hero-image">
         <div className="hero-bg">
           <Image
-            src="/images/presence.jpg"
+            src="/images/presence.webp"
             alt="Two people sitting together in conversation"
             fill
             priority

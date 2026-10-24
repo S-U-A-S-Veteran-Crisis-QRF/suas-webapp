@@ -14,7 +14,7 @@ export default function VeteransPage() {
     <>
       <section className="hero-image">
         <div className="hero-bg">
-          <Image src="/images/veterans.jpg" alt="A veteran in a quiet, contemplative moment" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image src="/images/veterans.webp" alt="A veteran in a quiet, contemplative moment" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
         <div className="container">

@@ -14,7 +14,7 @@ export default function SafetyPage() {
     <>
       <section className="hero-image">
         <div className="hero-bg">
-          <Image src="/images/safety.jpg" alt="A calm sunrise above the clouds" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image src="/images/safety.webp" alt="A calm sunrise above the clouds" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
         <div className="container">

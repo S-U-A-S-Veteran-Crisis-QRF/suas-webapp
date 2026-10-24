@@ -14,7 +14,7 @@ export default function HowItWorksPage() {
     <>
       <section className="hero-image">
         <div className="hero-bg">
-          <Image src="/images/how-it-works.jpg" alt="A person checking in on their phone at home" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image src="/images/how-it-works.webp" alt="A person checking in on their phone at home" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
         </div>
         <div className="hero-overlay" />
         <div className="container">
