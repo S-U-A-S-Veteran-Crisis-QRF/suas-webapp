@@ -144,6 +144,10 @@ export default function RootLayout({
             }),
           }}
         />
+        {/* If JavaScript never runs, Reveal sections must not stay invisible. */}
+        <noscript>
+          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
       </head>
       <body>
         <DonateClickTracker />
