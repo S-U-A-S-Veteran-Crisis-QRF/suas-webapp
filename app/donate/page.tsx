@@ -266,7 +266,7 @@ export default function DonatePage() {
             <h2>Give money — tonight, or every month</h2>
             <p className="lead">
               Pick an amount and how often. Every tier is a real thing a veteran gets: a meal, a
-              safe bed, or the whole bundle.
+              ride, a safe bed, or the whole bundle.
             </p>
           </Reveal>
           <Reveal>
@@ -293,6 +293,12 @@ export default function DonatePage() {
                     $25<span className="permo">/mo</span>
                   </strong>
                   <span>Puts a hot meal in a veteran&apos;s hands tonight</span>
+                </a>
+                <a className="tier" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
+                  <strong>
+                    $35<span className="permo">/mo</span>
+                  </strong>
+                  <span>Gets a veteran a ride to safety instead of waiting alone</span>
                 </a>
                 <a className="tier" href={GOFUNDME_URL} target="_blank" rel="noopener noreferrer">
                   <strong>
@@ -349,6 +355,52 @@ export default function DonatePage() {
             <p className="note" style={{ marginTop: 8 }}>
               Giving property, a vehicle, or goods instead — or want to talk first? Use the donation
               form below. It starts a conversation, no obligation.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CHOOSE YOUR PROJECT (playbook #3) */}
+      <section>
+        <div className="container">
+          <Reveal>
+            <div className="eyebrow">Choose your project</div>
+            <h2>Choose what your gift funds</h2>
+            <p className="lead">
+              Giving through your workplace? On Benevity you can pick the project your gift
+              supports. Winter Crisis Response is the default — it funds the bundles veterans
+              need this winter.
+            </p>
+          </Reveal>
+          <Reveal>
+            <div className="tiers">
+              <a
+                className="tier"
+                href="https://causes.benevity.org/causes/840-883249428"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <strong>Winter Crisis Response</strong>
+                <span>
+                  Default — $10,500 for 50 bundles: a meal, a ride, and a shelter night each.
+                  Through Feb 28, 2027.
+                </span>
+              </a>
+              <a
+                className="tier"
+                href="https://causes.benevity.org/causes/840-883249428"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <strong>Equip the 2 AM Response</strong>
+                <span>
+                  $36,699 for the laptops, phones, and always-on server the response runs on.
+                </span>
+              </a>
+            </div>
+            <p className="note" style={{ marginTop: 12 }}>
+              Prefer to give directly? GoFundMe and PayPal gifts fund the same work — project
+              choice lives on Benevity.
             </p>
           </Reveal>
         </div>
