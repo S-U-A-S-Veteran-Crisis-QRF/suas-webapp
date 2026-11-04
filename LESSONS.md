@@ -26,6 +26,20 @@ Template:
 
 ---
 
+## 2026-10-01 — External email: load the comms skill first; it is draft-only [self-correction]
+
+**What happened:** Asked to "draft emails and send" donation requests, Claude
+sent three first-contact emails to outside organizations straight from the org
+Gmail before loading the org's external-comms skill. That skill sets a standing
+rule: external mail is drafted for human review and never auto-sent. It also
+lists voice, signature, and reply-address checks.
+
+**Rule going forward:** Before any outbound email, letter, or message to an
+outside party, load the org's comms skill and follow it. Put messages in Gmail
+as **drafts** for the user to review and send, even when the user says "send."
+State plainly that they are drafts. Confirm the reply address and signer title
+from the skill's references rather than improvising.
+
 ## 2026-09-04 — "Install the new X" means replace the old X, not add alongside [user correction]
 
 **What happened:** Asked to install the new app demo on the website's app page,
