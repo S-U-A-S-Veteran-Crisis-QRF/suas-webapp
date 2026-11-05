@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
-const BASE = "https://suasqrf.org";
+const BASE = "https://suasqrf.com";
 const ROUTES = [
   "", "help", "about", "programs", "how-it-works", "veterans", "families", "nonprofits", "counties",
   "app", "pilot", "campaign", "donate", "safety", "transparency", "privacy", "contact",

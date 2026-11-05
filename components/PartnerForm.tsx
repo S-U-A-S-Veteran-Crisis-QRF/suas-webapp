@@ -39,7 +39,7 @@ export default function PartnerForm() {
       <input type="hidden" name="_subject" value="SUAS site: Partner interest" />
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_next" value="https://suasqrf.org/nonprofits?sent=1" />
+      <input type="hidden" name="_next" value="https://suasqrf.com/nonprofits?sent=1" />
       {/* Honeypot — real users never fill this */}
       <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 

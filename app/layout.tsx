@@ -9,7 +9,7 @@ import DonateClickTracker from "@/components/DonateClickTracker";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://suasqrf.org"),
+  metadataBase: new URL("https://suasqrf.com"),
   title: {
     default: "SUAS Veteran Crisis Q.R.F.",
     template: "%s | SUAS Veteran Crisis Q.R.F.",
@@ -95,8 +95,8 @@ export default function RootLayout({
               "@type": "NonprofitOrganization",
               name: "SUAS QRF",
               alternateName: "S.U.A.S. Veteran Crisis Q.R.F.",
-              url: "https://suasqrf.org/",
-              logo: "https://suasqrf.org/icon.svg",
+              url: "https://suasqrf.com/",
+              logo: "https://suasqrf.com/icon.svg",
               description:
                 "Nonprofit peer-bridge crisis support for veterans in Santa Clara County, California: peer response, free rides, meals, emergency shelter nights, direct service referral, and free community events.",
               areaServed: { "@type": "AdministrativeArea", name: "Santa Clara County, California" },
@@ -133,7 +133,7 @@ export default function RootLayout({
                 name: "Veteran Support Pilot Program",
                 description:
                   "Structured pilot for 25-50 veterans with peer responder coordination",
-                url: "https://suasqrf.org/pilot",
+                url: "https://suasqrf.com/pilot",
               },
               funding: {
                 "@type": "MonetaryGrant",
