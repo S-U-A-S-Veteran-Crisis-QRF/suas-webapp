@@ -31,7 +31,7 @@ export default function HelpForm() {
       <input type="hidden" name="_subject" value="SUAS site: HELP REQUEST" />
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_next" value="https://suasqrf.org/help?sent=1" />
+      <input type="hidden" name="_next" value="https://suasqrf.com/help?sent=1" />
       {/* Honeypot — real users never fill this */}
       <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 

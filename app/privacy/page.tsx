@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How S.U.A.S. Veteran Crisis Q.R.F. collects, uses, and protects information on suasqrf.org, including contact forms, donations, and website analytics.",
+    "How S.U.A.S. Veteran Crisis Q.R.F. collects, uses, and protects information on suasqrf.com, including contact forms, donations, and website analytics.",
 };
 
 const UPDATED = "October 20, 2026";
@@ -30,7 +30,7 @@ export default function PrivacyPage() {
             S.U.A.S. Veteran Crisis Q.R.F. (&ldquo;SUAS,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) is a
             California nonprofit public benefit corporation recognized by the IRS as a 501(c)(3)
             public charity (EIN 88-3249428). Our mailing address is 727 Edge Lane, Los Altos, CA
-            94024. This policy covers the website at suasqrf.org and its subpages.
+            94024. This policy covers the website at suasqrf.com and its subpages.
           </p>
 
           <h2>What we collect, and why</h2>

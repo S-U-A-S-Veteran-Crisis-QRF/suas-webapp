@@ -210,7 +210,7 @@ export default function CrisisDemoApp() {
           <div style={{ textAlign: "center", marginTop: "32px", fontSize: "13px", color: C.textDim, lineHeight: 1.6 }}>
             All services free · Paid by corporate sponsors
             <br />
-            <span style={{ color: C.gold, fontWeight: 600 }}>suasqrf.org</span>
+            <span style={{ color: C.gold, fontWeight: 600 }}>suasqrf.com</span>
           </div>
         </div>
       </Wrap>
